@@ -1,5 +1,10 @@
-<p>event-view!!!!!!!!!!!!</p>
 <div>
-  <p>{{event?.id}}</p>
-  <p>{{event?.name}}</p>
+  <p>ID: {{event?.id | currency}}</p>
+  <p>Name: {{event?.name}}</p>
+  <p>Description: {{event?.description}}</p>
+  <p>Event start: {{event?.eventStart | date}}</p>
+  <p>Event end: {{event?.eventEnd | date}}</p>
+  <p>Deadline for RSVP: {{event?.deadlineRSVP | date}}</p>
+  <p>Event location: {{event?.location}}</p>
+  <p>Event organizer: {{event?.organizer}}</p>
 </div>
