@@ -9,4 +9,11 @@ describe('EventService', () => {
     const service: EventService = TestBed.get(EventService);
     expect(service).toBeTruthy();
   });
+
+  it('should return event with correct id', () => {
+    const service: EventService = TestBed.get(EventService);
+    service.findById(55).subscribe(data => {
+      expect(data.id).toEqual(55);
+    })
+  })
 });

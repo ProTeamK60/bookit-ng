@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventViewComponent } from './event-view/event-view.component';
+import { EventService } from './service/event.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { EventViewComponent } from './event-view/event-view.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
