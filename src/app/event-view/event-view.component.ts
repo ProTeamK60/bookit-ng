@@ -14,7 +14,7 @@ export class EventViewComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.eventService.findById(1).subscribe(data => {
+    this.eventService.findById(1, false).subscribe(data => {
       this.event = data;
     });
   }
