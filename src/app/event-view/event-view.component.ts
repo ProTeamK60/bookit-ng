@@ -13,7 +13,7 @@ export class EventViewComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.eventService.findById('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b', true).subscribe(data => {
+    this.eventService.findById('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b').subscribe(data => {
       this.event = data;
     });
   }

@@ -17,22 +17,7 @@ export class EventService {
     this.eventsUrl = environment.eventServiceAddress + '/api/v1/events/';
   }
 
-  public findById(eventId: string, realShit: boolean): Observable<Event> {
-    if (realShit) {
-      return this.client.get<Event>(this.eventsUrl + eventId);
-    } else {
-      const event: Event = {
-        id: 1,
-        eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
-        name: 'Konferens 2020',
-        description: 'VA',
-        eventStart: new Date('2020-03-20'),
-        eventEnd: new Date('2020-03-21'),
-        deadlineRVSP: new Date('2020-03-10'),
-        location: 'Sierra Nevada motherfucker',
-        organizer: 'Knowit'
-      };
-      return of(event);
-    }
+  public findById(eventId: string): Observable<Event> {
+    return this.client.get<Event>(this.eventsUrl + eventId);
   }
 }
