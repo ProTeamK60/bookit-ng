@@ -5,6 +5,8 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {htmlAstToRender3Ast} from '@angular/compiler/src/render3/r3_template_transform';
 import {Event} from '../model/event';
 import {of} from 'rxjs';
+import { environment } from '../../environments/environment';
+
 
 describe('EventService', () => {
   const MOCK_EVENT: Event = {
@@ -19,7 +21,7 @@ describe('EventService', () => {
     organizer: 'Susanne'
   };
   let httpMock: HttpTestingController;
-  const URL = 'http://172.30.205.181:8080/api/v1/events/';
+  const URL = environment.eventServiceAddress + '/api/v1/events/';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
