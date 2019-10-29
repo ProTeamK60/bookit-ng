@@ -12,7 +12,7 @@ export class EventService {
   private eventsUrl: string;
 
   constructor(private client: HttpClient) {
-    this.eventsUrl = 'http://172.30.205.181:8080/api/v1/events/';
+    this.eventsUrl = 'http://localhost:8080/api/v1/events/';
   }
 
   public findById(eventId: string, realShit: boolean): Observable<Event> {
