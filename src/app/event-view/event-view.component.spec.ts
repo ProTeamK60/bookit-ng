@@ -10,11 +10,12 @@ import {DebugElement} from '@angular/core';
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
     id: 1,
+    eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
     name: 'Konferens',
     description: 'Konferens för Knowit 2020',
     eventStart: new Date(2020, 3, 20),
     eventEnd: new Date(2020, 3, 23),
-    deadlineRSVP: new Date(2020, 2, 1),
+    deadlineRVSP: new Date(2020, 2, 1),
     location: 'Sierra Nevada',
     organizer: 'Susanne'
   };
@@ -56,7 +57,7 @@ describe('EventViewComponent', () => {
 
     fixture.detectChanges();
 
-    const secondParagraph: DebugElement = fixture.debugElement.queryAll(By.css('p'))[1];
-    expect(secondParagraph.nativeElement.textContent).toContain('Konferens');
+    const thirdParagraph: DebugElement = fixture.debugElement.queryAll(By.css('p'))[2];
+    expect(thirdParagraph.nativeElement.textContent).toContain('Konferens');
   });
 });

@@ -9,16 +9,17 @@ import {of} from 'rxjs';
 describe('EventService', () => {
   const MOCK_EVENT: Event = {
     id: 55,
+    eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
     name: 'Konferens',
     description: 'Konferens för Knowit 2020',
     eventStart: new Date(2020, 3, 20),
     eventEnd: new Date(2020, 3, 23),
-    deadlineRSVP: new Date(2020, 2, 1),
+    deadlineRVSP: new Date(2020, 2, 1),
     location: 'Sierra Nevada',
     organizer: 'Susanne'
   };
   let httpMock: HttpTestingController;
-  const URL = 'http://localhost:8080/api/v1/events/';
+  const URL = 'http://172.30.205.181:8080/api/v1/events/';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,18 +36,18 @@ describe('EventService', () => {
 
   it('should return event with correct id', () => {
     const service: EventService = TestBed.get(EventService);
-    service.findById(55, false).subscribe(data => {
-      expect(data.id).toEqual(55);
+    service.findById('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b', false).subscribe(data => {
+      expect(data.eventId).toEqual('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b');
     });
   });
 
   it('should do the real shit', () => {
     const service: EventService = TestBed.get(EventService);
-    service.findById(55, true).subscribe(data => {
-      expect(data.id).toEqual(55);
+    service.findById('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b', true).subscribe(data => {
+      expect(data.eventId).toEqual('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b');
     });
 
-    const findEventRequest = httpMock.expectOne(URL + 55);
+    const findEventRequest = httpMock.expectOne(URL + '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b');
     findEventRequest.flush(MOCK_EVENT);
 
     httpMock.verify();

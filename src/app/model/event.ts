@@ -1,11 +1,11 @@
 export interface Event {
     id: number;
+    eventId: string;
     name: string;
     description: string;
     eventStart: Date;
     eventEnd: Date;
-    deadlineRSVP: Date;
+    deadlineRVSP: Date;
     location: string;
-    //Partipants: Participant[],
     organizer: string;
 }
