@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  eventServiceAddress: 'http://bookit-event:8080'
 };
