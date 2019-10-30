@@ -1,0 +1,11 @@
+<h1>EVENT INFORMATION</h1>
+<div *ngIf="event$ | async as event">
+  <p>Name: {{event.name}}</p>
+  <p>Event ID: {{event.eventId}}</p>
+  <p>Description: {{event.description}}</p>
+  <p>Event start: {{event.eventStart | date}}</p>
+  <p>Event end: {{event.eventEnd | date}}</p>
+  <p>Deadline for RSVP: {{event.deadlineRVSP | date}}</p>
+  <p>Event location: {{event.location}}</p>
+  <p>Event organizer: {{event.organizer}}</p>
+</div>
