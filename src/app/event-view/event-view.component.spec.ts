@@ -48,7 +48,7 @@ describe('EventViewComponent', () => {
 
     fixture.detectChanges();
 
-    expect(component.event).toEqual(MOCK_EVENT);
+    expect(component.event$).toEqual(MOCK_EVENT);
   });
 
   it('should display the event name in the second paragraph', () => {
