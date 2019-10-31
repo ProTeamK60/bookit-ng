@@ -1,3 +1,7 @@
 #logo {
   float: right;
 }
+
+mat-button-toggle {
+  background-color: red;
+}

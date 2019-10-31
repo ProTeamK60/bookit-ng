@@ -1,0 +1,12 @@
+div.centered {
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+.mat-card {
+    background-color: #B7DEBD;
+    color: #333333;
+    font-family: Arial;
+}
