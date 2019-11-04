@@ -1,30 +1,34 @@
 <div class="centered" *ngIf="event$ | async as event">
-  <mat-card>
-    <mat-card-title>{{event.name}}</mat-card-title>
+  <mat-card class="mat-elevation-z20">
+
+    <mat-card-title>
+      <span class="mat-card-title-text">{{event.name | uppercase}}</span>
+    </mat-card-title>
     <mat-card-subtitle>{{event.eventId}}</mat-card-subtitle>
-    <mat-divider></mat-divider>
+
     <mat-card-content>
       <mat-list>
-        <mat-list-item> Description: {{event.description}} </mat-list-item>
-        <mat-list-item> Event start: {{event.eventStart | date}} </mat-list-item>
-        <mat-list-item> Event end: {{event.eventEnd | date}} </mat-list-item>
-        <mat-list-item> Deadline for RSVP: {{event.deadlineRVSP | date}} </mat-list-item>
-        <mat-list-item> Event location: {{event.location}} </mat-list-item>
-        <mat-list-item> Event organizer: {{event.organizer}} </mat-list-item>
+        <mat-list-item>Description: {{event.description}} </mat-list-item>
+        <mat-list-item>Event start: {{event.eventStart | date}} </mat-list-item>
+        <mat-list-item>Event end: {{event.eventEnd | date}} </mat-list-item>
+        <mat-list-item>Deadline for RSVP: {{event.deadlineRVSP | date}} </mat-list-item>
+        <mat-list-item>Event location: {{event.location}} </mat-list-item>
+        <mat-list-item>Event organizer: {{event.organizer}} </mat-list-item>
       </mat-list>
     </mat-card-content>
+    <mat-button-toggle-group>
+      <mat-button-toggle>
+        JA
+      </mat-button-toggle>
+      <mat-button-toggle>
+        NEJ
+      </mat-button-toggle>
+      <mat-button-toggle>
+        KANSKE, KANSKE, KANSKE
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-card-actions></mat-card-actions>
     <mat-card-footer>
-      <mat-button-toggle-group>
-        <mat-button-toggle>
-          JA
-        </mat-button-toggle>
-        <mat-button-toggle>
-          NEJ
-        </mat-button-toggle>
-        <mat-button-toggle>
-          KANSKE, KANSKE, KANSKE
-        </mat-button-toggle>
-      </mat-button-toggle-group>
     </mat-card-footer>
   </mat-card>
 </div>
