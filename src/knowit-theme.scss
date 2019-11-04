@@ -1,4 +1,6 @@
 @import '~@angular/material/theming';
+
+// always include only once per project
 @include mat-core();
 
 
@@ -268,8 +270,10 @@ $md-knowit-clay: (
 );
 
 //Knowit MD-theme
-$my-app-primary: mat-palette($md-knowit-pear);
-$my-app-accent:  mat-palette($md-knowit-flamingo, 500, 900, A100);
-$my-app-warn:    mat-palette($md-knowit-forest);
+$knowit-primary: mat-palette($md-knowit-pear);
+$knowit-accent:  mat-palette($md-knowit-flamingo, 500, 900, A100);
+$knowit-warn:    mat-palette($md-knowit-forest);
 
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);@include angular-material-theme($my-app-theme);
+$knowit-theme: mat-light-theme($knowit-primary, $knowit-accent, $knowit-warn);
+
+@include angular-material-theme($knowit-theme);
