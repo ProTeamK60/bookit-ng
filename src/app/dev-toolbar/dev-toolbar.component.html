@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <span>ProTeamK60 Developer Menu</span>
+    <!-- This fills the remaining space of the current row -->
+    <span class="mat-toolbar-fill-remaining-space"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-icon>child_care</mat-icon>
+            <span>Hupp hupp</span>
+        </button>
+        <button mat-menu-item disabled>
+            <mat-icon>bathtub</mat-icon>
+            <span>Plask plask</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>local_shipping</mat-icon>
+            <span>Brum brum brum!</span>
+        </button>
+    </mat-menu>
+
+</mat-toolbar>

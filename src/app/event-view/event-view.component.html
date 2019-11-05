@@ -1,21 +1,41 @@
 <div class="centered" *ngIf="event$ | async as event">
+
   <mat-card class="mat-elevation-z20">
 
     <mat-card-title>
       <span class="mat-card-title-text">{{event.name | uppercase}}</span>
     </mat-card-title>
     <mat-card-subtitle>{{event.eventId}}</mat-card-subtitle>
-
+    <mat-divider></mat-divider>
     <mat-card-content>
       <mat-list>
-        <mat-list-item>Description: {{event.description}} </mat-list-item>
-        <mat-list-item>Event start: {{event.eventStart | date}} </mat-list-item>
-        <mat-list-item>Event end: {{event.eventEnd | date}} </mat-list-item>
-        <mat-list-item>Deadline for RSVP: {{event.deadlineRVSP | date}} </mat-list-item>
-        <mat-list-item>Event location: {{event.location}} </mat-list-item>
-        <mat-list-item>Event organizer: {{event.organizer}} </mat-list-item>
+        <mat-list-item>
+          <mat-icon>description</mat-icon>
+          Description: {{event.description}}
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>date_range</mat-icon>
+          Event start: {{event.eventStart | date}}
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>date_range</mat-icon>
+          Event end: {{event.eventEnd | date}}
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>date_range</mat-icon>
+          Deadline for RSVP: {{event.deadlineRVSP | date}}
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>location_city</mat-icon>
+          Location: {{event.location}}
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>people</mat-icon>
+          Organizer: {{event.organizer}}
+        </mat-list-item>
       </mat-list>
     </mat-card-content>
+    <mat-divider></mat-divider>
     <mat-button-toggle-group>
       <mat-button-toggle>
         JA
@@ -31,4 +51,6 @@
     <mat-card-footer>
     </mat-card-footer>
   </mat-card>
+
+
 </div>

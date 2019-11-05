@@ -9,17 +9,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatMenuModule} from '@angular/material/menu'; 
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatListModule} from '@angular/material/list'; 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDividerModule} from '@angular/material/divider'; 
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventViewComponent
+    EventViewComponent,
+    DevToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,
     MatListModule,
     MatFormFieldModule,
-    MatDividerModule
+    MatDividerModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [EventService],
   bootstrap: [AppComponent]
