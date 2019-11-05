@@ -8,7 +8,7 @@ import { Event } from '../model/event';
 })
 export class EventCardComponent implements OnInit {
   @Input() event: Event;
-  baseUrl : string = window.location.origin + "/events/";
+  baseUrl: string = window.location.origin + '/events/';
   constructor() { }
 
   ngOnInit() {

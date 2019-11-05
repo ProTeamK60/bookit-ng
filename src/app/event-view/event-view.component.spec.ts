@@ -1,11 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EventViewComponent } from './event-view.component';
+import {EventViewComponent} from './event-view.component';
 import {EventService} from '../service/event.service';
-import { Event } from '../model/event';
+import {Event} from '../model/event';
 import {of} from 'rxjs';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
+import {
+  MatButtonToggleModule,
+  MatCardModule, MatDatepickerModule,
+  MatDividerModule, MatFormFieldModule,
+  MatIconModule, MatInputModule,
+  MatListModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
+import {EventCardComponent} from '../event-card/event-card.component';
+import {AppRoutingModule} from '../app-routing.module';
+import {EventCreateComponent} from '../event-create/event-create.component';
+import {EventListComponent} from '../event-list/event-list.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
@@ -27,7 +41,25 @@ describe('EventViewComponent', () => {
     mockEventService = jasmine.createSpyObj(['findById']);
 
     TestBed.configureTestingModule({
-      declarations: [ EventViewComponent ],
+      declarations: [ EventViewComponent,
+      EventCardComponent,
+        EventCreateComponent,
+        EventListComponent
+      ],
+      imports: [
+        MatCardModule,
+        MatDividerModule,
+        MatIconModule,
+        MatListModule,
+        MatButtonToggleModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        AppRoutingModule,
+        MatDatepickerModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        BrowserAnimationsModule
+      ],
       providers: [{provide: EventService, useValue: mockEventService }]
     })
     .compileComponents();
@@ -47,7 +79,10 @@ describe('EventViewComponent', () => {
 
     fixture.detectChanges();
 
-    expect(component.event$).toEqual(MOCK_EVENT);
+    component.event$.subscribe(data => {
+        expect(data).toEqual(MOCK_EVENT);
+      }
+    );
   });
 
   it('should display the event name in the second paragraph', () => {
@@ -56,7 +91,7 @@ describe('EventViewComponent', () => {
 
     fixture.detectChanges();
 
-    const thirdParagraph: DebugElement = fixture.debugElement.queryAll(By.css('p'))[2];
-    expect(thirdParagraph.nativeElement.textContent).toContain('Konferens');
+    const cardTitleTag: DebugElement = fixture.debugElement.query(By.css('.mat-card-title-text'));
+    expect(cardTitleTag.nativeElement.textContent).toContain('KONFERENS');
   });
 });
