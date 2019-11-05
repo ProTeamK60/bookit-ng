@@ -7,25 +7,39 @@ import { EventViewComponent } from './event-view/event-view.component';
 import { EventService } from './service/event.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatListModule } from '@angular/material/list';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+
+import {
+  MatSliderModule,
+  MatCardModule,
+  MatButtonToggleModule,
+  MatButtonModule,
+  MatMenuModule,
+  MatTabsModule,
+  MatListModule,
+  MatFormFieldModule,
+  MatDividerModule,
+  MatToolbarModule,
+  MatInputModule,
+  MatIconModule,
+  MatDatepickerModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatNativeDateModule,
+  MatSlideToggleModule
+} from '@angular/material';
+
 import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EventCreateComponent } from './event-create/event-create.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EventViewComponent,
-    DevToolbarComponent
+    DevToolbarComponent,
+    EventCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +47,8 @@ import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatCardModule,
     MatButtonToggleModule,
     MatMenuModule,
@@ -42,7 +58,13 @@ import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
     MatDividerModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule
   ],
   providers: [EventService],
   bootstrap: [AppComponent]

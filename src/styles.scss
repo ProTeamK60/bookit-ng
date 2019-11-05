@@ -16,3 +16,22 @@ body {
 html, body { height: 100%; }
 body { margin: 0; font-family: Arial; }
 
+div.centered {
+  height: 1024px;
+  width: 768px;
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+}
+
+.mat-card {
+  background-color: #FCDFD8;
+  color: #333333;
+  font-family: Arial;
+}
+
+.mat-card-header {
+  background-color: #FAC0B1;
+}
+

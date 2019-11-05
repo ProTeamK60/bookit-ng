@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Event} from '../model/event';
-import {of} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, throwError  } from 'rxjs';
+import { Event } from '../model/event';
+import { catchError, retry } from 'rxjs/operators'
 import { environment } from '../../environments/environment';
 
 
@@ -19,5 +19,16 @@ export class EventService {
 
   public findById(eventId: string): Observable<Event> {
     return this.client.get<Event>(this.eventsUrl + eventId);
+  }
+
+  public create(event: Event): Observable<Event> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    return this.client.post<Event>(this.eventsUrl, event, httpOptions);
   }
 }

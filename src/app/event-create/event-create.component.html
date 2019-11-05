@@ -1,0 +1,40 @@
+<div class="centered">
+    <mat-card>
+        <mat-card-title>
+            Create Event Form
+        </mat-card-title>
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="demo-full-width">
+                <input formControlName="name" matInput placeholder="Name">
+            </mat-form-field>
+            <mat-form-field class="demo-full-width">
+                <input formControlName="description" matInput placeholder="Description">
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width">
+                <input formControlName="eventStart" matInput placeholder="Event start">
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width">
+                <input formControlName="eventEnd" matInput placeholder="Event end">
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width">
+                <input formControlName="deadlineRVSP" matInput placeholder="Deadline RVSP">
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width">
+                <input formControlName="location" matInput placeholder="Location">
+            </mat-form-field>
+
+            <mat-form-field class="demo-full-width">
+                <input formControlName="organizer" matInput placeholder="Organizer">
+            </mat-form-field>
+            <button type="submit" [disabled]="!eventForm.valid">Submit</button>
+            <button mat-raised-button color="accent">Submit2</button>  
+        </form>
+        <p>
+            Form Status: {{ eventForm.status }}
+        </p>
+    </mat-card>
+</div>
