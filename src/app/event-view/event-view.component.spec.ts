@@ -9,7 +9,6 @@ import {DebugElement} from '@angular/core';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
-    id: 1,
     eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
     name: 'Konferens',
     description: 'Konferens för Knowit 2020',

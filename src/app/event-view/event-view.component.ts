@@ -15,7 +15,7 @@ export class EventViewComponent implements OnInit {
   constructor(private eventService: EventService, private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit() {
-    const eventId = this.activatedRoute.snapshot.params['id'];
+    const eventId = this.activatedRoute.snapshot.params.id;
     this.event$ = this.eventService.findById(eventId);
   }
 
