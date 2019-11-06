@@ -14,11 +14,15 @@ export class EventService {
   private eventsUrl: string;
 
   constructor(private client: HttpClient) {
-    this.eventsUrl = environment.eventServiceAddress + '/api/v1/events/';
+    this.eventsUrl = environment.eventServiceAddress + '/api/v1/events';
   }
 
   public findById(eventId: string): Observable<Event> {
-    return this.client.get<Event>(this.eventsUrl + eventId);
+    return this.client.get<Event>(this.eventsUrl + '/' + eventId);
+  }
+
+  public findAllEvents(): Observable<Event[]> {
+    return this.client.get<Event[]>(this.eventsUrl);
   }
 
   public createOrUpdate(event: Event): Observable<Event> {
