@@ -14,8 +14,7 @@ export class EventViewComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    this.event$ = this.eventService.findById('ef034d56-5828-45c5-b939-0eac032eadfb');
-    //this.event$ = this.eventService.findById('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b');
+    this.event$ = this.eventService.findById('72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b');
   }
 
 }
