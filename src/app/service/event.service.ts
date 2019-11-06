@@ -21,14 +21,14 @@ export class EventService {
     return this.client.get<Event>(this.eventsUrl + eventId);
   }
 
-  public create(event: Event): Observable<Event> {
+  public createOrUpdate(event: Event): Observable<Event> {
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
-
+    console.log(this.eventsUrl, event, httpOptions);
     return this.client.post<Event>(this.eventsUrl, event, httpOptions);
   }
 }

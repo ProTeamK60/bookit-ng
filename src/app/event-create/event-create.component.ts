@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormsModule, NgForm, Validators} from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, FormsModule, NgForm, Validators } from '@angular/forms';
 import { EventService } from '../service/event.service';
 import { Event } from '../model/event'
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-event-create',
@@ -9,18 +10,8 @@ import { Event } from '../model/event'
   styleUrls: ['./event-create.component.scss']
 })
 export class EventCreateComponent implements OnInit {
-
-  /*eventForm = new FormGroup(
-    {
-      name: new FormControl(''),
-      description: new FormControl(''),
-      eventStart: new FormControl(''),
-      eventEnd: new FormControl(''),
-      deadlineRVSP: new FormControl(''),
-      location: new FormControl(''),
-      organizer: new FormControl('')
-    }
-  );*/
+  minEventStart = Date.now();
+  eventEndFilter = (d: Date): boolean => { return this.eventForm.controls['eventStart'].value <= d; };
 
   eventForm = this.fb.group({
     name: ['', Validators.required],
@@ -32,26 +23,28 @@ export class EventCreateComponent implements OnInit {
     organizer: ['']
   });
 
-  dateLessThan(from: string, to: string) {
-    return (group: FormGroup): { [key: string]: any } => {
-      let f = group.controls[from];
-      let t = group.controls[to];
-      if (f.value > t.value) {
-        return {
-          dates: "Event start date should be earlier than Event end date"
-        };
-      }
-      return {};
-    }
-  }
-
   constructor(private eventService: EventService, private fb: FormBuilder) { }
 
   ngOnInit() {
   }
 
+  OnEventStartChange() {
+    this.eventForm.controls['eventEnd'].setValue('');
+  }
+
   onSubmit() {
     console.warn(this.eventForm.value);
+
+    this.eventService.createOrUpdate({
+      eventId: '',
+      name: this.eventForm.get('name').value,
+      description: this.eventForm.get('description').value,
+      eventStart: this.eventForm.get('eventStart').value,
+      eventEnd: this.eventForm.get('eventEnd').value,
+      deadlineRVSP: this.eventForm.get('deadlineRVSP').value,
+      location: this.eventForm.get('location').value,
+      organizer: this.eventForm.get('organizer').value
+    }).subscribe((data) => {console.log(data)});
   }
 
 }
