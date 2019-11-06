@@ -30,15 +30,18 @@ import {
 } from '@angular/material';
 
 import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
+import {EventCreateComponent} from './event-create/event-create.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventCardComponent } from './event-card/event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EventCreateComponent } from './event-create/event-create.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     EventViewComponent,
     DevToolbarComponent,
+    EventListComponent,
+    EventCardComponent,
     EventCreateComponent
   ],
   imports: [
