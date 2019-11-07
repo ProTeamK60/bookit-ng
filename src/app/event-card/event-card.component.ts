@@ -14,4 +14,10 @@ export class EventCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  copyToClipboard(inputElement) {
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
+
 }

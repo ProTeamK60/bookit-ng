@@ -32,6 +32,11 @@
         Organizer: {{event.organizer}}
       </mat-list-item>
     </mat-list>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Sharable URL</mat-label>
+        <input [readonly]="true" matInput value="{{baseUrl + event.eventId}}" #urlValue>
+        <mat-icon matSuffix (click)="copyToClipboard(urlValue)">file_copy</mat-icon>
+      </mat-form-field>
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-button-toggle-group>
@@ -47,8 +52,5 @@
   </mat-button-toggle-group>
   <mat-card-actions></mat-card-actions>
   <mat-card-footer>
-    <span>
-      Sharable URL: {{baseUrl + event.eventId}}
-    </span>
   </mat-card-footer>
 </mat-card>
