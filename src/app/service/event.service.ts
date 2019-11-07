@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, of, throwError  } from 'rxjs';
 import { Event } from '../model/event';
 import { catchError, retry } from 'rxjs/operators'
@@ -25,7 +25,7 @@ export class EventService {
     return this.client.get<Event[]>(this.eventsUrl);
   }
 
-  public createOrUpdate(event: Event): Observable<Event> {
+  public createOrUpdate(event: Event): Observable<HttpResponse<Event>> {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -33,6 +33,6 @@ export class EventService {
       })
     };
     console.log(this.eventsUrl, event, httpOptions);
-    return this.client.post<Event>(this.eventsUrl, event, httpOptions);
+    return this.client.post<any>(this.eventsUrl, event, {observe: 'response'});
   }
 }
