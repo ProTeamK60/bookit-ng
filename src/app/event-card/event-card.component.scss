@@ -1,15 +1,11 @@
-mat-icon {
+mat-icon.copy {
     cursor: pointer;
 }
 
-mat-icon:hover {
+mat-icon.copy:hover {
     opacity: 75%;
 }
 
-mat-icon:active {
+mat-icon.copy:active {
     opacity: 50%;
-}
-
-mat-form-field {
-
 }
