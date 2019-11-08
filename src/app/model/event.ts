@@ -2,9 +2,9 @@ export interface Event {
     eventId: string;
     name: string;
     description: string;
-    eventStart: Date;
-    eventEnd: Date;
-    deadlineRVSP: Date;
+    eventStart: number;
+    eventEnd: number;
+    deadlineRVSP: number;
     location: string;
     organizer: string;
 }

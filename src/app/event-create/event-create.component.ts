@@ -36,16 +36,22 @@ export class EventCreateComponent implements OnInit {
   onSubmit() {
     console.warn(this.eventForm.value);
 
-    this.eventService.createOrUpdate({
+    let event = {
       eventId: '',
       name: this.eventForm.get('name').value,
       description: this.eventForm.get('description').value,
-      eventStart: this.eventForm.get('eventStart').value,
-      eventEnd: this.eventForm.get('eventEnd').value,
-      deadlineRVSP: this.eventForm.get('deadlineRVSP').value,
+      eventStart:  (this.eventForm.get('eventStart').value as Date).getTime(),
+      eventEnd: (this.eventForm.get('eventEnd').value as Date).getTime(),
+      deadlineRVSP: (this.eventForm.get('deadlineRVSP').value as Date).getTime(),
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value
-    }).subscribe((data) => {  let s = data.headers.get('location').split("/"); this.router.navigateByUrl('/events/' + s[s.length-1]) });
+    };
+
+    console.log(event);
+
+    this.eventService.createOrUpdate(event).subscribe((data) => {  
+      
+      let s = data.headers.get('location').split("/"); this.router.navigateByUrl('/events/' + s[s.length-1]) });
   }
 
 }
