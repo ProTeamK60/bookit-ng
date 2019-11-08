@@ -6,17 +6,17 @@
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-            <mat-icon>child_care</mat-icon>
-            <span>Hupp hupp</span>
+        <button mat-menu-item (click)="redirect('events/new')">
+            <mat-icon>add_circle_outline</mat-icon>
+            <span>Create new event</span>
         </button>
-        <button mat-menu-item disabled>
-            <mat-icon>bathtub</mat-icon>
-            <span>Plask plask</span>
+        <button mat-menu-item (click) = "redirect('events')">
+            <mat-icon>event</mat-icon>
+            <span>View all events</span>
         </button>
-        <button mat-menu-item>
-            <mat-icon>local_shipping</mat-icon>
-            <span>Brum brum brum!</span>
+        <button mat-menu-item disabled="true" (click)="redirect('reports')">
+            <mat-icon>assessment</mat-icon>
+            <span>Reports</span>
         </button>
     </mat-menu>
 
