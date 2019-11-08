@@ -8,10 +8,16 @@ import { Event } from '../model/event';
 })
 export class EventCardComponent implements OnInit {
   @Input() event: Event;
-
+  baseUrl : string = window.location.origin + "/events/";
   constructor() { }
 
   ngOnInit() {
+  }
+
+  copyToClipboard(inputElement) {
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
   }
 
 }

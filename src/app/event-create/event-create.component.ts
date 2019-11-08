@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, FormsModule, NgForm, Validators } 
 import { EventService } from '../service/event.service';
 import { Event } from '../model/event'
 import { group } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-create',
@@ -23,7 +24,7 @@ export class EventCreateComponent implements OnInit {
     organizer: ['']
   });
 
-  constructor(private eventService: EventService, private fb: FormBuilder) { }
+  constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
   }
@@ -44,7 +45,7 @@ export class EventCreateComponent implements OnInit {
       deadlineRVSP: this.eventForm.get('deadlineRVSP').value,
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value
-    }).subscribe((data) => {console.log(data)});
+    }).subscribe((data) => {  let s = data.headers.get('location').split("/"); this.router.navigateByUrl('/events/' + s[s.length-1]) });
   }
 
 }
