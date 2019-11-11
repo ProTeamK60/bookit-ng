@@ -40,19 +40,20 @@ export class EventCreateComponent implements OnInit {
       eventId: '',
       name: this.eventForm.get('name').value,
       description: this.eventForm.get('description').value,
-      eventStart:  this.dateToUTCMilliseconds(this.eventForm.get('eventStart').value),
-      eventEnd: this.dateToUTCMilliseconds(this.eventForm.get('eventEnd').value),
-      deadlineRVSP: this.dateToUTCMilliseconds(this.eventForm.get('deadlineRVSP').value),
+      eventStart: this.dateToMilliseconds(this.eventForm.get('eventStart').value),
+      eventEnd: this.dateToMilliseconds(this.eventForm.get('eventEnd').value),
+      deadlineRVSP: this.dateToMilliseconds(this.eventForm.get('deadlineRVSP').value),
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value
     };
 
-    this.eventService.createOrUpdate(event).subscribe((data) => {  
-    let s = data.headers.get('location').split("/"); this.router.navigateByUrl('/events/' + s[s.length-1]) });
+    this.eventService.createOrUpdate(event).subscribe((data) => {
+      let s = data.headers.get('location').split("/"); this.router.navigateByUrl('/events/' + s[s.length - 1])
+    });
   }
 
-  private dateToUTCMilliseconds(date: Date) : number {
-    return date.getUTCMilliseconds();
+  private dateToMilliseconds(date: Date): number {
+    return date.getTime();
   }
 
 }
