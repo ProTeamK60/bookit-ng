@@ -46,8 +46,9 @@ export class EventCreateComponent implements OnInit {
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value
     };
-
-    this.eventService.createOrUpdate(event).subscribe((data) => {});
+    this.eventService.createOrUpdate(event).subscribe((data) => {  
+      let s = data.headers.get('location').split("/"); 
+      this.router.navigateByUrl('/events/' + s[s.length-1]) });
   }
 
   private dateToMilliseconds(date: Date): number {
