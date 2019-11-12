@@ -37,7 +37,7 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="eventStart" matInput [matDatepicker]="eventStartPicker"
-                                [min]="minEventStart" (dateChange)="OnEventStartChange()" placeholder="Start date">
+                                [min]="today" (dateChange)="OnEventStartChange()" placeholder="Start date">
                             <mat-datepicker-toggle matSuffix [for]="eventStartPicker"></mat-datepicker-toggle>
                             <mat-datepicker #eventStartPicker></mat-datepicker>
                             <mat-error>
@@ -50,7 +50,7 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="eventEnd" matInput [matDatepicker]="eventEndPicker"
-                                [matDatepickerFilter]="eventEndFilter" placeholder="End date">
+                                [min]="eventForm.get('eventStart').value"  placeholder="End date">
                             <mat-datepicker-toggle matSuffix [for]="eventEndPicker"></mat-datepicker-toggle>
                             <mat-datepicker #eventEndPicker></mat-datepicker>
                             <mat-error>
@@ -64,7 +64,7 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="deadlineRVSP" matInput [matDatepicker]="deadlineRVSPPicker"
-                                [min]="minEventStart" placeholder="Deadline RVSP">
+                                [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
                             <mat-datepicker-toggle matSuffix [for]="deadlineRVSPPicker"></mat-datepicker-toggle>
                             <mat-datepicker #deadlineRVSPPicker></mat-datepicker>
                         </mat-form-field>
