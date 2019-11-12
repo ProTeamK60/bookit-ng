@@ -23,6 +23,8 @@ export class EventCreateComponent implements OnInit {
     organizer: ['']
   });
 
+
+  //hej hopp
   constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
