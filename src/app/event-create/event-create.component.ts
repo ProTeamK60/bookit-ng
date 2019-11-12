@@ -33,8 +33,6 @@ export class EventCreateComponent implements OnInit {
   OnEventStartChange() {
     let endDate = this.eventForm.controls['eventEnd'];
     let deadline = this.eventForm.controls['deadlineRVSP'];
-    endDate.setValue('');
-    deadline.setValue('');
     if(this.eventForm.controls['eventStart'].valid)
     {
       endDate.enable();
@@ -45,7 +43,12 @@ export class EventCreateComponent implements OnInit {
       endDate.disable();
       deadline.disable();
     }
-
+    endDate.setValue('');
+    deadline.setValue('');
+    endDate.markAsPristine();
+    deadline.markAsPristine();
+    endDate.markAsUntouched();
+    deadline.markAsUntouched();
   }
 
   onSubmit() {
