@@ -50,6 +50,7 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="eventEnd" matInput [matDatepicker]="eventEndPicker"
+
                                 [min]="eventForm.get('eventStart').value" placeholder="End date">
                             <mat-datepicker-toggle matSuffix [for]="eventEndPicker"></mat-datepicker-toggle>
                             <mat-datepicker #eventEndPicker></mat-datepicker>

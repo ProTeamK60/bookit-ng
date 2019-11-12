@@ -33,7 +33,7 @@ export class EventCreateComponent implements OnInit {
   OnEventStartChange() {
     let endDate = this.eventForm.controls['eventEnd'];
     let deadline = this.eventForm.controls['deadlineRVSP'];
-    if(this.eventForm.controls['eventStart'].valid)
+  	if(this.eventForm.controls['eventStart'].valid)
     {
       endDate.enable();
       deadline.enable();
