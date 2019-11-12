@@ -11,15 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./event-create.component.scss']
 })
 export class EventCreateComponent implements OnInit {
-  minEventStart = Date.now();
-  eventEndFilter = (d: Date): boolean => { return this.eventForm.controls['eventStart'].value <= d; };
+  today = new Date();
 
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
     eventStart: ['', Validators.required],
     eventEnd: ['', Validators.required],
-    deadlineRVSP: ['',],
+    deadlineRVSP: [''],
     location: [''],
     organizer: ['']
   });
@@ -27,10 +26,29 @@ export class EventCreateComponent implements OnInit {
   constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+    this.eventForm.controls['eventEnd'].disable();
+    this.eventForm.controls['deadlineRVSP'].disable();
   }
 
   OnEventStartChange() {
-    this.eventForm.controls['eventEnd'].setValue('');
+    let endDate = this.eventForm.controls['eventEnd'];
+    let deadline = this.eventForm.controls['deadlineRVSP'];
+    if(this.eventForm.controls['eventStart'].valid)
+    {
+      endDate.enable();
+      deadline.enable();
+    }
+    else
+    {
+      endDate.disable();
+      deadline.disable();
+    }
+    endDate.setValue('');
+    deadline.setValue('');
+    endDate.markAsPristine();
+    deadline.markAsPristine();
+    endDate.markAsUntouched();
+    deadline.markAsUntouched();
   }
 
   onSubmit() {

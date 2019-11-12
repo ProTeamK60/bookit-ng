@@ -5,15 +5,14 @@
         </mat-card-title>
         <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
             <table>
-                <tr >
+                <tr>
                     <td colspan="3">
-                    <mat-form-field class="full-width">
-                        <input formControlName="name" matInput placeholder="Name">
-                        <mat-error>
-                            <span *ngIf="!eventForm.get('name').valid && eventForm.get('name').touched">Please enter a
-                                name.</span>
-                        </mat-error>
-                    </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <input formControlName="name" matInput placeholder="Name">
+                            <mat-error>
+                                <span *ngIf="eventForm.get('name').touched">Please enter a name.</span>
+                            </mat-error>
+                        </mat-form-field>
                     </td>
                 </tr>
                 <tr>
@@ -37,12 +36,13 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="eventStart" matInput [matDatepicker]="eventStartPicker"
-                                [min]="minEventStart" (dateChange)="OnEventStartChange()" placeholder="Start date">
+                                [min]="today" (dateChange)="OnEventStartChange()" placeholder="Start date">
                             <mat-datepicker-toggle matSuffix [for]="eventStartPicker"></mat-datepicker-toggle>
                             <mat-datepicker #eventStartPicker></mat-datepicker>
                             <mat-error>
+                                <span *ngIf="eventForm.get('eventStart').touched && !eventForm.get('eventStart').dirty">Please enter a start date.</span>
                                 <span
-                                    *ngIf="!eventForm.get('eventStart').valid && eventForm.get('eventStart').touched">Please
+                                    *ngIf="eventForm.get('eventStart').touched && eventForm.get('eventStart').dirty">Please
                                     enter a valid start date.</span>
                             </mat-error>
                         </mat-form-field>
@@ -50,12 +50,13 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="eventEnd" matInput [matDatepicker]="eventEndPicker"
-                                [matDatepickerFilter]="eventEndFilter" placeholder="End date">
+                                [min]="eventForm.get('eventStart').value" placeholder="End date">
                             <mat-datepicker-toggle matSuffix [for]="eventEndPicker"></mat-datepicker-toggle>
                             <mat-datepicker #eventEndPicker></mat-datepicker>
                             <mat-error>
-                                <span
-                                    *ngIf="!eventForm.get('eventEnd').valid && eventForm.get('eventEnd').touched">Please
+                                <span *ngIf="eventForm.get('eventEnd').touched && !eventForm.get('eventEnd').dirty">Please enter an end date.</span>
+                                <span *ngIf="eventForm.get('eventEnd').touched && eventForm.get('eventEnd').dirty"
+                                    >Please
                                     enter
                                     a valid end date.</span>
                             </mat-error>
@@ -64,9 +65,14 @@
                     <td>
                         <mat-form-field class="datepick-width">
                             <input formControlName="deadlineRVSP" matInput [matDatepicker]="deadlineRVSPPicker"
-                                [min]="minEventStart" placeholder="Deadline RVSP">
+                                [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
                             <mat-datepicker-toggle matSuffix [for]="deadlineRVSPPicker"></mat-datepicker-toggle>
                             <mat-datepicker #deadlineRVSPPicker></mat-datepicker>
+                            <mat-error>
+                                <span
+                                    *ngIf="!eventForm.get('deadlineRVSP').valid && eventForm.get('deadlineRVSP').dirty">Please
+                                    enter a valid deadline.</span>
+                            </mat-error>
                         </mat-form-field>
                     </td>
                 </tr>
