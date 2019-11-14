@@ -34,6 +34,7 @@ import {EventCreateComponent} from './event-create/event-create.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DevToolbarComponent,
     EventListComponent,
     EventCardComponent,
-    EventCreateComponent
+    EventCreateComponent,
+    LocalDateTimePipe
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [EventService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [LocalDateTimePipe]
 })
 export class AppModule { }
