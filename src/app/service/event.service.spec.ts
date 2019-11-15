@@ -8,13 +8,12 @@ import { environment } from '../../environments/environment';
 
 describe('EventService', () => {
   const MOCK_EVENT: Event = {
-    id: 55,
     eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
     name: 'Konferens',
     description: 'Konferens för Knowit 2020',
-    eventStart: new Date(2020, 3, 20),
-    eventEnd: new Date(2020, 3, 23),
-    deadlineRVSP: new Date(2020, 2, 1),
+    eventStart: 90000000,
+    eventEnd: 90060000,
+    deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
     organizer: 'Susanne'
   };

@@ -26,7 +26,8 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatNativeDateModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
@@ -35,6 +36,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
+import { EventRegComponent } from './event-reg/event-reg.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
     EventListComponent,
     EventCardComponent,
     EventCreateComponent,
-    LocalDateTimePipe
+    LocalDateTimePipe,
+    EventRegComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
     MatSelectModule,
     MatOptionModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+	MatSnackBarModule
   ],
   providers: [EventService],
   bootstrap: [AppComponent],

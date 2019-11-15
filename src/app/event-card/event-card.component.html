@@ -40,8 +40,8 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-button-toggle-group>
-    <mat-button-toggle>
-      JA
+    <mat-button-toggle
+    	 (click)="goToPath('/events/register', event.eventId)">Ja
     </mat-button-toggle>
     <mat-button-toggle>
       NEJ
