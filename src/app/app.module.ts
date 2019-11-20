@@ -27,7 +27,10 @@ import {
   MatOptionModule,
   MatNativeDateModule,
   MatSlideToggleModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatExpansionModule,
+  MatTableModule,
+  MatSortModule
 } from '@angular/material';
 
 import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
@@ -39,6 +42,8 @@ import {MatProgressSpinnerModule} from '@angular/material';
 import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
 import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
 import { EventRegComponent } from './event-reg/event-reg.component';
+import { ParticipantListComponent } from './participant-list/participant-list.component';
+import { ParticipantComponent } from './participant/participant.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +54,9 @@ import { EventRegComponent } from './event-reg/event-reg.component';
     EventCardComponent,
     EventCreateComponent,
     LocalDateTimePipe,
-    EventRegComponent
+    EventRegComponent,
+    ParticipantListComponent,
+    ParticipantComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +84,10 @@ import { EventRegComponent } from './event-reg/event-reg.component';
     ReactiveFormsModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+	MatExpansionModule,
+	MatTableModule,
+	MatSortModule
   ],
   providers: [
     {
@@ -86,6 +96,7 @@ import { EventRegComponent } from './event-reg/event-reg.component';
       multi: true
     },
     EventService
+
   ],
   bootstrap: [AppComponent],
   exports: [LocalDateTimePipe]

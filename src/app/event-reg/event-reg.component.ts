@@ -28,15 +28,14 @@ export class EventRegComponent implements OnInit {
 		console.warn(this.regForm.value);
 		const registraion: Registration = {
 			eventId: this.activatedRoute.snapshot.params.eventId,
-			email: this.regForm.get('email').value,
+			participant: {email: this.regForm.get('email').value},
 		}
 		this.registrationService.addRegistration(registraion).subscribe(
 			// TODO, notify user that registration is done 
 			(data) => {
 				console.log('Registration succeeded');
-				let snackBarRef = this.snackBar.open('Message archived');
+				let snackBarRef = this.snackBar.open('Succeessfully registration done', 'Ok', {duration: 5000});
 			}
-
 		);
 	}
 }

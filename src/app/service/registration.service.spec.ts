@@ -9,11 +9,14 @@ import { environment } from '../../environments/environment';
 describe('RegistrationService', () => {
 	const registration: Registration = {
 		eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
-		email: 'kalle@ankeborg.se'
+		participant: {
+			email: 'kalle@ankeborg.se'
+			} 
 	};
 
 	let httpMock: HttpTestingController;
-	const URL = environment.registrationServiceAddress + '/api/v1/registrations';
+	const REGISTRATION_URL = environment.registrationServiceAddress + '/api/v1/registrations';
+	const PARTICIPANT_URL = environment.registrationServiceAddress + '/api/v1/participants';
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -35,9 +38,20 @@ describe('RegistrationService', () => {
 			expect(response.status).toEqual(201);
 		});
 
-		console.log(URL);
-		const addRegistrationRequest = httpMock.expectOne(URL);
+		const addRegistrationRequest = httpMock.expectOne(REGISTRATION_URL);
 		addRegistrationRequest.flush(null, { status: 201, statusText: 'Created' });
+		httpMock.verify();
+	});
+	
+	it('should return correct number of Participants when fetching participants for given event', () => {
+		const service: RegistrationService = TestBed.get(RegistrationService);
+		const eventId = registration.eventId;
+		service.findParticipantsByEventId(eventId).subscribe(participants => {
+			expect(participants.length).toEqual(2);
+		});
+
+		const addRegistrationRequest = httpMock.expectOne(PARTICIPANT_URL+'/event/'+eventId);
+		addRegistrationRequest.flush( [{email: 'kalle@ankeborg.se'}, {email: 'kajsa@@ankeborg.se'}], { status: 200, statusText: 'Ok' });
 		httpMock.verify();
 	});
 });

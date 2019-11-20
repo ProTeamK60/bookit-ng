@@ -1,4 +1,7 @@
+import { Participant } from './participant';
+
 export interface Registration {
-    eventId: string;
-    email: string;
-   }
+	eventId: string;
+	participant: Participant;
+	
+}

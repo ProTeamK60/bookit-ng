@@ -29,7 +29,16 @@ div.centered {
   background-color: #FCDFD8;
   color: #333333;
   font-family: Arial;
+
 }
+
+.mat-card-content {
+	//TODO. Make the scrolling responsive 
+	overflow-y: auto;
+	height: 450px;
+	overflow-x: hidden;
+}
+
 
 .mat-card-header {
   background-color: #FAC0B1;
@@ -38,3 +47,5 @@ div.centered {
 .full-width {    
   width: 100%;    
 }
+
+
