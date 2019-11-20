@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventViewComponent } from './event-view/event-view.component';
 import { EventService } from './service/event.service';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
@@ -35,6 +35,8 @@ import {EventCreateComponent} from './event-create/event-create.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventCardComponent } from './event-card/event-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material';
+import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
 import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
 import { EventRegComponent } from './event-reg/event-reg.component';
 
@@ -73,9 +75,18 @@ import { EventRegComponent } from './event-reg/event-reg.component';
     MatOptionModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
-	MatSnackBarModule
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
-  providers: [EventService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
+    },
+    EventService
+  ],
   bootstrap: [AppComponent],
   exports: [LocalDateTimePipe]
 })

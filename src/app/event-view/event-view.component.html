@@ -1,3 +1,15 @@
-<div class="centered" *ngIf="event$ | async as event">
+<div class="centered" *ngIf="event$ | async as event; else loadingOrError">
   <app-event-card [event]="event"></app-event-card>
 </div>
+
+<ng-template #loadingOrError>
+  <div class="centered" *ngIf="error$ | async as error; else loading">
+    <span>{{error.message}}</span>
+  </div>
+
+  <ng-template #loading>
+    <div class="centered">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</ng-template>
