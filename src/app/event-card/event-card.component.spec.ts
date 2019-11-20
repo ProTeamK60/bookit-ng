@@ -4,15 +4,22 @@ import {EventCardComponent} from './event-card.component';
 import {
   MatButtonToggleModule,
   MatCardModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule, MatTableModule
 } from '@angular/material';
 import {Component, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
+import {AppRoutingModule} from '../app-routing.module';
+import {EventCreateComponent} from '../event-create/event-create.component';
+import {EventRegComponent} from '../event-reg/event-reg.component';
+import {EventListComponent} from '../event-list/event-list.component';
+import {EventViewComponent} from '../event-view/event-view.component';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -33,7 +40,16 @@ describe('EventCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventCardComponent, MockParentComponent ],
+      declarations: [
+        EventCardComponent,
+        MockParentComponent,
+        ParticipantListComponent,
+        LocalDateTimePipe,
+        EventCreateComponent,
+        EventRegComponent,
+        EventListComponent,
+        EventViewComponent
+      ],
       imports: [
         MatCardModule,
         MatDividerModule,
@@ -42,7 +58,10 @@ describe('EventCardComponent', () => {
         MatFormFieldModule,
         MatButtonToggleModule,
         MatInputModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        MatTableModule,
+        AppRoutingModule
       ]
     })
     .compileComponents();

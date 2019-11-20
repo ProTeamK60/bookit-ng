@@ -5,10 +5,10 @@ import {
   MatButtonToggleModule,
   MatCardModule,
   MatDatepickerModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatNativeDateModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatTableModule,
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,6 +17,9 @@ import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {EventRegComponent} from '../event-reg/event-reg.component';
+import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
+import {ParticipantListComponent} from '../participant-list/participant-list.component';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -27,7 +30,10 @@ describe('EventCreateComponent', () => {
       declarations: [ EventCreateComponent,
         EventListComponent,
         EventViewComponent,
-        EventCardComponent
+        EventCardComponent,
+        EventRegComponent,
+        LocalDateTimePipe,
+        ParticipantListComponent
       ],
       imports: [
         MatCardModule,
@@ -43,7 +49,9 @@ describe('EventCreateComponent', () => {
         MatButtonToggleModule,
         MatNativeDateModule,
         MatInputModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        MatTableModule
       ]
     })
     .compileComponents();

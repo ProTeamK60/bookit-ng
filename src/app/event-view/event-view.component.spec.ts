@@ -10,10 +10,25 @@ import { DebugElement } from '@angular/core';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { EventCreateComponent } from '../event-create/event-create.component';
 import { EventListComponent } from '../event-list/event-list.component';
-import { MatCardModule, MatIconModule, MatDividerModule, MatListModule, MatButtonToggleModule, MatProgressSpinnerModule, MatFormFieldModule, MatDatepickerModule, MatInputModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatIconModule,
+  MatDividerModule,
+  MatListModule,
+  MatButtonToggleModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatExpansionModule, MatTableModule
+} from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {EventRegComponent} from '../event-reg/event-reg.component';
+import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
+import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('EventViewComponent', () => {
 	const MOCK_EVENT: Event = {
@@ -38,7 +53,10 @@ describe('EventViewComponent', () => {
 			declarations: [EventViewComponent,
 				EventCardComponent,
 				EventCreateComponent,
-				EventListComponent
+				EventListComponent,
+        EventRegComponent,
+        LocalDateTimePipe,
+        ParticipantListComponent
 			],
 			imports: [
 				MatCardModule,
@@ -52,7 +70,10 @@ describe('EventViewComponent', () => {
 				MatDatepickerModule,
 				ReactiveFormsModule,
 				MatInputModule,
-				BrowserAnimationsModule
+				BrowserAnimationsModule,
+        MatExpansionModule,
+        MatTableModule,
+        HttpClientModule
 			],
 
 			providers: [{ provide: EventService, useValue: mockEventService }]
@@ -80,9 +101,9 @@ describe('EventViewComponent', () => {
 
 	it('should display the event name in the second paragraph', () => {
 		mockEventService.findById.and.returnValue(of(MOCK_EVENT));
-		
+
 		fixture.detectChanges();
-		
+
 		const cardTitleTag: DebugElement = fixture.debugElement.query(By.css('.mat-card-title-text'));
 		expect(cardTitleTag.nativeElement.textContent).toContain('KONFERENS');
 	});
