@@ -20,8 +20,8 @@ import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventRegComponent} from '../event-reg/event-reg.component';
 import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -64,13 +64,13 @@ describe('EventCardComponent', () => {
         MatExpansionModule,
         MatTableModule,
         AppRoutingModule,
-		ReactiveFormsModule,
-		MatDatepickerModule,
-		MatProgressSpinnerModule,
-		HttpClientModule
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatProgressSpinnerModule,
+        HttpClientModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -90,7 +90,8 @@ describe('EventCardComponent', () => {
 
   @Component({
     selector: `app-mock-parent`,
-    template: `<app-event-card></app-event-card>`
+    template: `
+        <app-event-card></app-event-card>`
   })
   class MockParentComponent {
     @ViewChild(EventCardComponent, {static: true})

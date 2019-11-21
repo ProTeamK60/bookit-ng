@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { EventViewComponent } from './event-view/event-view.component';
-import { EventService } from './service/event.service';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {EventViewComponent} from './event-view/event-view.component';
+import {EventService} from './service/event.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {
   MatSliderModule,
@@ -33,17 +33,17 @@ import {
   MatSortModule
 } from '@angular/material';
 
-import { DevToolbarComponent } from './dev-toolbar/dev-toolbar.component';
+import {DevToolbarComponent} from './dev-toolbar/dev-toolbar.component';
 import {EventCreateComponent} from './event-create/event-create.component';
-import { EventListComponent } from './event-list/event-list.component';
-import { EventCardComponent } from './event-card/event-card.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {EventListComponent} from './event-list/event-list.component';
+import {EventCardComponent} from './event-card/event-card.component';
+import {ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material';
 import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
-import { LocalDateTimePipe } from './pipes/local-date-time.pipe';
-import { EventRegComponent } from './event-reg/event-reg.component';
-import { ParticipantListComponent } from './participant-list/participant-list.component';
-import { ParticipantComponent } from './participant/participant.component';
+import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
+import {EventRegComponent} from './event-reg/event-reg.component';
+import {ParticipantListComponent} from './participant-list/participant-list.component';
+import {ParticipantComponent} from './participant/participant.component';
 
 @NgModule({
   declarations: [
@@ -85,9 +85,9 @@ import { ParticipantComponent } from './participant/participant.component';
     MatSnackBarModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-	MatExpansionModule,
-	MatTableModule,
-	MatSortModule
+    MatExpansionModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     {
@@ -101,4 +101,5 @@ import { ParticipantComponent } from './participant/participant.component';
   bootstrap: [AppComponent],
   exports: [LocalDateTimePipe]
 })
-export class AppModule { }
+export class AppModule {
+}

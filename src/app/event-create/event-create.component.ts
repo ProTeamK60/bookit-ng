@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormsModule, NgForm, Validators } from '@angular/forms';
-import { EventService } from '../service/event.service';
-import { Event } from '../model/event'
-import { group } from '@angular/animations';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl, FormBuilder, FormsModule, NgForm, Validators} from '@angular/forms';
+import {EventService} from '../service/event.service';
+import {Event} from '../model/event';
+import {group} from '@angular/animations';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-event-create',
@@ -23,7 +23,8 @@ export class EventCreateComponent implements OnInit {
     organizer: ['']
   });
 
-  constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) { }
+  constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) {
+  }
 
   ngOnInit() {
     this.eventForm.controls['eventEnd'].disable();
@@ -33,13 +34,10 @@ export class EventCreateComponent implements OnInit {
   OnEventStartChange() {
     let endDate = this.eventForm.controls['eventEnd'];
     let deadline = this.eventForm.controls['deadlineRVSP'];
-  	if(this.eventForm.controls['eventStart'].valid)
-    {
+    if (this.eventForm.controls['eventStart'].valid) {
       endDate.enable();
       deadline.enable();
-    }
-    else
-    {
+    } else {
       endDate.disable();
       deadline.disable();
     }
@@ -54,7 +52,7 @@ export class EventCreateComponent implements OnInit {
   onSubmit() {
     console.warn(this.eventForm.value);
 
-    let event = {
+    const event = {
       eventId: '',
       name: this.eventForm.get('name').value,
       description: this.eventForm.get('description').value,
@@ -64,9 +62,11 @@ export class EventCreateComponent implements OnInit {
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value
     };
-    this.eventService.createOrUpdate(event).subscribe((data) => {  
-      let s = data.headers.get('location').split("/"); 
-      this.router.navigateByUrl('/events/' + s[s.length-1]) });
+
+    this.eventService.createOrUpdate(event).subscribe((data) => {
+      let s = data.headers.get('location').split('/');
+      this.router.navigateByUrl('/events/' + s[s.length - 1]);
+    });
   }
 
   private dateToMilliseconds(date: Date): number {

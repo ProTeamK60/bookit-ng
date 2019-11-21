@@ -26,6 +26,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+    // Use `ng test --browsers <Chrome/Firefox>` to only use one of these when running the unit tests
     browsers: ['Chrome', 'Firefox'],
     singleRun: false,
     restartOnFileChange: true

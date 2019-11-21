@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
-
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 // always include only once per project
@@ -12,14 +11,19 @@ body {
   color: #333333;
 }
 
+html, body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Arial; }
+body {
+  margin: 0;
+  font-family: Arial;
+}
 
 div.centered {
   height: 1024px;
   width: 768px;
-  position: fixed; 
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -30%);
@@ -29,23 +33,21 @@ div.centered {
   background-color: #FCDFD8;
   color: #333333;
   font-family: Arial;
-
 }
 
 .mat-card-content {
-	//TODO. Make the scrolling responsive 
-	overflow-y: auto;
-	height: 450px;
-	overflow-x: hidden;
+  // TODO Make the scrolling responsive to screen size
+  overflow-y: auto;
+  height: 450px;
+  overflow-x: hidden;
 }
-
 
 .mat-card-header {
   background-color: #FAC0B1;
 }
 
-.full-width {    
-  width: 100%;    
+.full-width {
+  width: 100%;
 }
 
 

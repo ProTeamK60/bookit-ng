@@ -25,7 +25,7 @@ describe('EventService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule,
-      MatFormFieldModule],
+        MatFormFieldModule],
       providers: [
         EventService
       ]

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EventCreateComponent } from './event-create.component';
+import {EventCreateComponent} from './event-create.component';
 import {
   MatButtonToggleModule,
   MatCardModule,
@@ -27,7 +27,7 @@ describe('EventCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventCreateComponent,
+      declarations: [EventCreateComponent,
         EventListComponent,
         EventViewComponent,
         EventCardComponent,
@@ -54,7 +54,7 @@ describe('EventCreateComponent', () => {
         MatTableModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,3 +1,3 @@
 export interface Participant {
-	email: string;
+  email: string;
 }

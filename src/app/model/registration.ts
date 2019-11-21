@@ -1,7 +1,6 @@
-import { Participant } from './participant';
+import {Participant} from './participant';
 
 export interface Registration {
-	eventId: string;
-	participant: Participant;
-	
+  eventId: string;
+  participant: Participant;
 }

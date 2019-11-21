@@ -4,12 +4,15 @@ import {EventListComponent} from './event-list.component';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {
   MatButtonToggleModule,
-  MatCardModule, MatDatepickerModule,
-  MatDividerModule, MatExpansionModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatDividerModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatListModule,
-  MatProgressSpinnerModule, MatTableModule
+  MatProgressSpinnerModule,
+  MatTableModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';

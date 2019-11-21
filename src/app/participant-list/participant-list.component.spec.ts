@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ParticipantListComponent } from './participant-list.component';
+import {ParticipantListComponent} from './participant-list.component';
 import {MatTableModule} from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -10,13 +10,13 @@ describe('ParticipantListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ParticipantListComponent ],
+      declarations: [ParticipantListComponent],
       imports: [
         MatTableModule,
         HttpClientModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
