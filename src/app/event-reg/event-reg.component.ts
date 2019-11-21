@@ -27,7 +27,7 @@ export class EventRegComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.warn(this.regForm.value);
+		
 		const registraion: Registration = {
 			eventId: this.activatedRoute.snapshot.params.eventId,
 			participant: { email: this.regForm.get('email').value },

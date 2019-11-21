@@ -20,35 +20,10 @@ export class ParticipantListComponent implements OnInit {
 		
 	 }
 	
-	 sortedParticipants: Participant[];
-	
 	ngOnInit() {
 		
 		this.dataSource = new ParticipantDataSource(this.registrationService);
 		this.dataSource.loadParicipants(this.eventId);	
 	}
 	
-	/*
-	sortData(sort: Sort) {
-		let data; 
-    	this.participants$.subscribe(p => { 
-			data = p;
-		});
-    	if (!sort.active || sort.direction === '') {
-      		this.sortedParticipants = data;
-      		return;
-    	}
-		console.log(data, sort.direction);
-    	this.sortedParticipants = data.sort((a, b) => {
-      		const isAsc = sort.direction === 'asc';
-      		switch (sort.active) {
-        		case 'email': return compare(a.email, b.email, isAsc);
-             	default: return 0;
-      		}
-    	});
-		function compare(a: number | string, b: number | string, isAsc: boolean) {
-  			return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-		}
-  }
-	*/
 }
