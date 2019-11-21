@@ -4,6 +4,8 @@ import { RegistrationService } from '../service/registration.service';
 import { Registration } from '../model/registration';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
 	selector: 'app-event-reg',
@@ -28,14 +30,19 @@ export class EventRegComponent implements OnInit {
 		console.warn(this.regForm.value);
 		const registraion: Registration = {
 			eventId: this.activatedRoute.snapshot.params.eventId,
-			participant: {email: this.regForm.get('email').value},
+			participant: { email: this.regForm.get('email').value },
 		}
-		this.registrationService.addRegistration(registraion).subscribe(
-			// TODO, notify user that registration is done 
-			(data) => {
-				console.log('Registration succeeded');
-				let snackBarRef = this.snackBar.open('Succeessfully registration done', 'Ok', {duration: 5000});
-			}
-		);
+		this.registrationService.addRegistration(registraion)
+			.pipe(
+				catchError(err => {
+					this.snackBar.open(err, 'Dismiss', { duration: 5000 });
+					return throwError(err);
+				})).subscribe(
+					// TODO, notify user that registration is done 
+					(data) => {
+						console.log('Registration succeeded');
+						let snackBarRef = this.snackBar.open('Succeessfully registration done', 'Ok', { duration: 5000 });
+					}
+				);
 	}
 }

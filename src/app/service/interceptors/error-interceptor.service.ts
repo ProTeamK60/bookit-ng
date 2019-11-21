@@ -23,7 +23,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
       return throwError(new Error('There was a temporary error trying to fetch the events, please try again later..'));
     } else {
       console.error(`Backend returned HTTP Status Code ${error.status} and HTTP Response Body ${error.error}`);
-      return throwError(new Error(error.error.message));
+      return throwError(error.error);
     }
   }
 }
