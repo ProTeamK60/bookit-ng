@@ -8,7 +8,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatTableModule
+  MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {Component, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
@@ -20,6 +20,8 @@ import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventRegComponent} from '../event-reg/event-reg.component';
 import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -61,7 +63,11 @@ describe('EventCardComponent', () => {
         BrowserAnimationsModule,
         MatExpansionModule,
         MatTableModule,
-        AppRoutingModule
+        AppRoutingModule,
+		ReactiveFormsModule,
+		MatDatepickerModule,
+		MatProgressSpinnerModule,
+		HttpClientModule
       ]
     })
     .compileComponents();
