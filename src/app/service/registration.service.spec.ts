@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-
 import { RegistrationService } from './registration.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Registration } from '../model/registration';
@@ -114,12 +113,12 @@ describe('RegistrationService', () => {
       httpMock.verify();
     });
   });
-  
+
   describe('method deleteRegistration', () => {
     it('should return 204 No Content when delete registartion', () => {
       const service: RegistrationService = TestBed.get(RegistrationService);
       const email = REGISTRATION.participant.email;
-      const eventId = REGISTRATION.eventId; 
+      const eventId = REGISTRATION.eventId;
       service.deleteRegistration(email, eventId).subscribe(response => {
         expect(response.status).toEqual(204);
       });

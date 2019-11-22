@@ -21,18 +21,18 @@ import { EventViewComponent } from '../event-view/event-view.component';
 import { EventCardComponent } from '../event-card/event-card.component';
 import { LocalDateTimePipe } from '../pipes/local-date-time.pipe';
 import { ParticipantListComponent } from '../participant-list/participant-list.component';
-import { EventUnregComponent } from './event-unreg.component';
+import { RegistrationDeleteComponent } from './registration-delete.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EventRegComponent } from '../event-reg/event-reg.component';
+import { RegistrationCreateComponent } from '../registration-create/registration-create.component';
 import { RegistrationService } from '../service/registration.service';
 
 describe('EventUnregComponent', () => {
-  let component: EventUnregComponent;
-  let fixture: ComponentFixture<EventUnregComponent>;
+  let component: RegistrationDeleteComponent;
+  let fixture: ComponentFixture<RegistrationDeleteComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
   let mockRegistrationService;
 
@@ -41,14 +41,14 @@ describe('EventUnregComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [
-        EventRegComponent,
+        RegistrationCreateComponent,
         EventCreateComponent,
         EventListComponent,
         EventViewComponent,
         EventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        EventUnregComponent
+        RegistrationDeleteComponent
       ],
       imports: [
         MatCardModule,
@@ -74,7 +74,7 @@ describe('EventUnregComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventUnregComponent);
+    fixture = TestBed.createComponent(RegistrationDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

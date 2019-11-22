@@ -20,13 +20,7 @@ export class RegistrationService {
   }
 
   public addRegistration(registration: Registration): Observable<HttpResponse<string>> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    console.log(this.registrationUrl, registration, httpOptions);
+    console.log(this.registrationUrl, registration);
     return this.client.post<any>(this.registrationUrl, registration, {observe: 'response'});
   }
 

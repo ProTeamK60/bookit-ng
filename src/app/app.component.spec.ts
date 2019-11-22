@@ -13,7 +13,7 @@ import {
   MatProgressSpinnerModule, MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {EventCardComponent} from './event-card/event-card.component';
-import {EventRegComponent} from './event-reg/event-reg.component';
+import {RegistrationCreateComponent} from './registration-create/registration-create.component';
 import {ParticipantListComponent} from './participant-list/participant-list.component';
 import {ParticipantComponent} from './participant/participant.component';
 import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
@@ -44,7 +44,7 @@ describe('AppComponent', () => {
         EventCardComponent,
         EventViewComponent,
         DevToolbarComponent,
-        EventRegComponent,
+        RegistrationCreateComponent,
         ParticipantListComponent,
         ParticipantComponent,
         LocalDateTimePipe

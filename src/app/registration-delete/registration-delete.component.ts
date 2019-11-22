@@ -7,11 +7,11 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Component({
-  selector: 'app-event-unreg',
-  templateUrl: './event-unreg.component.html',
-  styleUrls: ['./event-unreg.component.scss']
+  selector: 'app-registration-delete',
+  templateUrl: './registration-delete.component.html',
+  styleUrls: ['./registration-delete.component.scss']
 })
-export class EventUnregComponent implements OnInit {
+export class RegistrationDeleteComponent implements OnInit {
 
   constructor(private registrationService: RegistrationService,
               private formBuilder: FormBuilder,

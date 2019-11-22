@@ -17,12 +17,12 @@ import {ParticipantListComponent} from '../participant-list/participant-list.com
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
-import {EventRegComponent} from '../event-reg/event-reg.component';
+import {RegistrationCreateComponent} from '../registration-create/registration-create.component';
 import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { EventUnregComponent } from '../event-unreg/event-unreg.component';
+import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -49,10 +49,10 @@ describe('EventCardComponent', () => {
         ParticipantListComponent,
         LocalDateTimePipe,
         EventCreateComponent,
-        EventRegComponent,
+        RegistrationCreateComponent,
         EventListComponent,
         EventViewComponent,
-        EventUnregComponent
+        RegistrationDeleteComponent
       ],
       imports: [
         MatCardModule,

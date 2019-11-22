@@ -19,10 +19,10 @@ import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {EventRegComponent} from '../event-reg/event-reg.component';
+import {RegistrationCreateComponent} from '../registration-create/registration-create.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
-import { EventUnregComponent } from '../event-unreg/event-unreg.component';
+import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 
 describe('EventListComponent', () => {
   let component: EventListComponent;
@@ -34,10 +34,10 @@ describe('EventListComponent', () => {
         EventCardComponent,
         EventCreateComponent,
         EventViewComponent,
-        EventRegComponent,
+        RegistrationCreateComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        EventUnregComponent
+        RegistrationDeleteComponent
       ],
       imports: [
         MatProgressSpinnerModule,

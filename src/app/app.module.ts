@@ -41,11 +41,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material';
 import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
 import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
-import {EventRegComponent} from './event-reg/event-reg.component';
+import {RegistrationCreateComponent} from './registration-create/registration-create.component';
 import {ParticipantListComponent} from './participant-list/participant-list.component';
 import {ParticipantComponent} from './participant/participant.component';
 import { RegistrationService } from './service/registration.service';
-import { EventUnregComponent } from './event-unreg/event-unreg.component';
+import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
 
 @NgModule({
   declarations: [
@@ -56,10 +56,10 @@ import { EventUnregComponent } from './event-unreg/event-unreg.component';
     EventCardComponent,
     EventCreateComponent,
     LocalDateTimePipe,
-    EventRegComponent,
+    RegistrationCreateComponent,
     ParticipantListComponent,
     ParticipantComponent,
-    EventUnregComponent
+    RegistrationDeleteComponent
   ],
   imports: [
     BrowserModule,
