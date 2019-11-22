@@ -4,24 +4,33 @@ import {EventCardComponent} from './event-card.component';
 import {
   MatButtonToggleModule,
   MatCardModule,
-  MatDividerModule,
+  MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {Component, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
+import {AppRoutingModule} from '../app-routing.module';
+import {EventCreateComponent} from '../event-create/event-create.component';
+import {EventRegComponent} from '../event-reg/event-reg.component';
+import {EventListComponent} from '../event-list/event-list.component';
+import {EventViewComponent} from '../event-view/event-view.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
     eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
     name: 'Konferens',
     description: 'Konferens för Knowit 2020',
-    eventStart: new Date(2020, 3, 20),
-    eventEnd: new Date(2020, 3, 23),
-    deadlineRVSP: new Date(2020, 2, 1),
+    eventStart: 90000000,
+    eventEnd: 90060000,
+    deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
     organizer: 'Susanne'
   };
@@ -33,7 +42,16 @@ describe('EventCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventCardComponent, MockParentComponent ],
+      declarations: [
+        EventCardComponent,
+        MockParentComponent,
+        ParticipantListComponent,
+        LocalDateTimePipe,
+        EventCreateComponent,
+        EventRegComponent,
+        EventListComponent,
+        EventViewComponent
+      ],
       imports: [
         MatCardModule,
         MatDividerModule,
@@ -42,10 +60,17 @@ describe('EventCardComponent', () => {
         MatFormFieldModule,
         MatButtonToggleModule,
         MatInputModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatExpansionModule,
+        MatTableModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatProgressSpinnerModule,
+        HttpClientModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -65,7 +90,8 @@ describe('EventCardComponent', () => {
 
   @Component({
     selector: `app-mock-parent`,
-    template: `<app-event-card></app-event-card>`
+    template: `
+        <app-event-card></app-event-card>`
   })
   class MockParentComponent {
     @ViewChild(EventCardComponent, {static: true})

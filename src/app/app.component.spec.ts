@@ -7,12 +7,17 @@ import {DevToolbarComponent} from './dev-toolbar/dev-toolbar.component';
 import {
   MatButtonToggleModule,
   MatCardModule,
-  MatDividerModule, MatFormFieldModule,
-  MatIconModule,
+  MatDividerModule, MatExpansionModule, MatFormFieldModule,
+  MatIconModule, MatInputModule,
   MatListModule, MatMenuModule,
-  MatProgressSpinnerModule, MatToolbarModule
+  MatProgressSpinnerModule, MatTableModule, MatToolbarModule
 } from '@angular/material';
 import {EventCardComponent} from './event-card/event-card.component';
+import {EventRegComponent} from './event-reg/event-reg.component';
+import {ParticipantListComponent} from './participant-list/participant-list.component';
+import {ParticipantComponent} from './participant/participant.component';
+import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -28,13 +33,21 @@ describe('AppComponent', () => {
         MatProgressSpinnerModule,
         MatMenuModule,
         MatToolbarModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatExpansionModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatTableModule
       ],
       declarations: [
         AppComponent,
         EventCardComponent,
         EventViewComponent,
-        DevToolbarComponent
+        DevToolbarComponent,
+        EventRegComponent,
+        ParticipantListComponent,
+        ParticipantComponent,
+        LocalDateTimePipe
       ],
     }).compileComponents();
   }));

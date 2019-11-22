@@ -4,11 +4,11 @@ import { DevToolbarComponent } from './dev-toolbar.component';
 import {
   MatButtonToggleModule,
   MatCardModule,
-  MatDatepickerModule, MatDividerModule,
+  MatDatepickerModule, MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatListModule,
   MatMenuModule,
-  MatProgressSpinnerModule,
+  MatProgressSpinnerModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
@@ -17,6 +17,9 @@ import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EventCardComponent} from '../event-card/event-card.component';
+import {EventRegComponent} from '../event-reg/event-reg.component';
+import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
+import {ParticipantListComponent} from '../participant-list/participant-list.component';
 
 describe('DevToolbarComponent', () => {
   let component: DevToolbarComponent;
@@ -28,7 +31,10 @@ describe('DevToolbarComponent', () => {
       EventCreateComponent,
         EventListComponent,
         EventViewComponent,
-        EventCardComponent
+        EventCardComponent,
+        EventRegComponent,
+        LocalDateTimePipe,
+        ParticipantListComponent
       ],
       imports: [
         MatIconModule,
@@ -42,7 +48,9 @@ describe('DevToolbarComponent', () => {
         MatProgressSpinnerModule,
         MatDividerModule,
         MatListModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        MatExpansionModule,
+        MatTableModule
       ]
     })
     .compileComponents();

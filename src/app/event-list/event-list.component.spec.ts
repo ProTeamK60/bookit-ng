@@ -1,21 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EventListComponent } from './event-list.component';
+import {EventListComponent} from './event-list.component';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {
   MatButtonToggleModule,
-  MatCardModule, MatDatepickerModule,
+  MatCardModule,
+  MatDatepickerModule,
   MatDividerModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatIconModule,
   MatListModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTableModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {EventRegComponent} from '../event-reg/event-reg.component';
+import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
+import {ParticipantListComponent} from '../participant-list/participant-list.component';
 
 describe('EventListComponent', () => {
   let component: EventListComponent;
@@ -23,10 +29,13 @@ describe('EventListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventListComponent,
-      EventCardComponent,
-      EventCreateComponent,
-        EventViewComponent
+      declarations: [EventListComponent,
+        EventCardComponent,
+        EventCreateComponent,
+        EventViewComponent,
+        EventRegComponent,
+        LocalDateTimePipe,
+        ParticipantListComponent
       ],
       imports: [
         MatProgressSpinnerModule,
@@ -39,10 +48,12 @@ describe('EventListComponent', () => {
         AppRoutingModule,
         MatDatepickerModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatExpansionModule,
+        MatTableModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
