@@ -22,6 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {EventRegComponent} from '../event-reg/event-reg.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import { EventUnregComponent } from '../event-unreg/event-unreg.component';
 
 describe('EventListComponent', () => {
   let component: EventListComponent;
@@ -35,7 +36,8 @@ describe('EventListComponent', () => {
         EventViewComponent,
         EventRegComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        EventUnregComponent
       ],
       imports: [
         MatProgressSpinnerModule,

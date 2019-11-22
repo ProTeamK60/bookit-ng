@@ -22,6 +22,7 @@ import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { EventUnregComponent } from '../event-unreg/event-unreg.component';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -50,7 +51,8 @@ describe('EventCardComponent', () => {
         EventCreateComponent,
         EventRegComponent,
         EventListComponent,
-        EventViewComponent
+        EventViewComponent,
+        EventUnregComponent
       ],
       imports: [
         MatCardModule,

@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Registration</mat-card-title>
+  <mat-card-title>Unregistration</mat-card-title>
   <mat-card-content>
     <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width"><input
@@ -8,7 +8,7 @@
           <span *ngIf="regForm.get('email').touched">Please enter an email address.</span>
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button [disabled]="!regForm.valid" color="accent">Register</button>
+      <button mat-raised-button [disabled]="!regForm.valid" color="accent">Unregister</button>
     </form>
   </mat-card-content>
 </mat-card>

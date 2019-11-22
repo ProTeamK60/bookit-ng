@@ -35,5 +35,9 @@ export class RegistrationService {
     return this.client.get<Participant[]>(url);
   }
 
+  public deleteRegistration(email: string, eventId: string): Observable<HttpResponse<string>> {
+    const url = this.registrationUrl + '/' + email + '/' +eventId;
+    return this.client.delete<string>(url, {observe: 'response'});
+  }
 }
 

@@ -20,6 +20,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EventRegComponent} from '../event-reg/event-reg.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import { EventUnregComponent } from '../event-unreg/event-unreg.component';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -33,7 +34,8 @@ describe('EventCreateComponent', () => {
         EventCardComponent,
         EventRegComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        EventUnregComponent
       ],
       imports: [
         MatCardModule,

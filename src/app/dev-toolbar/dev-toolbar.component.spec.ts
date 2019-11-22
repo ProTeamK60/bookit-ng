@@ -20,6 +20,7 @@ import {EventCardComponent} from '../event-card/event-card.component';
 import {EventRegComponent} from '../event-reg/event-reg.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import { EventUnregComponent } from '../event-unreg/event-unreg.component';
 
 describe('DevToolbarComponent', () => {
   let component: DevToolbarComponent;
@@ -34,7 +35,8 @@ describe('DevToolbarComponent', () => {
         EventCardComponent,
         EventRegComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        EventUnregComponent
       ],
       imports: [
         MatIconModule,

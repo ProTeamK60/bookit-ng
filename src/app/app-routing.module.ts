@@ -4,10 +4,12 @@ import { EventViewComponent } from './event-view/event-view.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventRegComponent } from './event-reg/event-reg.component';
 import { EventCreateComponent } from './event-create/event-create.component';
+import { EventUnregComponent } from './event-unreg/event-unreg.component';
 
 const routes: Routes = [
 	{ path: 'events/new', component: EventCreateComponent },
 	{ path: 'events/register/:eventId', component: EventRegComponent },
+  { path: 'events/unregister/:eventId', component: EventUnregComponent },
  	{ path: 'events', component: EventListComponent },
 	{ path: 'events/:id', component: EventViewComponent },
 	{ path: '', redirectTo: 'events', pathMatch: 'full' }

@@ -28,6 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegistrationService} from '../service/registration.service';
 import {of} from 'rxjs';
 import {Registration} from '../model/registration';
+import { EventUnregComponent } from '../event-unreg/event-unreg.component';
 
 describe('EventRegComponent', () => {
   let component: EventRegComponent;
@@ -45,7 +46,8 @@ describe('EventRegComponent', () => {
         EventViewComponent,
         EventCardComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        EventUnregComponent
       ],
       imports: [
         MatCardModule,

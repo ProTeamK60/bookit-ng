@@ -29,6 +29,7 @@ import {EventRegComponent} from '../event-reg/event-reg.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { EventUnregComponent } from '../event-unreg/event-unreg.component';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
@@ -56,7 +57,8 @@ describe('EventViewComponent', () => {
         EventListComponent,
         EventRegComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        EventUnregComponent
       ],
       imports: [
         MatCardModule,

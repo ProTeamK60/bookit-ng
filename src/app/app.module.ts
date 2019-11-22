@@ -44,6 +44,8 @@ import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
 import {EventRegComponent} from './event-reg/event-reg.component';
 import {ParticipantListComponent} from './participant-list/participant-list.component';
 import {ParticipantComponent} from './participant/participant.component';
+import { RegistrationService } from './service/registration.service';
+import { EventUnregComponent } from './event-unreg/event-unreg.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import {ParticipantComponent} from './participant/participant.component';
     LocalDateTimePipe,
     EventRegComponent,
     ParticipantListComponent,
-    ParticipantComponent
+    ParticipantComponent,
+    EventUnregComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +98,8 @@ import {ParticipantComponent} from './participant/participant.component';
       useClass: ErrorInterceptorService,
       multi: true
     },
-    EventService
+    EventService,
+    RegistrationService
 
   ],
   bootstrap: [AppComponent],
