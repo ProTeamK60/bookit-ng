@@ -8,11 +8,11 @@ import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 
 @Component({
-  selector: 'app-event-reg',
-  templateUrl: './event-reg.component.html',
-  styleUrls: ['./event-reg.component.scss']
+  selector: 'app-registration-create',
+  templateUrl: './registration-create.component.html',
+  styleUrls: ['./registration-create.component.scss']
 })
-export class EventRegComponent implements OnInit {
+export class RegistrationCreateComponent implements OnInit {
 
   constructor(private registrationService: RegistrationService,
               private formBuilder: FormBuilder,

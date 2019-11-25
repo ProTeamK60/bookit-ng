@@ -25,10 +25,11 @@ import {
 import {AppRoutingModule} from '../app-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {EventRegComponent} from '../event-reg/event-reg.component';
+import {RegistrationCreateComponent} from '../registration-create/registration-create.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import {HttpClientModule} from '@angular/common/http';
+import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
@@ -54,9 +55,10 @@ describe('EventViewComponent', () => {
         EventCardComponent,
         EventCreateComponent,
         EventListComponent,
-        EventRegComponent,
+        RegistrationCreateComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        RegistrationDeleteComponent
       ],
       imports: [
         MatCardModule,

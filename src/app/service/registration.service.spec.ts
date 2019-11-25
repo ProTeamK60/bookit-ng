@@ -1,11 +1,10 @@
-import {TestBed} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
-
-import {RegistrationService} from './registration.service';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {Registration} from '../model/registration';
-import {environment} from '../../environments/environment';
-import {HttpErrorResponse} from '@angular/common/http';
+import { RegistrationService } from './registration.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Registration } from '../model/registration';
+import { environment } from '../../environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('RegistrationService', () => {
   const REGISTRATION: Registration = {
@@ -21,12 +20,12 @@ describe('RegistrationService', () => {
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        providers: [RegistrationService]
-      });
-      httpMock = TestBed.get(HttpTestingController);
-    }
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [RegistrationService]
+    });
+    httpMock = TestBed.get(HttpTestingController);
+  }
   );
 
   it('should be created', () => {
@@ -35,14 +34,14 @@ describe('RegistrationService', () => {
   });
 
   describe('method addRegistration', () => {
-    it('should return 201 created when posting correct registartion', () => {
+    it('should return 201 created when posting correct registration', () => {
       const service: RegistrationService = TestBed.get(RegistrationService);
       service.addRegistration(REGISTRATION).subscribe(response => {
         expect(response.status).toEqual(201);
       });
 
       const addRegistrationRequest = httpMock.expectOne(REGISTRATION_URL);
-      addRegistrationRequest.flush(null, {status: 201, statusText: 'Created'});
+      addRegistrationRequest.flush(null, { status: 201, statusText: 'Created' });
       httpMock.verify();
     });
 
@@ -59,7 +58,7 @@ describe('RegistrationService', () => {
       );
 
       const request = httpMock.expectOne(REGISTRATION_URL);
-      request.flush(responseMessage, {status: 409, statusText: 'Conflict'});
+      request.flush(responseMessage, { status: 409, statusText: 'Conflict' });
       httpMock.verify();
     });
 
@@ -67,7 +66,7 @@ describe('RegistrationService', () => {
       const service: RegistrationService = TestBed.get(RegistrationService);
       const invalidRegistration: Registration = {
         eventId: REGISTRATION.eventId,
-        participant: {email: 'kalleatankeborg.se'}
+        participant: { email: 'kalleatankeborg.se' }
       };
 
       service.addRegistration(invalidRegistration).subscribe(
@@ -78,7 +77,7 @@ describe('RegistrationService', () => {
       );
 
       const request = httpMock.expectOne(REGISTRATION_URL);
-      request.flush('', {status: 400, statusText: 'Bad Request'});
+      request.flush('', { status: 400, statusText: 'Bad Request' });
       httpMock.verify();
     });
   });
@@ -92,7 +91,7 @@ describe('RegistrationService', () => {
       });
 
       const addRegistrationRequest = httpMock.expectOne(PARTICIPANT_URL + '/event/' + eventId);
-      addRegistrationRequest.flush([{email: 'kalle@ankeborg.se'}, {email: 'kajsa@ankeborg.se'}], {status: 200, statusText: 'Ok'});
+      addRegistrationRequest.flush([{ email: 'kalle@ankeborg.se' }, { email: 'kajsa@ankeborg.se' }], { status: 200, statusText: 'Ok' });
       httpMock.verify();
     });
 
@@ -110,7 +109,22 @@ describe('RegistrationService', () => {
       );
 
       const request = httpMock.expectOne(PARTICIPANT_URL + '/event/' + eventId);
-      request.flush(responseMessage, {status: 404, statusText: 'Not Found'});
+      request.flush(responseMessage, { status: 404, statusText: 'Not Found' });
+      httpMock.verify();
+    });
+  });
+
+  describe('method deleteRegistration', () => {
+    it('should return 204 No Content when delete registartion', () => {
+      const service: RegistrationService = TestBed.get(RegistrationService);
+      const email = REGISTRATION.participant.email;
+      const eventId = REGISTRATION.eventId;
+      service.deleteRegistration(email, eventId).subscribe(response => {
+        expect(response.status).toEqual(204);
+      });
+
+      const deleteRegistrationRequest = httpMock.expectOne(REGISTRATION_URL +'/' + email + '/' +eventId);
+      deleteRegistrationRequest.flush(null, { status: 204, statusText: 'No Content' });
       httpMock.verify();
     });
   });

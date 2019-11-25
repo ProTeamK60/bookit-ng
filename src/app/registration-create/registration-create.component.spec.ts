@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {EventRegComponent} from './event-reg.component';
+import {RegistrationCreateComponent} from './registration-create.component';
 import {
   MatCardModule,
   MatFormFieldModule,
@@ -28,10 +28,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegistrationService} from '../service/registration.service';
 import {of} from 'rxjs';
 import {Registration} from '../model/registration';
+import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 
 describe('EventRegComponent', () => {
-  let component: EventRegComponent;
-  let fixture: ComponentFixture<EventRegComponent>;
+  let component: RegistrationCreateComponent;
+  let fixture: ComponentFixture<RegistrationCreateComponent>;
   const formBuilder: FormBuilder = new FormBuilder();
   let mockRegistrationService;
 
@@ -39,13 +40,14 @@ describe('EventRegComponent', () => {
     mockRegistrationService = jasmine.createSpyObj('RegistrationService', ['addRegistration']);
 
     TestBed.configureTestingModule({
-      declarations: [EventRegComponent,
+      declarations: [RegistrationCreateComponent,
         EventCreateComponent,
         EventListComponent,
         EventViewComponent,
         EventCardComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        RegistrationDeleteComponent
       ],
       imports: [
         MatCardModule,
@@ -71,7 +73,7 @@ describe('EventRegComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventRegComponent);
+    fixture = TestBed.createComponent(RegistrationCreateComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();

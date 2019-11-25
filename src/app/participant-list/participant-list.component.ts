@@ -18,7 +18,7 @@ export class ParticipantListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new ParticipantDataSource(this.registrationService);
-    this.dataSource.loadParicipants(this.eventId);
+    this.dataSource.loadParticipants(this.eventId);
   }
 
 }

@@ -17,9 +17,10 @@ import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {EventRegComponent} from '../event-reg/event-reg.component';
+import {RegistrationCreateComponent} from '../registration-create/registration-create.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
+import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -31,9 +32,10 @@ describe('EventCreateComponent', () => {
         EventListComponent,
         EventViewComponent,
         EventCardComponent,
-        EventRegComponent,
+        RegistrationCreateComponent,
         LocalDateTimePipe,
-        ParticipantListComponent
+        ParticipantListComponent,
+        RegistrationDeleteComponent
       ],
       imports: [
         MatCardModule,

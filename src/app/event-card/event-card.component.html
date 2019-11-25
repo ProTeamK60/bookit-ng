@@ -56,11 +56,11 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-button-toggle-group>
-    <mat-button-toggle value="bold" 
-    	 (click)="goToPath('/events/register', event.eventId)"> Ja
+    <mat-button-toggle value="bold" (click)="goToPath('/events/register', event.eventId)"> 
+    	 Ja
     </mat-button-toggle>
-    <mat-button-toggle value="bold">  
-      Nej
+    <mat-button-toggle value="bold" (click)="goToPath('/events/unregister', event.eventId)"> 
+       Nej
     </mat-button-toggle>
   </mat-button-toggle-group>
   <mat-card-actions></mat-card-actions>
