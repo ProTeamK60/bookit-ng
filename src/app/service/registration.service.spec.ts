@@ -34,7 +34,7 @@ describe('RegistrationService', () => {
   });
 
   describe('method addRegistration', () => {
-    it('should return 201 created when posting correct registartion', () => {
+    it('should return 201 created when posting correct registration', () => {
       const service: RegistrationService = TestBed.get(RegistrationService);
       service.addRegistration(REGISTRATION).subscribe(response => {
         expect(response.status).toEqual(201);

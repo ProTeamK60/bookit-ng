@@ -17,7 +17,7 @@ export class ParticipantDataSource implements DataSource<Participant> {
     return this.participantSubject.asObservable();
   }
 
-  loadParicipants(eventId: string) {
+  loadParticipants(eventId: string) {
     this.registrationService.findParticipantsByEventId(eventId).subscribe(
       participants => this.participantSubject.next(participants)
     );
