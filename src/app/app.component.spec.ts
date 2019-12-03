@@ -18,6 +18,7 @@ import {ParticipantListComponent} from './participant-list/participant-list.comp
 import {ParticipantComponent} from './participant/participant.component';
 import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
 import {ReactiveFormsModule} from '@angular/forms';
+import {Component} from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -47,7 +48,8 @@ describe('AppComponent', () => {
         RegistrationCreateComponent,
         ParticipantListComponent,
         ParticipantComponent,
-        LocalDateTimePipe
+        LocalDateTimePipe,
+        MockEventListComponent
       ],
     }).compileComponents();
   }));
@@ -57,4 +59,10 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
+
+  @Component({
+    selector: 'app-event-list',
+    template: '<p>This is a mock</p>'
+  })
+  class MockEventListComponent {}
 });

@@ -6,7 +6,7 @@ import {EventService} from '../service/event.service';
 import {Event} from '../model/event';
 import {of} from 'rxjs';
 import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
+import {Component, DebugElement, Input} from '@angular/core';
 import {EventCardComponent} from '../event-card/event-card.component';
 import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventListComponent} from '../event-list/event-list.component';
@@ -52,7 +52,7 @@ describe('EventViewComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [EventViewComponent,
-        EventCardComponent,
+        MockEventCardComponent,
         EventCreateComponent,
         EventListComponent,
         RegistrationCreateComponent,
@@ -101,13 +101,12 @@ describe('EventViewComponent', () => {
     });
   });
 
-  it('should display the event name in the second paragraph', () => {
-    mockEventService.findById.and.returnValue(of(MOCK_EVENT));
-
-    fixture.detectChanges();
-
-    const cardTitleTag: DebugElement = fixture.debugElement.query(By.css('.mat-card-title-text'));
-    expect(cardTitleTag.nativeElement.textContent).toContain('KONFERENS');
-  });
+  @Component({
+    selector: 'app-event-card',
+    template: '<p>This is a mock</p>'
+  })
+  class MockEventCardComponent {
+    @Input() event: Event;
+  }
 
 });
