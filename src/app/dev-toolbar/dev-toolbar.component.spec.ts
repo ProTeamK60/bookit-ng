@@ -61,7 +61,6 @@ describe('DevToolbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DevToolbarComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

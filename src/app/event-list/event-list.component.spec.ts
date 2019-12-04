@@ -80,7 +80,6 @@ describe('EventListComponent', () => {
     component = fixture.componentInstance;
     mockEventService.findAllEvents.and.returnValue(of([MOCK_EVENT, MOCK_EVENT]));
 
-    fixture.detectChanges();
   });
 
   it('should create', () => {

@@ -76,7 +76,6 @@ describe('EventUnregComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationDeleteComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

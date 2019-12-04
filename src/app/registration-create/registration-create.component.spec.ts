@@ -75,8 +75,6 @@ describe('EventRegComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationCreateComponent);
     component = fixture.componentInstance;
-
-    fixture.detectChanges();
   });
 
   it('should create', () => {

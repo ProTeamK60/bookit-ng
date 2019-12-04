@@ -84,7 +84,6 @@ describe('EventCardComponent', () => {
     eventCardComponent = parentComponent.eventCardComponent;
     eventCardComponent.event = MOCK_EVENT;
 
-    parentFixture.detectChanges();
   });
 
   it('should create', () => {
