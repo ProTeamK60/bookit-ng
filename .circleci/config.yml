@@ -5,7 +5,7 @@ orbs:
   aws-s3: circleci/aws-s3@1.0.12
 
 jobs:
-  build:
+  build-and-test:
     docker:
       - image: 'circleci/node:13.2-browsers'
     steps:
@@ -39,12 +39,12 @@ jobs:
           overwrite: true
 
 workflows:
-  build-and-deploy:
+  build-test-and-deploy:
     jobs:
-      - build
+      - build-and-test
       - deploy:
           requires:
-            - build
+            - build-and-test
           filters:
             branches:
               only: development
