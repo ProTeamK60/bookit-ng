@@ -10,7 +10,7 @@ import {
   MatInputModule,
   MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule
 } from '@angular/material';
-import {Component, ViewChild} from '@angular/core';
+import {Component, DebugElement, Input, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
@@ -23,6 +23,8 @@ import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
+import {of} from 'rxjs';
+import {By} from '@angular/platform-browser';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -46,7 +48,7 @@ describe('EventCardComponent', () => {
       declarations: [
         EventCardComponent,
         MockParentComponent,
-        ParticipantListComponent,
+        MockParticipantListComponent,
         LocalDateTimePipe,
         EventCreateComponent,
         RegistrationCreateComponent,
@@ -82,21 +84,36 @@ describe('EventCardComponent', () => {
     eventCardComponent = parentComponent.eventCardComponent;
     eventCardComponent.event = MOCK_EVENT;
 
-    parentFixture.detectChanges();
   });
 
   it('should create', () => {
     expect(eventCardComponent).toBeTruthy();
   });
 
+  it('should display the event name upper cased in the card title', () => {
+    parentFixture.detectChanges();
+
+    const cardTitleTag: DebugElement = parentFixture.debugElement.query(By.css('.mat-card-title-text'));
+    expect(cardTitleTag.nativeElement.textContent).toContain('KONFERENS');
+  });
+
 
   @Component({
     selector: `app-mock-parent`,
     template: `
-        <app-event-card></app-event-card>`
+        <app-event-card></app-event-card>
+    `
   })
   class MockParentComponent {
     @ViewChild(EventCardComponent, {static: true})
     public eventCardComponent: EventCardComponent;
+  }
+
+  @Component({
+    selector: 'app-participant-list',
+    template: '<p>This is a mock</p>'
+  })
+  class MockParticipantListComponent {
+    @Input() eventId: string;
   }
 });

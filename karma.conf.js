@@ -28,6 +28,13 @@ module.exports = function (config) {
     autoWatch: true,
     // Use `ng test --browsers <Chrome/Firefox>` to only use one of these when running the unit tests
     browsers: ['Chrome', 'Firefox'],
+    customLaunchers: {
+      // For CI/CD Pipeline
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: false,
     restartOnFileChange: true
   });

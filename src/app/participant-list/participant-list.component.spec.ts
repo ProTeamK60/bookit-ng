@@ -22,7 +22,6 @@ describe('ParticipantListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ParticipantListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
