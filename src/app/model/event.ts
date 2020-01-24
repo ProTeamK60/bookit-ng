@@ -1,3 +1,5 @@
+import {Option} from './option';
+
 export interface Event {
     eventId: string;
     name: string;
@@ -7,4 +9,5 @@ export interface Event {
     deadlineRVSP: number;
     location: string;
     organizer: string;
+    options: Option[];
 }

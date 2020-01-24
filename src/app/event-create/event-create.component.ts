@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, FormsModule, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventService} from '../service/event.service';
-import {Event} from '../model/event';
-import {group} from '@angular/animations';
 import {Router} from '@angular/router';
+import {Option} from '../model/option';
+import {Options} from '../model/options';
 
 @Component({
   selector: 'app-event-create',
@@ -51,7 +51,10 @@ export class EventCreateComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.eventForm.value);
-
+    console.warn(this.displayData);
+    //let optionArray: Option[] = this.displayData.options;
+    //console.warn('length:' +optionArray.length);
+    
     const event = {
       eventId: '',
       name: this.eventForm.get('name').value,
@@ -60,9 +63,12 @@ export class EventCreateComponent implements OnInit {
       eventEnd: this.dateToMilliseconds(this.eventForm.get('eventEnd').value),
       deadlineRVSP: this.dateToMilliseconds(this.eventForm.get('deadlineRVSP').value),
       location: this.eventForm.get('location').value,
-      organizer: this.eventForm.get('organizer').value
+      organizer: this.eventForm.get('organizer').value,
+      options: this.displayData.options
     };
-
+    
+    console.warn(event);
+    
     this.eventService.createOrUpdate(event).subscribe((data) => {
       let s = data.headers.get('location').split('/');
       this.router.navigateByUrl('/events/' + s[s.length - 1]);
@@ -72,5 +78,83 @@ export class EventCreateComponent implements OnInit {
   private dateToMilliseconds(date: Date): number {
     return date.getTime();
   }
+  
+  
+exampleSchema = {
+  "type" : "object",
+  
+  "properties" : {
+    /*
+    "eventId" : {
+      "type" : "integer"
+    },*/
+    "options" : {
+      "type" : "array",
+      "expandable": true,
+      "expanded": false,
+      "items" : {
+        "$ref" : "#/definitions/option"
+      }
+    }
+  },
+  "definitions" : {
+    "option" : {
+      "type" : "object",
+      "required" : [ "optionType", "optionId", "title", "queryString" ],
+     
+      "properties" : {
+        "optionType" : {
+          "type" : "string",
+          "enum" : [ "oneOption", "multiOption", "freeText" ]
+        },
+        "optionId" : {
+          "type" : "integer"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "queryString" : {
+          "type" : "string"
+        }
+      },
+      "if" : {
+        "properties" : {
+          "optionType" : {
+            "const" : "multiOption"
+          }
+        }
+      },
+      "then" : {
+        "properties" : {
+          "value" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "else" : {
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  },
+  "required" : ["options" ]
 
+  };
+  
+  exampleData = {
+    //'eventId': 1,
+    //'option': {"optionType": "oneOption", "optionId":2, "queryString": "hejhopp"},
+    };
+    
+  displayData: Options = null;
+
+  exampleOnSubmitFn(formData) {
+    this.displayData = formData;
+  }
 }

@@ -7,12 +7,15 @@ import {EventViewComponent} from './event-view/event-view.component';
 import {EventService} from './service/event.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {JsonSchemaFormModule, MaterialDesignFrameworkModule} from 'angular2-json-schema-form';
+
 
 import {
   MatSliderModule,
   MatCardModule,
   MatButtonToggleModule,
   MatButtonModule,
+  MatCheckboxModule,
   MatMenuModule,
   MatTabsModule,
   MatListModule,
@@ -46,6 +49,7 @@ import {ParticipantListComponent} from './participant-list/participant-list.comp
 import {ParticipantComponent} from './participant/participant.component';
 import { RegistrationService } from './service/registration.service';
 import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
@@ -59,13 +63,15 @@ import { RegistrationDeleteComponent } from './registration-delete/registration-
     RegistrationCreateComponent,
     ParticipantListComponent,
     ParticipantComponent,
-    RegistrationDeleteComponent
+    RegistrationDeleteComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatCheckboxModule,
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -90,7 +96,10 @@ import { RegistrationDeleteComponent } from './registration-delete/registration-
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule, 
+    MaterialDesignFrameworkModule,
+    JsonSchemaFormModule,
+    JsonSchemaFormModule.forRoot(MaterialDesignFrameworkModule)
   ],
   providers: [
     {
