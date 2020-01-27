@@ -4,6 +4,7 @@ import {EventService} from '../service/event.service';
 import {Router} from '@angular/router';
 import {Option} from '../model/option';
 import {Options} from '../model/options';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-event-create',
@@ -50,11 +51,9 @@ export class EventCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.eventForm.value);
-    console.warn(this.displayData);
-    //let optionArray: Option[] = this.displayData.options;
-    //console.warn('length:' +optionArray.length);
-    
+
+    this.displayData.options.forEach(option => this.validateOption(option));
+
     const event = {
       eventId: '',
       name: this.eventForm.get('name').value,
@@ -79,7 +78,27 @@ export class EventCreateComponent implements OnInit {
     return date.getTime();
   }
   
-  
+  private validateOption(option: Option) {
+    if(option.title.trim() == '') throwError(new Error("option title cannot be empty!"));
+    if(option.optionType === 'oneOption' 
+      || option.optionType === 'multiOption') {
+        let entries: String[] = option.queryString.split(",");
+        entries.forEach(entry => 
+          {
+            if(this.countEntries(entries, entry) > 1) {
+              throwError("duplicate options is not allowed!");
+            }
+          }
+        );
+      }
+  }
+
+  private countEntries(list: String[], entry: String): number {
+    let count: number = 0;
+    list.forEach(item => {if(item === entry) count++;})
+    return count;
+  } 
+
 exampleSchema = {
   "type" : "object",
   

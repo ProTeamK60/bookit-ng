@@ -1,19 +1,10 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Validators, FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {RegistrationService} from '../service/registration.service';
-import {Registration} from '../model/registration';
+import {Component, OnInit} from '@angular/core';;
 import {ActivatedRoute} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError} from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { Observable} from 'rxjs';
 import { EventService } from '../service/event.service';
 import { Event } from '../model/event';
-import { Answer } from '../model/answer';
-
 import {Subject, throwError} from 'rxjs';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
-import { Option } from '../model/option';
-import { TextareaComponent } from 'angular2-json-schema-form';
 
 
 @Component({
@@ -22,9 +13,7 @@ import { TextareaComponent } from 'angular2-json-schema-form';
   styleUrls: ['./registration-create.component.scss'],
 })
 export class RegistrationCreateComponent implements OnInit {
-  
-  //@Input() questions: QuestionBase<any>[] = [];
-  
+
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService) {
   }
@@ -46,27 +35,6 @@ export class RegistrationCreateComponent implements OnInit {
   
   }
 /*
-  printOption(o: Option) {
-      switch (o.optionType) {
-        case 'freeText':
-          console.error("freeText " + o.optionId, o.queryString);
-          let  aQ = this.questionService.getRadioButtonQuestion(o.queryString);
-          this.regForm.addControl("freeText", new FormControl(aQ));
-          
-          break;
-        case 'oneOption':
-        case 'multiOption':
-          for(let str of o.queryString.split(",")) {
-            console.error("one or multiOption " + o.optionId, o.queryString);
-            
-            let  aQ = this.questionService.getRadioButtonQuestion(o.queryString);
-            this.regForm.addControl("oneOption", new FormControl(aQ));
-          
-          }
-          break;      
-    };
-    
-  }
 
   onSubmit() {
     var idx=0;

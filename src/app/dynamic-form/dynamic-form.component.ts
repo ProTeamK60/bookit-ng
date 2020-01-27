@@ -1,18 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { RegistrationService } from '../service/registration.service';
+import { Event } from '../model/event';
 import { Registration } from '../model/registration';
 import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { catchError } from 'rxjs/operators';
-import { EventService } from '../service/event.service';
-import { Event } from '../model/event';
-import { Answer } from '../model/answer';
-
-import { Subject, throwError } from 'rxjs';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
-import { Option } from '../model/option';
-import { TextareaComponent } from 'angular2-json-schema-form';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -26,9 +17,7 @@ export class DynamicFormComponent implements OnInit {
 
   constructor(private registrationService: RegistrationService,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    private eventService: EventService) { }
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     let group = {};
@@ -39,7 +28,7 @@ export class DynamicFormComponent implements OnInit {
       switch (o.optionType) {
         case "multiOption":
           for (let str of o.queryString.split(',')) {
-            group[o.optionId + str] = ['', []];
+            group[o.optionId + str] = [false, []];
           }
           break;
         case "oneOption":  
@@ -50,12 +39,19 @@ export class DynamicFormComponent implements OnInit {
 
     });
     this.regForm = this.formBuilder.group(group);
-    console.error("Group: " +JSON.stringify(group));
   }
 
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.regForm.value);
-    console.error(this.payLoad);
+    let payLoadObj = JSON.parse(this.payLoad);
+    console.error(payLoadObj);
+/*
+    const registration: Registration = {
+      eventId: this.activatedRoute.snapshot.params.eventId,
+      participant: {email: this.regForm.get('email').value,
+      answers:  [{}]
+      }};
+      */
   }
 }
