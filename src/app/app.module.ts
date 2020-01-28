@@ -7,7 +7,7 @@ import {EventViewComponent} from './event-view/event-view.component';
 import {EventService} from './service/event.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {JsonSchemaFormModule, MaterialDesignFrameworkModule} from 'angular2-json-schema-form';
+import {JsonSchemaFormModule, MaterialDesignFrameworkModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, MaterialDesignFramework, Framework} from 'angular2-json-schema-form';
 
 
 import {
@@ -97,9 +97,20 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatExpansionModule,
     MatTableModule,
     MatSortModule, 
-    MaterialDesignFrameworkModule,
-    JsonSchemaFormModule,
-    JsonSchemaFormModule.forRoot(MaterialDesignFrameworkModule)
+    //MaterialDesignFrameworkModule,
+    //JsonSchemaFormModule,
+    //jsonSchemaFormModuleForRoot
+    //JsonSchemaFormModule.forRoot(MaterialDesignFrameworkModule)
+    {
+      ngModule: JsonSchemaFormModule,
+      providers: [
+          JsonSchemaFormService,
+          FrameworkLibraryService,
+          WidgetLibraryService,
+          {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+      ]
+    }
+
   ],
   providers: [
     {
@@ -113,6 +124,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
   ],
   bootstrap: [AppComponent],
   exports: [LocalDateTimePipe]
+  
 })
 export class AppModule {
 }
