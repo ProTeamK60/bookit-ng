@@ -5,6 +5,9 @@ import { Event } from '../model/event';
 import { Registration } from '../model/registration';
 import { ActivatedRoute } from '@angular/router';
 import { Answer } from '../model/answer';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -17,7 +20,8 @@ export class DynamicFormComponent implements OnInit {
 
   constructor(private registrationService: RegistrationService,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.regForm = new FormGroup({});
@@ -61,5 +65,16 @@ export class DynamicFormComponent implements OnInit {
       }
     });
     console.error(registration);
+    this.registrationService.addRegistration(registration)
+    .pipe(
+      catchError(err => {
+        this.snackBar.open(err, 'Dismiss', {duration: 5000});
+        return throwError(err);
+      })).subscribe(
+    _ => {
+      console.log('Registration successfully created in backend');
+      this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
+    }
+  );
   }
 }
