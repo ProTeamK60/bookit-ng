@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EventService} from '../service/event.service';
 import {Router} from '@angular/router';
 import {Option} from '../model/option';
-import {Options} from '../model/options';
 import {throwError} from 'rxjs';
 
 @Component({
@@ -171,7 +170,7 @@ exampleSchema = {
     //'option': {"optionType": "oneOption", "optionId":2, "queryString": "hejhopp"},
     };
     
-  displayData: Options = null;
+  displayData: any = [];
 
   exampleOnSubmitFn(formData) {
     this.displayData = formData;

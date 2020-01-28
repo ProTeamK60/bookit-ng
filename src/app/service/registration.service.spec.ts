@@ -10,7 +10,8 @@ describe('RegistrationService', () => {
   const REGISTRATION: Registration = {
     eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
     participant: {
-      email: 'kalle@ankeborg.se'
+      email: 'kalle@ankeborg.se',
+      answers: []
     }
   };
 
@@ -66,7 +67,7 @@ describe('RegistrationService', () => {
       const service: RegistrationService = TestBed.get(RegistrationService);
       const invalidRegistration: Registration = {
         eventId: REGISTRATION.eventId,
-        participant: { email: 'kalleatankeborg.se' }
+        participant: { email: 'kalleatankeborg.se', answers: [] }
       };
 
       service.addRegistration(invalidRegistration).subscribe(

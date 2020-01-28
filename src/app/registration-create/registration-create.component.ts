@@ -34,36 +34,4 @@ export class RegistrationCreateComponent implements OnInit {
     );
   
   }
-/*
-
-  onSubmit() {
-    var idx=0;
-    
-    for (let value of Object.values(this.regForm.controls)) {
-      
-      console.error(value.enabled);
-      idx++;  
-    }
-
-    console.error("idx: " +idx);
-
-    const registration: Registration = {
-      eventId: this.activatedRoute.snapshot.params.eventId,
-      participant: {email: this.regForm.get('email').value,
-      answers:  [{optionId: 1, value: "hejhopp"}]
-      }};
-
-    this.registrationService.addRegistration(registration)
-      .pipe(
-        catchError(err => {
-          this.snackBar.open(err, 'Dismiss', {duration: 5000});
-          return throwError(err);
-        })).subscribe(
-      _ => {
-        console.log('Registration successfully created in backend');
-        this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
-      }
-    );
-  }
-*/
 }

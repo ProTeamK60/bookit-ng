@@ -85,12 +85,12 @@ describe('EventRegComponent', () => {
   describe('method onSubmit()', () => {
     it('should call registrationService.addRegistration once if form is correctly filled', () => {
       mockRegistrationService.addRegistration.and.returnValue(of('Registration added!'));
-
+      /*
       component.regForm = formBuilder.group({
         email: 'kalle@ankeborg.se'
       });
-
-      component.onSubmit();
+      */
+      //component.onSubmit();
       fixture.detectChanges();
 
       expect(mockRegistrationService.addRegistration).toHaveBeenCalledTimes(1);

@@ -36,7 +36,8 @@ describe('EventListComponent', () => {
     eventEnd: 90060000,
     deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
-    organizer: 'Susanne'
+    organizer: 'Susanne',
+    options: []
   };
 
   let component: EventListComponent;
