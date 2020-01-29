@@ -97,10 +97,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatExpansionModule,
     MatTableModule,
     MatSortModule, 
-    //MaterialDesignFrameworkModule,
-    //JsonSchemaFormModule,
-    //jsonSchemaFormModuleForRoot
-    //JsonSchemaFormModule.forRoot(MaterialDesignFrameworkModule)
+    MaterialDesignFrameworkModule,
     {
       ngModule: JsonSchemaFormModule,
       providers: [
