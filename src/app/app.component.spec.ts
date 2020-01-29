@@ -10,7 +10,7 @@ import {
   MatDividerModule, MatExpansionModule, MatFormFieldModule,
   MatIconModule, MatInputModule,
   MatListModule, MatMenuModule,
-  MatProgressSpinnerModule, MatTableModule, MatToolbarModule
+  MatProgressSpinnerModule, MatTableModule, MatToolbarModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
 import {EventCardComponent} from './event-card/event-card.component';
 import {RegistrationCreateComponent} from './registration-create/registration-create.component';
@@ -19,6 +19,8 @@ import {ParticipantComponent} from './participant/participant.component';
 import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Component} from '@angular/core';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -38,10 +40,22 @@ describe('AppComponent', () => {
         MatExpansionModule,
         MatInputModule,
         ReactiveFormsModule,
-        MatTableModule
+        MatTableModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ],
       declarations: [
         AppComponent,
+        DynamicFormComponent,
         EventCardComponent,
         EventViewComponent,
         DevToolbarComponent,

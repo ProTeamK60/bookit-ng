@@ -9,7 +9,9 @@ import {
   MatIconModule, MatListModule,
   MatMenuModule,
   MatProgressSpinnerModule, MatTableModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatCheckboxModule,
+  MatRadioModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
@@ -21,6 +23,8 @@ import {RegistrationCreateComponent} from '../registration-create/registration-c
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 
 describe('DevToolbarComponent', () => {
   let component: DevToolbarComponent;
@@ -29,6 +33,7 @@ describe('DevToolbarComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DevToolbarComponent,
+        DynamicFormComponent,
       EventCreateComponent,
         EventListComponent,
         EventViewComponent,
@@ -52,7 +57,18 @@ describe('DevToolbarComponent', () => {
         MatListModule,
         MatButtonToggleModule,
         MatExpansionModule,
-        MatTableModule
+        MatTableModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ]
     })
     .compileComponents();

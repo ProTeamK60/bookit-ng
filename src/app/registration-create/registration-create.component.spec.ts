@@ -13,7 +13,9 @@ import {
   MatExpansionModule,
   MatButtonToggleModule,
   MatTableModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatRadioModule,
+  MatCheckboxModule
 } from '@angular/material';
 import {ReactiveFormsModule, FormBuilder} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -25,22 +27,19 @@ import {EventCardComponent} from '../event-card/event-card.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RegistrationService} from '../service/registration.service';
-import {of} from 'rxjs';
-import {Registration} from '../model/registration';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 
 describe('EventRegComponent', () => {
   let component: RegistrationCreateComponent;
   let fixture: ComponentFixture<RegistrationCreateComponent>;
-  const formBuilder: FormBuilder = new FormBuilder();
-  let mockRegistrationService;
 
   beforeEach(async(() => {
-    mockRegistrationService = jasmine.createSpyObj('RegistrationService', ['addRegistration']);
 
     TestBed.configureTestingModule({
       declarations: [RegistrationCreateComponent,
+        DynamicFormComponent,
         EventCreateComponent,
         EventListComponent,
         EventViewComponent,
@@ -65,9 +64,19 @@ describe('EventRegComponent', () => {
         MatButtonToggleModule,
         MatTableModule,
         MatSnackBarModule,
-        BrowserAnimationsModule
-      ],
-      providers: [{provide: RegistrationService, useValue: mockRegistrationService}]
+        BrowserAnimationsModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
+      ]
     })
       .compileComponents();
   }));
@@ -80,21 +89,6 @@ describe('EventRegComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-
-  describe('method onSubmit()', () => {
-    it('should call registrationService.addRegistration once if form is correctly filled', () => {
-      mockRegistrationService.addRegistration.and.returnValue(of('Registration added!'));
-      /*
-      component.regForm = formBuilder.group({
-        email: 'kalle@ankeborg.se'
-      });
-      */
-      //component.onSubmit();
-      fixture.detectChanges();
-
-      expect(mockRegistrationService.addRegistration).toHaveBeenCalledTimes(1);
-    });
-  });
+  
 
 });

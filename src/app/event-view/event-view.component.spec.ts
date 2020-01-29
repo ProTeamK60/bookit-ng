@@ -20,7 +20,7 @@ import {
   MatFormFieldModule,
   MatDatepickerModule,
   MatInputModule,
-  MatExpansionModule, MatTableModule
+  MatExpansionModule, MatTableModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -30,6 +30,8 @@ import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
@@ -54,6 +56,7 @@ describe('EventViewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [EventViewComponent,
         MockEventCardComponent,
+        DynamicFormComponent,
         EventCreateComponent,
         EventListComponent,
         RegistrationCreateComponent,
@@ -76,7 +79,18 @@ describe('EventViewComponent', () => {
         BrowserAnimationsModule,
         MatExpansionModule,
         MatTableModule,
-        HttpClientModule
+        HttpClientModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ],
 
       providers: [{provide: EventService, useValue: mockEventService}]

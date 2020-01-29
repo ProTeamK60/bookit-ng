@@ -8,7 +8,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule
+  MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
 import {Component, DebugElement, Input, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
@@ -23,8 +23,9 @@ import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
-import {of} from 'rxjs';
 import {By} from '@angular/platform-browser';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -53,6 +54,7 @@ describe('EventCardComponent', () => {
         LocalDateTimePipe,
         EventCreateComponent,
         RegistrationCreateComponent,
+        DynamicFormComponent,
         EventListComponent,
         EventViewComponent,
         RegistrationDeleteComponent
@@ -72,7 +74,18 @@ describe('EventCardComponent', () => {
         ReactiveFormsModule,
         MatDatepickerModule,
         MatProgressSpinnerModule,
-        HttpClientModule
+        HttpClientModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ]
     })
       .compileComponents();
