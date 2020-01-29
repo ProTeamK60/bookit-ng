@@ -8,7 +8,7 @@ import {
   MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatNativeDateModule,
-  MatProgressSpinnerModule, MatTableModule,
+  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule,
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,6 +21,8 @@ import {RegistrationCreateComponent} from '../registration-create/registration-c
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -29,6 +31,7 @@ describe('EventCreateComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EventCreateComponent,
+        DynamicFormComponent,
         EventListComponent,
         EventViewComponent,
         EventCardComponent,
@@ -53,7 +56,18 @@ describe('EventCreateComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
         MatExpansionModule,
-        MatTableModule
+        MatTableModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ]
     })
       .compileComponents();

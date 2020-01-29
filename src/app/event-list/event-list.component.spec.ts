@@ -12,7 +12,9 @@ import {
   MatIconModule,
   MatListModule,
   MatProgressSpinnerModule,
-  MatTableModule
+  MatTableModule,
+  MatCheckboxModule,
+  MatRadioModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
@@ -26,6 +28,8 @@ import { RegistrationDeleteComponent } from '../registration-delete/registration
 import {Component, Input} from '@angular/core';
 import {Event} from '../model/event';
 import {of} from 'rxjs';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 
 describe('EventListComponent', () => {
   const MOCK_EVENT: Event = {
@@ -36,7 +40,8 @@ describe('EventListComponent', () => {
     eventEnd: 90060000,
     deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
-    organizer: 'Susanne'
+    organizer: 'Susanne',
+    options: []
   };
 
   let component: EventListComponent;
@@ -48,6 +53,7 @@ describe('EventListComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [EventListComponent,
+        DynamicFormComponent,
         MockEventCardComponent,
         EventCreateComponent,
         EventViewComponent,
@@ -69,7 +75,18 @@ describe('EventListComponent', () => {
         ReactiveFormsModule,
         HttpClientModule,
         MatExpansionModule,
-        MatTableModule
+        MatTableModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ]
     })
       .compileComponents();

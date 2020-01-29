@@ -31,7 +31,44 @@
         <mat-icon>people</mat-icon>
         Organizer: {{event.organizer}}
       </mat-list-item>
-      
+      <!--
+      <mat-expansion-panel class="full-width">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>question_answer</mat-icon>
+              Tillval:
+            </mat-panel-title>
+          <mat-panel-description>
+            Expand to see options in {{event.name}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <div *ngFor="let option of event.options">
+          <span style="font-size: large; color: black">{{option.title}}</span>
+          <div *ngIf='option.optionType ==="oneOption"'>
+            <mat-radio-group class="mat-radio-group">
+              <mat-radio-button color="primary" *ngFor="let value of option.queryString.split(',')" [value]="value">
+                {{value}}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div *ngIf='option.optionType ==="multiOption"'>
+            <mat-list *ngFor= "let value of option.queryString.split(',')" >
+              <mat-list-item> 
+                <mat-checkbox color="primary">{{value}}</mat-checkbox>
+              </mat-list-item> 
+            </mat-list>
+          </div>
+     
+          <div *ngIf='option.optionType === "freeText"'>
+            <textarea matInput color="primary" style="background-color: white;border-color: grey; border-style: solid; border-width: 1px;resize: none;"></textarea>
+          </div>
+  
+        </div>
+ 
+    </mat-expansion-panel>
+  -->
     </mat-list>
     
 	<mat-expansion-panel class="full-width">
@@ -47,7 +84,7 @@
 	  
 	  <app-participant-list [eventId]="event.eventId"></app-participant-list>
 	</mat-expansion-panel>      
-   
+
     <mat-form-field appearance="outline" class="full-width">
         <mat-label>Sharable URL</mat-label>
         <input [readonly]="true" matInput value="{{baseUrl + event.eventId}}" #urlValue>

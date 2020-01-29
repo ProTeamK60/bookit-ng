@@ -12,7 +12,9 @@ import {
   MatExpansionModule,
   MatButtonToggleModule,
   MatTableModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatRadioModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 import { EventCreateComponent } from '../event-create/event-create.component';
@@ -29,6 +31,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationCreateComponent } from '../registration-create/registration-create.component';
 import { RegistrationService } from '../service/registration.service';
+import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 
 describe('EventUnregComponent', () => {
   let component: RegistrationDeleteComponent;
@@ -42,6 +46,7 @@ describe('EventUnregComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         RegistrationCreateComponent,
+        DynamicFormComponent,
         EventCreateComponent,
         EventListComponent,
         EventViewComponent,
@@ -66,7 +71,18 @@ describe('EventUnregComponent', () => {
         MatButtonToggleModule,
         MatTableModule,
         MatSnackBarModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        {
+          ngModule: JsonSchemaFormModule,
+          providers: [
+              JsonSchemaFormService,
+              FrameworkLibraryService,
+              WidgetLibraryService,
+              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+          ]
+        }
       ],
       providers: [{ provide: RegistrationService, useValue: mockRegistrationService }]
     })

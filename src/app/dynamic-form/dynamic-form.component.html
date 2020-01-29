@@ -1,0 +1,49 @@
+<mat-card>
+    <mat-card-title>Registration</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="full-width">
+                <input formControlName="email" matInput placeholder="Email">
+                <mat-error>
+                    <span *ngIf="regForm.get('email').touched">Please enter an email
+                        address.</span> </mat-error>
+            </mat-form-field>
+
+            <div *ngFor="let option of event.options">
+                <div [formGroupName]="option.optionId">
+                    <span style="font-size: large; color: black">{{option.title}}</span>
+                    <div formGroupName="values">
+                        <div [ngSwitch]="option.optionType">
+                            <div *ngSwitchCase="'oneOption'">
+                                <mat-radio-group class="mat-radio-group" formControlName="value">
+                                    <mat-radio-button *ngFor="let value of option.queryString.split(',')"
+                                        [value]="value" color="primary">
+                                        {{value}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                            <div *ngSwitchCase="'multiOption'">
+                                <mat-list *ngFor="let value of option.queryString.split(',')">
+                                    <mat-list-item>
+                                        <mat-checkbox [formControlName]="value" color="primary">
+                                            {{value}}</mat-checkbox>
+                                    </mat-list-item>
+                                </mat-list>
+                            </div>
+
+                            <div *ngSwitchCase="'freeText'">
+                                <textarea matInput formControlName="value" color="primary"
+                                    style="background-color: white; border-color: grey; border-style: solid; border-width: 1px; resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <button mat-raised-button [disabled]="!regForm.valid" color="accent">Register</button>
+
+        </form>
+    </mat-card-content>
+</mat-card>

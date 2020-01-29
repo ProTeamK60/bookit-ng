@@ -1,49 +1,37 @@
-import {Component, OnInit} from '@angular/core';
-import {Validators, FormBuilder} from '@angular/forms';
-import {RegistrationService} from '../service/registration.service';
-import {Registration} from '../model/registration';
+import {Component, OnInit} from '@angular/core';;
 import {ActivatedRoute} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import { Observable} from 'rxjs';
+import { EventService } from '../service/event.service';
+import { Event } from '../model/event';
+import {Subject, throwError} from 'rxjs';
+
 
 @Component({
   selector: 'app-registration-create',
   templateUrl: './registration-create.component.html',
-  styleUrls: ['./registration-create.component.scss']
+  styleUrls: ['./registration-create.component.scss'],
 })
 export class RegistrationCreateComponent implements OnInit {
 
-  constructor(private registrationService: RegistrationService,
-              private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute,
-              private snackBar: MatSnackBar) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private eventService: EventService) {
   }
-
-  regForm = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]]
-  });
-
+  
+  error$: Subject<Error> = new Subject<Error>();
+  event$: Observable<Event>;
+  
   ngOnInit() {
-  }
-
-  onSubmit() {
-    const registration: Registration = {
-      eventId: this.activatedRoute.snapshot.params.eventId,
-      participant: {email: this.regForm.get('email').value},
-    };
-
-    this.registrationService.addRegistration(registration)
-      .pipe(
-        catchError(err => {
-          this.snackBar.open(err, 'Dismiss', {duration: 5000});
+    const eventId = this.activatedRoute.snapshot.params.eventId;
+    console.error("eventId: " +eventId);
+  
+    this.event$ = this.eventService.findById(eventId).pipe(
+      catchError(err => {
+          this.error$.next(err);
           return throwError(err);
-        })).subscribe(
-      _ => {
-        console.log('Registration successfully created in backend');
-        this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
-      }
+        }
+      )
     );
+  
   }
-
 }

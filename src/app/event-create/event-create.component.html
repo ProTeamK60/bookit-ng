@@ -1,4 +1,4 @@
-<div class="centered">
+<div>
     <mat-card>
         <mat-card-title>
             Create Event Form
@@ -80,9 +80,21 @@
                     <button mat-raised-button [disabled]="!eventForm.valid" color="accent">Submit</button>
                 </tr>
             </table>
-        </form>
+        
+    </form>
         <p>
             Form Status: {{ eventForm.status }}
         </p>
+        
+    <div class="form-container">
+        <json-schema-form
+          [schema]="exampleSchema"
+          [data]="exampleData"
+          (onSubmit)="exampleOnSubmitFn($event)">
+        </json-schema-form>
+        <h4>Submitted data:</h4>
+        <pre *ngIf="!displayData">(none)</pre>
+        <pre *ngIf="displayData">{{displayData | json}}</pre>
+    </div>    
     </mat-card>
 </div>
