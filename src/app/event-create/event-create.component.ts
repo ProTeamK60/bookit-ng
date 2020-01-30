@@ -12,7 +12,7 @@ import {throwError} from 'rxjs';
 })
 export class EventCreateComponent implements OnInit {
   today = new Date();
-
+  
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
@@ -50,7 +50,8 @@ export class EventCreateComponent implements OnInit {
   }
 
   onSubmit() {
-
+    let i = 0;
+    this.displayData.options.forEach(option => option.optionId = i++);
     this.displayData.options.forEach(option => this.validateOption(option));
 
     const event = {
@@ -118,15 +119,12 @@ exampleSchema = {
   "definitions" : {
     "option" : {
       "type" : "object",
-      "required" : [ "optionType", "optionId", "title", "queryString" ],
+      "required" : [ "optionType",  "title", "queryString" ],
      
       "properties" : {
         "optionType" : {
           "type" : "string",
           "enum" : [ "oneOption", "multiOption", "freeText" ]
-        },
-        "optionId" : {
-          "type" : "integer"
         },
         "title" : {
           "type" : "string"
