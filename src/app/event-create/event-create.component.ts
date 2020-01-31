@@ -1,11 +1,9 @@
-import { Component, OnInit, Optional } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { EventService } from '../service/event.service';
 import { Router } from '@angular/router';
 import { Option } from '../model/option';
-import { throwError } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
-import { NoneComponent, toJavaScriptType } from 'angular2-json-schema-form';
+import { NoneComponent} from 'angular2-json-schema-form';
 import { Event } from '../model/event';
 
 @Component({
@@ -92,8 +90,7 @@ export class EventCreateComponent implements OnInit {
 
   constructor(private eventService: EventService,
     private fb: FormBuilder,
-    private router: Router,
-    private snackBar: MatSnackBar) {
+    private router: Router) {
   }
 
   ngOnInit() {
