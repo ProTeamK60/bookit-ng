@@ -1,9 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {EventService} from '../service/event.service';
-import {Router} from '@angular/router';
-import {Option} from '../model/option';
-import {throwError} from 'rxjs';
+import { Component, OnInit, Optional } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EventService } from '../service/event.service';
+import { Router } from '@angular/router';
+import { Option } from '../model/option';
+import { throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
+import { NoneComponent, toJavaScriptType } from 'angular2-json-schema-form';
+import { Event } from '../model/event';
 
 @Component({
   selector: 'app-event-create',
@@ -12,7 +15,6 @@ import {throwError} from 'rxjs';
 })
 export class EventCreateComponent implements OnInit {
   today = new Date();
-
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
@@ -22,8 +24,76 @@ export class EventCreateComponent implements OnInit {
     location: [''],
     organizer: ['']
   });
+  widget = {
+    submit: NoneComponent
+  }
+  optionsForm;
+  optionsSchema = {
+    "type": "object",
 
-  constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) {
+    "properties": {
+      "options": {
+        "type": "array",
+        "expandable": true,
+        "expanded": false,
+        "items": {
+          "$ref": "#/definitions/option"
+        }
+      }
+    },
+    "definitions": {
+      "option": {
+        "type": "object",
+
+        "properties": {
+          "optionType": {
+            "type": "string",
+            "enum": ["oneOption", "multiOption", "freeText"]
+          },
+          "title": {
+            "type": "string"
+          },
+          "queryString": {
+            "type": "string"
+          }
+        },
+        "if": {
+          "properties": {
+            "optionType": {
+              "const": "multiOption"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "value": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["optionType", "title", "queryString"]
+        },
+        "else": {
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": ["optionType", "title"]
+        }
+      }
+    },
+    "required": ["options"]
+
+  };
+
+
+  constructor(private eventService: EventService,
+    private fb: FormBuilder,
+    private router: Router,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -49,130 +119,82 @@ export class EventCreateComponent implements OnInit {
     deadline.markAsUntouched();
   }
 
+  onOptionsChange(optionsForm) {
+    this.optionsForm = optionsForm.options;
+  }
+
   onSubmit() {
-
-    this.displayData.options.forEach(option => this.validateOption(option));
-
-    const event = {
-      eventId: '',
-      name: this.eventForm.get('name').value,
-      description: this.eventForm.get('description').value,
-      eventStart: this.dateToMilliseconds(this.eventForm.get('eventStart').value),
-      eventEnd: this.dateToMilliseconds(this.eventForm.get('eventEnd').value),
-      deadlineRVSP: this.dateToMilliseconds(this.eventForm.get('deadlineRVSP').value),
-      location: this.eventForm.get('location').value,
-      organizer: this.eventForm.get('organizer').value,
-      options: this.displayData.options
-    };
-    
-    console.warn(event);
-    
-    this.eventService.createOrUpdate(event).subscribe((data) => {
+    let submittedEvent = this.submitEventForm();
+    this.eventService.createOrUpdate(submittedEvent).subscribe((data) => {
       let s = data.headers.get('location').split('/');
       this.router.navigateByUrl('/events/' + s[s.length - 1]);
     });
   }
 
-  private dateToMilliseconds(date: Date): number {
-    return date.getTime();
+  private submitEventForm(): Event {
+    let eventStart: string = this.eventForm.get('eventStart').value;
+    let eventEnd: string = this.eventForm.get('eventEnd').value;
+    let deadlineRVSP: string = this.eventForm.get('deadlineRVSP').value;
+
+    let options: Option[] = [];
+    for(let option of this.optionsForm) {
+       options[options.length] = {
+         optionId: options.length,
+         title: option.title,
+        optionType: option.optionType,
+        queryString: option.queryString
+      };
+    }
+
+    return {
+      eventId: '',
+      name: this.eventForm.get('name').value,
+      description: this.eventForm.get('description').value,
+      eventStart: (eventStart !== '' ? this.dateToMilliseconds(eventStart) : undefined),
+      eventEnd: (eventEnd !== '' ? this.dateToMilliseconds(eventEnd) : undefined),
+      deadlineRVSP: (deadlineRVSP !== '' ? this.dateToMilliseconds(deadlineRVSP) : undefined),
+      location: this.eventForm.get('location').value,
+      organizer: this.eventForm.get('organizer').value,
+      options: options
+    };
+
   }
-  
-  private validateOption(option: Option) {
-    if(option.title.trim() == '') throwError(new Error("option title cannot be empty!"));
-    if(option.optionType === 'oneOption' 
-      || option.optionType === 'multiOption') {
-        let entries: String[] = option.queryString.split(",");
-        entries.forEach(entry => 
-          {
-            if(this.countEntries(entries, entry) > 1) {
-              throwError("duplicate options is not allowed!");
-            }
-          }
-        );
+
+  isValid(): boolean {
+    if (!this.eventForm.valid) return false;
+    for (let option of this.optionsForm) {
+      if (!this.validateOption(option)) return false;
+    }
+    return true;
+  }
+
+  private validateOption(option: Option): boolean {
+    if (option.title !== undefined && option.title.trim() === '') {
+      return false;
+    }
+    if (option.optionType === 'oneOption' || option.optionType === 'multiOption') {
+      if (option.queryString === undefined) return false;
+      let entries: String[] = option.queryString.split(",");
+      for (let entry of entries) {
+        if (this.countEntries(entries, entry) > 1) {
+          return false;
+        }
       }
+    }
+    return true;
   }
 
   private countEntries(list: String[], entry: String): number {
     let count: number = 0;
-    list.forEach(item => {if(item === entry) count++;})
+    list.forEach(item => {
+      if (item.toLowerCase() === entry.toLowerCase()) {
+        count++;
+      }
+    });
     return count;
-  } 
-
-exampleSchema = {
-  "type" : "object",
+  }
   
-  "properties" : {
-    /*
-    "eventId" : {
-      "type" : "integer"
-    },*/
-    "options" : {
-      "type" : "array",
-      "expandable": true,
-      "expanded": false,
-      "items" : {
-        "$ref" : "#/definitions/option"
-      }
-    }
-  },
-  "definitions" : {
-    "option" : {
-      "type" : "object",
-      "required" : [ "optionType", "optionId", "title", "queryString" ],
-     
-      "properties" : {
-        "optionType" : {
-          "type" : "string",
-          "enum" : [ "oneOption", "multiOption", "freeText" ]
-        },
-        "optionId" : {
-          "type" : "integer"
-        },
-        "title" : {
-          "type" : "string"
-        },
-        "queryString" : {
-          "type" : "string"
-        }
-      },
-      "if" : {
-        "properties" : {
-          "optionType" : {
-            "const" : "multiOption"
-          }
-        }
-      },
-      "then" : {
-        "properties" : {
-          "value" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        }
-      },
-      "else" : {
-        "properties" : {
-          "value" : {
-            "type" : "string"
-          }
-        }
-      }
-    }
-  },
-  "required" : ["options" ]
-
-  };
-  
-  exampleData = {
-    //'eventId': 1,
-    //'option': {"optionType": "oneOption", "optionId":2, "queryString": "hejhopp"},
-    };
-    
-  displayData: any = [];
-
-  exampleOnSubmitFn(formData) {
-    this.displayData = formData;
+  private dateToMilliseconds(date: string): number {
+    return new Date(date).getTime();
   }
 }

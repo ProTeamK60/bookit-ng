@@ -1,100 +1,93 @@
-<div>
+<div class="centered">
     <mat-card>
         <mat-card-title>
             Create Event Form
         </mat-card-title>
-        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-            <table>
-                <tr>
-                    <td colspan="3">
+        <mat-card-content>
+            <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+                <table>
+                    <tr>
+                        <td colspan="3">
+                            <mat-form-field class="full-width">
+                                <input formControlName="name" matInput placeholder="Name">
+                                <mat-error>
+                                    <span *ngIf="eventForm.get('name').touched">Please enter a name.</span>
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <mat-form-field class="full-width">
+                                <input formControlName="description" matInput placeholder="Description">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
                         <mat-form-field class="full-width">
-                            <input formControlName="name" matInput placeholder="Name">
-                            <mat-error>
-                                <span *ngIf="eventForm.get('name').touched">Please enter a name.</span>
-                            </mat-error>
+                            <input formControlName="location" matInput placeholder="Location">
                         </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+                    </tr>
+                    <tr>
                         <mat-form-field class="full-width">
-                            <input formControlName="description" matInput placeholder="Description">
+                            <input formControlName="organizer" matInput placeholder="Organizer">
                         </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <mat-form-field class="full-width">
-                        <input formControlName="location" matInput placeholder="Location">
-                    </mat-form-field>
-                </tr>
-                <tr>
-                    <mat-form-field class="full-width">
-                        <input formControlName="organizer" matInput placeholder="Organizer">
-                    </mat-form-field>
-                </tr>
-                <tr class="form-table-row">
-                    <td>
-                        <mat-form-field class="datepick-width">
-                            <input formControlName="eventStart" matInput [matDatepicker]="eventStartPicker"
-                                [min]="today" (dateChange)="OnEventStartChange()" placeholder="Start date">
-                            <mat-datepicker-toggle matSuffix [for]="eventStartPicker"></mat-datepicker-toggle>
-                            <mat-datepicker #eventStartPicker></mat-datepicker>
-                            <mat-error>
-                                <span *ngIf="eventForm.get('eventStart').touched && !eventForm.get('eventStart').dirty">Please enter a start date.</span>
-                                <span
-                                    *ngIf="eventForm.get('eventStart').touched && eventForm.get('eventStart').dirty">Please
-                                    enter a valid start date.</span>
-                            </mat-error>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="datepick-width">
-                            <input formControlName="eventEnd" matInput [matDatepicker]="eventEndPicker"
-                                [min]="eventForm.get('eventStart').value" placeholder="End date">
-                            <mat-datepicker-toggle matSuffix [for]="eventEndPicker"></mat-datepicker-toggle>
-                            <mat-datepicker #eventEndPicker></mat-datepicker>
-                            <mat-error>
-                                <span *ngIf="eventForm.get('eventEnd').touched && !eventForm.get('eventEnd').dirty">Please enter an end date.</span>
-                                <span *ngIf="eventForm.get('eventEnd').touched && eventForm.get('eventEnd').dirty"
-                                    >Please
-                                    enter
-                                    a valid end date.</span>
-                            </mat-error>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field class="datepick-width">
-                            <input formControlName="deadlineRVSP" matInput [matDatepicker]="deadlineRVSPPicker"
-                                [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
-                            <mat-datepicker-toggle matSuffix [for]="deadlineRVSPPicker"></mat-datepicker-toggle>
-                            <mat-datepicker #deadlineRVSPPicker></mat-datepicker>
-                            <mat-error>
-                                <span
-                                    *ngIf="!eventForm.get('deadlineRVSP').valid && eventForm.get('deadlineRVSP').dirty">Please
-                                    enter a valid deadline.</span>
-                            </mat-error>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <button mat-raised-button [disabled]="!eventForm.valid" color="accent">Submit</button>
-                </tr>
-            </table>
-        
-    </form>
-        <p>
-            Form Status: {{ eventForm.status }}
-        </p>
-        
-    <div class="form-container">
-        <json-schema-form
-          [schema]="exampleSchema"
-          [data]="exampleData"
-          (onSubmit)="exampleOnSubmitFn($event)">
-        </json-schema-form>
-        <h4>Submitted data:</h4>
-        <pre *ngIf="!displayData">(none)</pre>
-        <pre *ngIf="displayData">{{displayData | json}}</pre>
-    </div>    
+                    </tr>
+                    <tr class="form-table-row">
+                        <td>
+                            <mat-form-field class="datepick-width">
+                                <input formControlName="eventStart" matInput [matDatepicker]="eventStartPicker"
+                                    [min]="today" (dateChange)="OnEventStartChange()" placeholder="Start date">
+                                <mat-datepicker-toggle matSuffix [for]="eventStartPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #eventStartPicker></mat-datepicker>
+                                <mat-error>
+                                    <span
+                                        *ngIf="eventForm.get('eventStart').touched && !eventForm.get('eventStart').dirty">Please
+                                        enter a start date.</span>
+                                    <span
+                                        *ngIf="eventForm.get('eventStart').touched && eventForm.get('eventStart').dirty">Please
+                                        enter a valid start date.</span>
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="datepick-width">
+                                <input formControlName="eventEnd" matInput [matDatepicker]="eventEndPicker"
+                                    [min]="eventForm.get('eventStart').value" placeholder="End date">
+                                <mat-datepicker-toggle matSuffix [for]="eventEndPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #eventEndPicker></mat-datepicker>
+                                <mat-error>
+                                    <span
+                                        *ngIf="eventForm.get('eventEnd').touched && !eventForm.get('eventEnd').dirty">Please
+                                        enter an end date.</span>
+                                    <span
+                                        *ngIf="eventForm.get('eventEnd').touched && eventForm.get('eventEnd').dirty">Please
+                                        enter
+                                        a valid end date.</span>
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                        <td>
+                            <mat-form-field class="datepick-width">
+                                <input formControlName="deadlineRVSP" matInput [matDatepicker]="deadlineRVSPPicker"
+                                    [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
+                                <mat-datepicker-toggle matSuffix [for]="deadlineRVSPPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #deadlineRVSPPicker></mat-datepicker>
+                                <mat-error>
+                                    <span
+                                        *ngIf="!eventForm.get('deadlineRVSP').valid && eventForm.get('deadlineRVSP').dirty">Please
+                                        enter a valid deadline.</span>
+                                </mat-error>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div class="full-width">
+                <json-schema-form [schema]="optionsSchema" (onChanges)="onOptionsChange($event)" [widgets]="widget">
+                </json-schema-form>
+            </div>
+            <button mat-raised-button [disabled]="!isValid()" color="accent" on-click="onSubmit()">Submit</button>
+        </mat-card-content>
     </mat-card>
 </div>
