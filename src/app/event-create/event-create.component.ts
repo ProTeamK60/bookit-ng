@@ -12,7 +12,7 @@ import {throwError} from 'rxjs';
 })
 export class EventCreateComponent implements OnInit {
   today = new Date();
-  
+
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
@@ -22,6 +22,7 @@ export class EventCreateComponent implements OnInit {
     location: [''],
     organizer: ['']
   });
+  private breakpoint: number;
 
   constructor(private eventService: EventService, private fb: FormBuilder, private router: Router) {
   }
@@ -29,6 +30,11 @@ export class EventCreateComponent implements OnInit {
   ngOnInit() {
     this.eventForm.controls['eventEnd'].disable();
     this.eventForm.controls['deadlineRVSP'].disable();
+    // split the grid depending on the screen width
+    this.breakpoint = (window.innerWidth <= 450) ? 1 : 3;
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 450) ? 1 : 3;
   }
 
   OnEventStartChange() {
@@ -65,9 +71,9 @@ export class EventCreateComponent implements OnInit {
       organizer: this.eventForm.get('organizer').value,
       options: this.displayData.options
     };
-    
+
     console.warn(event);
-    
+
     this.eventService.createOrUpdate(event).subscribe((data) => {
       let s = data.headers.get('location').split('/');
       this.router.navigateByUrl('/events/' + s[s.length - 1]);
@@ -77,13 +83,13 @@ export class EventCreateComponent implements OnInit {
   private dateToMilliseconds(date: Date): number {
     return date.getTime();
   }
-  
+
   private validateOption(option: Option) {
     if(option.title.trim() == '') throwError(new Error("option title cannot be empty!"));
-    if(option.optionType === 'oneOption' 
+    if(option.optionType === 'oneOption'
       || option.optionType === 'multiOption') {
         let entries: String[] = option.queryString.split(",");
-        entries.forEach(entry => 
+        entries.forEach(entry =>
           {
             if(this.countEntries(entries, entry) > 1) {
               throwError("duplicate options is not allowed!");
@@ -97,11 +103,11 @@ export class EventCreateComponent implements OnInit {
     let count: number = 0;
     list.forEach(item => {if(item === entry) count++;})
     return count;
-  } 
+  }
 
 exampleSchema = {
   "type" : "object",
-  
+
   "properties" : {
     /*
     "eventId" : {
@@ -120,7 +126,7 @@ exampleSchema = {
     "option" : {
       "type" : "object",
       "required" : [ "optionType",  "title", "queryString" ],
-     
+
       "properties" : {
         "optionType" : {
           "type" : "string",
@@ -162,12 +168,12 @@ exampleSchema = {
   "required" : ["options" ]
 
   };
-  
+
   exampleData = {
     //'eventId': 1,
     //'option': {"optionType": "oneOption", "optionId":2, "queryString": "hejhopp"},
     };
-    
+
   displayData: any = [];
 
   exampleOnSubmitFn(formData) {

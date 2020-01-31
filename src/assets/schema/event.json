@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "/assets/schema/event.json",
+  "title": "Core schema meta-schema",
+  "required": [
+    "eventId",
+    "options"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "eventId": {
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "$ref": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "$comment": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/option"
+      }
+    }
+  },
+
+  "definitions": {
+    "option": {
+      "type": "object",
+      "required": [
+        "optionType",
+        "optionId",
+        "value"
+      ],
+      "properties": {
+        "optionType": {
+          "type": "string",
+          "enum": [
+            "oneOption",
+            "multiOption",
+            "freeText"
+          ]
+        },
+        "optionId": {
+          "type": "number"
+        }
+      },
+      "queryString": {
+        "type": "string"
+      },
+      "if": {
+        "properties": {
+          "optionType": {
+            "const": "multiOption"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

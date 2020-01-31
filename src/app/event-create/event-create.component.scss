@@ -1,13 +1,13 @@
-  
-    
-.form {    
-    min-width: 150px;    
-    max-width: 500px;    
-    width: 100%;    
-}    
 
-.full-width {    
-    width: 100%;    
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
 }
 
 .form-table-row{
@@ -17,30 +17,30 @@
 }
 
 .datepick-width {
-    width: 90%;
+    width: 100%;
 }
 
 .datepick-fill-empty-space{
     flex: 1 1 auto;
 }
 
-mat-card {    
-    max-width: 80%;    
-    margin: 2em auto;    
-    text-align: center;    
-}    
-    
-mat-toolbar-row {    
-    justify-content: space-between;    
-}    
-    
-.done {    
-    position: fixed;    
-    bottom: 20px;    
-    right: 20px;    
-    color: white;    
-}    
-    
-.content-center {    
-    text-align: -webkit-center;    
-}    
+mat-card {
+    max-width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+mat-toolbar-row {
+    justify-content: space-between;
+}
+
+.done {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+}
+
+.content-center {
+    text-align: -webkit-center;
+}

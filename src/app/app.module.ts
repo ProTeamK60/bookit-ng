@@ -50,6 +50,7 @@ import {ParticipantComponent} from './participant/participant.component';
 import { RegistrationService } from './service/registration.service';
 import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import {MatGridListModule} from "@angular/material/grid-list";
 
 @NgModule({
   declarations: [
@@ -96,17 +97,18 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatTableModule,
-    MatSortModule, 
+    MatSortModule,
     MaterialDesignFrameworkModule,
     {
       ngModule: JsonSchemaFormModule,
       providers: [
-          JsonSchemaFormService,
-          FrameworkLibraryService,
-          WidgetLibraryService,
-          {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+        JsonSchemaFormService,
+        FrameworkLibraryService,
+        WidgetLibraryService,
+        {provide: Framework, useClass: MaterialDesignFramework, multi: true}
       ]
-    }
+    },
+    MatGridListModule
 
   ],
   providers: [
@@ -121,7 +123,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
   ],
   bootstrap: [AppComponent],
   exports: [LocalDateTimePipe]
-  
+
 })
 export class AppModule {
 }
