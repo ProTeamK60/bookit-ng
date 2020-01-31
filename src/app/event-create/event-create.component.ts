@@ -57,8 +57,10 @@ export class EventCreateComponent implements OnInit {
 
   onSubmit() {
     let i = 0;
-    this.displayData.options.forEach(option => option.optionId = i++);
-    this.displayData.options.forEach(option => this.validateOption(option));
+    if (typeof(this.displayData.options) !== 'undefined') {
+      this.displayData.options.forEach(option => option.optionId = i++);
+      this.displayData.options.forEach(option => this.validateOption(option));
+    }
 
     const event = {
       eventId: '',
@@ -81,7 +83,10 @@ export class EventCreateComponent implements OnInit {
   }
 
   private dateToMilliseconds(date: Date): number {
-    return date.getTime();
+    console.log('Date: ' + date.toString())
+   // date: format(new Date(), 'yyyy-MM-dd\'T\'hh:mm', { awareOfUnicodeTokens: true })
+    //return date.valueOf();
+    return new Date(date.valueOf()).getTime();
   }
 
   private validateOption(option: Option) {

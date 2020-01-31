@@ -154,10 +154,8 @@
           </mat-grid-tile>
           <mat-grid-tile >
             <mat-form-field class="datepick-width">
-              <input formControlName="eventEnd" matInput [matDatepicker]="eventEndPicker"
+              <input formControlName="eventEnd" matInput type="datetime-local"
                      [min]="eventForm.get('eventStart').value" placeholder="End date">
-              <mat-datepicker-toggle matSuffix [for]="eventEndPicker"></mat-datepicker-toggle>
-              <mat-datepicker #eventEndPicker></mat-datepicker>
               <mat-error>
                 <span *ngIf="eventForm.get('eventEnd').touched && !eventForm.get('eventEnd').dirty">Please enter an end date.</span>
                 <span *ngIf="eventForm.get('eventEnd').touched && eventForm.get('eventEnd').dirty"
@@ -169,10 +167,8 @@
           </mat-grid-tile>
           <mat-grid-tile >
             <mat-form-field class="datepick-width">
-              <input formControlName="deadlineRVSP" matInput [matDatepicker]="deadlineRVSPPicker"
+              <input formControlName="deadlineRVSP" matInput type="datetime-local"
                      [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
-              <mat-datepicker-toggle matSuffix [for]="deadlineRVSPPicker"></mat-datepicker-toggle>
-              <mat-datepicker #deadlineRVSPPicker></mat-datepicker>
               <mat-error>
                                 <span
                                   *ngIf="!eventForm.get('deadlineRVSP').valid && eventForm.get('deadlineRVSP').dirty">Please
