@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Option } from '../model/option';
 import { NoneComponent} from 'angular2-json-schema-form';
 import { Event } from '../model/event';
-
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',

@@ -35,13 +35,12 @@ import {
   MatTableModule,
   MatSortModule
 } from '@angular/material';
-
 import {DevToolbarComponent} from './dev-toolbar/dev-toolbar.component';
 import {EventCreateComponent} from './event-create/event-create.component';
 import {EventListComponent} from './event-list/event-list.component';
 import {EventCardComponent} from './event-card/event-card.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatProgressSpinnerModule} from '@angular/material';
+import {MatProgressSpinnerModule, MatGridListModule} from '@angular/material';
 import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
 import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
 import {RegistrationCreateComponent} from './registration-create/registration-create.component';
@@ -50,8 +49,6 @@ import {ParticipantComponent} from './participant/participant.component';
 import { RegistrationService } from './service/registration.service';
 import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import {MatGridListModule} from "@angular/material/grid-list";
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +95,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatExpansionModule,
     MatTableModule,
     MatSortModule,
+    MatGridListModule,
     MaterialDesignFrameworkModule,
     {
       ngModule: JsonSchemaFormModule,
@@ -108,7 +106,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
         {provide: Framework, useClass: MaterialDesignFramework, multi: true}
       ]
     },
-    MatGridListModule
+
 
   ],
   providers: [

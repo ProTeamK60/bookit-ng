@@ -1,6 +1,6 @@
 
 <div >
-<mat-card >
+<mat-card class="full-width">
     <mat-card-title>
       Create Event Form
     </mat-card-title>
@@ -31,9 +31,8 @@
             <input formControlName="organizer" matInput placeholder="Organizer">
           </mat-form-field>
         </div>
-        <mat-grid-list [cols]="breakpoint" rowHeight="150px" (window:resize)="onResize($event)">
-          <mat-grid-tile>
-            <mat-form-field class="full-width" >
+        <div class="dates-container" >
+            <div class="col full-width" >
               <input formControlName="eventStart" matInput type="datetime-local"
                      [min]="today" (change)="OnEventStartChange()" placeholder="Start date" >
               <mat-error>
@@ -42,10 +41,8 @@
                   *ngIf="eventForm.get('eventStart').touched && eventForm.get('eventStart').dirty">Please
                                     enter a valid start date.</span>
               </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile >
-            <mat-form-field  class="full-width">
+            </div>
+            <div class="col">
               <input formControlName="eventEnd" matInput type="datetime-local"
                      [min]="eventForm.get('eventStart').value" placeholder="End date">
               <mat-error>
@@ -53,10 +50,8 @@
                 <span *ngIf="eventForm.get('eventEnd').touched && eventForm.get('eventEnd').dirty"
                 >Please enter a valid end date.</span>
               </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile >
-            <mat-form-field  class="full-width">
+            </div>
+            <div  class="col">
               <input formControlName="deadlineRVSP" matInput type="datetime-local"
                      [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
               <mat-error>
@@ -64,9 +59,8 @@
                                   *ngIf="!eventForm.get('deadlineRVSP').valid && eventForm.get('deadlineRVSP').dirty">Please
                                     enter a valid deadline.</span>
               </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
+            </div>
+        </div>
       </div>
 
     </form>

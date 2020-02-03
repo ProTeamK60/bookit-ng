@@ -8,7 +8,7 @@ import {
   MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatNativeDateModule,
-  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule,
+  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -23,7 +23,7 @@ import {ParticipantListComponent} from '../participant-list/participant-list.com
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
-
+import {MatGridList, MatGridListModule} from '@angular/material/grid-list';
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
   let fixture: ComponentFixture<EventCreateComponent>;
@@ -38,7 +38,8 @@ describe('EventCreateComponent', () => {
         RegistrationCreateComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+
       ],
       imports: [
         MatCardModule,
@@ -58,6 +59,7 @@ describe('EventCreateComponent', () => {
         MatExpansionModule,
         MatTableModule,
         MatRadioModule,
+        MatGridListModule,
         MatCheckboxModule,
         {
           ngModule: JsonSchemaFormModule,

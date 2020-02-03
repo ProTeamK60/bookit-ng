@@ -45,3 +45,62 @@ mat-toolbar-row {
 .content-center {
     text-align: -webkit-center;
 }
+.dates-container {
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+/*
+@media (min-width: 768px) {
+  .dates-container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .dates-container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dates-container {
+    width: 1170px;
+  }
+}*/
+
+.dates-container .col {
+  height: 100px;
+}
+
+.dates-container .col p {
+  padding: .25rem .75rem;
+}
+/* 2 columns (600px) */
+/*
+@media only screen and (min-width:600px) {
+  .dates-container .col {
+    float: left;
+    width: 50%;
+  }
+}
+*/
+
+/* 3 columns (768px) */
+
+@media only screen and (min-width:500px) {
+  .dates-container .col {
+    width: 33.333%;
+  }
+}
+
+
+/* 4 columns (992px) */
+/*
+@media only screen and (min-width:992px) {
+  .container .col {
+    width: 25%;
+  }
+}
+*/
