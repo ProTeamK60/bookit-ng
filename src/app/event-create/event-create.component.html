@@ -187,20 +187,12 @@
       </div>
 
     </form>
-    <p>
-      Form Status: {{ eventForm.status }}
-    </p>
-
-    <div class="form-container">
-      <json-schema-form
-        [schema]="exampleSchema"
-        [data]="exampleData"
-        (onSubmit)="exampleOnSubmitFn($event)">
+    <div class="full-width">
+      <json-schema-form [schema]="optionsSchema" (onChanges)="onOptionsChange($event)" [widgets]="widget">
       </json-schema-form>
-      <h4>Submitted data:</h4>
-      <pre *ngIf="!displayData">(none)</pre>
-      <pre *ngIf="displayData">{{displayData | json}}</pre>
     </div>
+    <button mat-raised-button [disabled]="!isValid()" color="accent" on-click="onSubmit()">Submit</button>
+
   </mat-card-content>
   </mat-card>
 </div>

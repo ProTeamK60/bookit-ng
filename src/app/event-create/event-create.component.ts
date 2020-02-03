@@ -22,7 +22,7 @@ export class EventCreateComponent implements OnInit {
     location: [''],
     organizer: ['']
   });
-  private breakpoint: number;
+  public breakpoint: number;
   widget = {
     submit: NoneComponent
   }
@@ -200,4 +200,5 @@ export class EventCreateComponent implements OnInit {
   private dateToMilliseconds(date: string): number {
     return new Date(date).getTime();
   }
+
 }
