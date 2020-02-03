@@ -98,10 +98,10 @@ export class EventCreateComponent implements OnInit {
     this.eventForm.controls['eventEnd'].disable();
     this.eventForm.controls['deadlineRVSP'].disable();
     // split the grid depending on the screen width
-    this.breakpoint = (window.innerWidth <= 450) ? 1 : 3;
+    this.breakpoint = (window.innerWidth <= 500) ? 1 : 3;
   }
   onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 450) ? 1 : 3;
+    this.breakpoint = (event.target.innerWidth <= 500) ? 1 : 3;
   }
 
   OnEventStartChange() {
