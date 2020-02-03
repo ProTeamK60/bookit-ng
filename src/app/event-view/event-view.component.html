@@ -1,4 +1,4 @@
-<div class="centered" *ngIf="event$ | async as event; else loadingOrError">
+<div *ngIf="event$ | async as event; else loadingOrError">
   <app-event-card [event]="event"></app-event-card>
 </div>
 

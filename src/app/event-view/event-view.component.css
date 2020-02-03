@@ -11,6 +11,8 @@ div.centered {
     background-color: #FCDFD8;
     color: #333333;
     font-family: Arial;
+    min-width: 150px;
+    max-width: 500px;    
 }
 
 .mat-card-header {
