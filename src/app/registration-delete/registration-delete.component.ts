@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationService } from '../service/registration.service';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -16,7 +16,8 @@ export class RegistrationDeleteComponent implements OnInit {
   constructor(private registrationService: RegistrationService,
               private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private router : Router) {
   }
 
   regForm = this.formBuilder.group({
@@ -39,6 +40,7 @@ export class RegistrationDeleteComponent implements OnInit {
       _ => {
         console.log('Successfully removed registration in backend');
         this.snackBar.open('Unregistration successful', 'Ok', {duration: 5000});
+      this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
       }
     );
   }

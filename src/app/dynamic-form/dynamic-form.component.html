@@ -10,7 +10,8 @@
             </mat-form-field>
 
             <div *ngFor="let option of event.options">
-                <div [formGroupName]="option.optionId">
+                <div class="option" [formGroupName]="option.optionId">
+                    <span *ngIf="option.required && option.optionType !== 'multiOption'" style="font-size: large; color: red">* </span>
                     <span style="font-size: large; color: black">{{option.title}}</span>
                     <div formGroupName="values">
                         <div [ngSwitch]="option.optionType">
@@ -32,18 +33,25 @@
                                 </mat-list>
                             </div>
 
-                            <div class="full-width"*ngSwitchCase="'freeText'">
+                            <div class="full-width" *ngSwitchCase="'freeText'">
                                 <textarea matInput formControlName="value" color="primary"
                                     style="background-color: white; border-color: grey; border-style: solid; border-width: 1px; resize: none;"></textarea>
+                            </div>
+                            <div *ngSwitchCase="'singleLine'">
+                                <mat-form-field>
+                                <input matInput formControlName="value" type="text">
+                            </mat-form-field>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
+            <mat-error>
+                <span *ngIf="!regForm.valid">Fill all required fields.</span>
+            </mat-error>
             <button mat-raised-button [disabled]="!regForm.valid" color="accent">Register</button>
-
+            
         </form>
     </mat-card-content>
 </mat-card>
