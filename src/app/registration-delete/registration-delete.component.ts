@@ -38,7 +38,6 @@ export class RegistrationDeleteComponent implements OnInit {
           return throwError(err);
         })).subscribe(
       _ => {
-        console.log('Successfully removed registration in backend');
         this.snackBar.open('Unregistration successful', 'Ok', {duration: 5000});
       this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
       }
