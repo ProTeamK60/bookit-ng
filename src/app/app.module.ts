@@ -40,7 +40,7 @@ import {EventCreateComponent} from './event-create/event-create.component';
 import {EventListComponent} from './event-list/event-list.component';
 import {EventCardComponent} from './event-card/event-card.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatProgressSpinnerModule, MatGridListModule} from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material';
 import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
 import {LocalDateTimePipe} from './pipes/local-date-time.pipe';
 import {RegistrationCreateComponent} from './registration-create/registration-create.component';
@@ -95,7 +95,6 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatExpansionModule,
     MatTableModule,
     MatSortModule,
-    MatGridListModule,
     MaterialDesignFrameworkModule,
     {
       ngModule: JsonSchemaFormModule,

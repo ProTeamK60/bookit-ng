@@ -32,7 +32,7 @@
           </mat-form-field>
         </div>
         <div class="dates-container" >
-            <div class="col full-width" >
+            <div class="col" > Start date
               <input formControlName="eventStart" matInput type="datetime-local"
                      [min]="today" (change)="OnEventStartChange()" placeholder="Start date" >
               <mat-error>
@@ -42,7 +42,7 @@
                                     enter a valid start date.</span>
               </mat-error>
             </div>
-            <div class="col">
+            <div class="col"> End date
               <input formControlName="eventEnd" matInput type="datetime-local"
                      [min]="eventForm.get('eventStart').value" placeholder="End date">
               <mat-error>
@@ -51,7 +51,7 @@
                 >Please enter a valid end date.</span>
               </mat-error>
             </div>
-            <div  class="col">
+            <div  class="col"> Deadline RVSP
               <input formControlName="deadlineRVSP" matInput type="datetime-local"
                      [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
               <mat-error>
