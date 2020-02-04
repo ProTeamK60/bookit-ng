@@ -1,11 +1,11 @@
-.form {    
-    min-width: 150px;    
-    max-width: 500px;    
-    width: 100%;    
-}    
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
 
-.full-width {    
-    width: 100%;    
+.full-width {
+    width: 100%;
 }
 
 .form-table-row{
@@ -23,24 +23,46 @@
     flex: 1 1 auto;
 }
 
-mat-card {    
-    min-width: 150px;   
-    max-width: 500px;   
-    margin: 2em auto;    
-    text-align: center;    
-}    
-    
-mat-toolbar-row {    
-    justify-content: space-between;    
-}    
-    
-.done {    
-    position: fixed;    
-    bottom: 20px;    
-    right: 20px;    
-    color: white;    
-}    
-    
-.content-center {    
-    text-align: -webkit-center;    
-}    
+mat-card {
+    min-width: 150px;
+    max-width: 500px;
+    margin: 2em auto;
+    text-align: left;
+}
+
+mat-toolbar-row {
+    justify-content: space-between;
+}
+
+.done {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+}
+
+.content-center {
+    text-align: -webkit-center;
+}
+.dates-container {
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+.dates-container .col {
+  height: 100px;
+}
+
+.dates-container .col p {
+  padding: .25rem .75rem;
+}
+
+/* 3 columns (768px) */
+
+@media only screen and (min-width:500px) {
+  .dates-container .col {
+    width: 33.333%;
+  }
+}
+

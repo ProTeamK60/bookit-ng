@@ -35,7 +35,6 @@ import {
   MatTableModule,
   MatSortModule
 } from '@angular/material';
-
 import {DevToolbarComponent} from './dev-toolbar/dev-toolbar.component';
 import {EventCreateComponent} from './event-create/event-create.component';
 import {EventListComponent} from './event-list/event-list.component';
@@ -50,7 +49,6 @@ import {ParticipantComponent} from './participant/participant.component';
 import { RegistrationService } from './service/registration.service';
 import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,17 +94,18 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatTableModule,
-    MatSortModule, 
+    MatSortModule,
     MaterialDesignFrameworkModule,
     {
       ngModule: JsonSchemaFormModule,
       providers: [
-          JsonSchemaFormService,
-          FrameworkLibraryService,
-          WidgetLibraryService,
-          {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+        JsonSchemaFormService,
+        FrameworkLibraryService,
+        WidgetLibraryService,
+        {provide: Framework, useClass: MaterialDesignFramework, multi: true}
       ]
-    }
+    },
+
 
   ],
   providers: [
@@ -121,7 +120,7 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
   ],
   bootstrap: [AppComponent],
   exports: [LocalDateTimePipe]
-  
+
 })
 export class AppModule {
 }
