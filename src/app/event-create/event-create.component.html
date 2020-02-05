@@ -87,28 +87,13 @@
                         </td>
                     </tr>
                 </table>
-            </form>
+            
             <div class="full-width">
                 <json-schema-form [schema]="optionsSchema" (onChanges)="onOptionsChange($event)" [widgets]="widget">
                 </json-schema-form>
             </div>
-            <div  class="col"> Deadline RVSP
-              <input formControlName="deadlineRVSP" matInput type="datetime-local"
-                     [min]="today" [max]="eventForm.get('eventStart').value" placeholder="Deadline RVSP">
-              <mat-error>
-                                <span
-                                  *ngIf="!eventForm.get('deadlineRVSP').valid && eventForm.get('deadlineRVSP').dirty">Please
-                                    enter a valid deadline.</span>
-              </mat-error>
-            </div>
-        </div>
-      </div>
-
+      
     </form>
-    <div >
-      <json-schema-form [schema]="optionsSchema" (onChanges)="onOptionsChange($event)" [widgets]="widget">
-      </json-schema-form>
-    </div>
     <p>
     <button mat-raised-button [disabled]="!isValid()" color="accent" on-click="onSubmit()">Submit</button>
     </p>
