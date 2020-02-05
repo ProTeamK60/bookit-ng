@@ -32,7 +32,8 @@ describe('DynamicFormComponent', () => {
     deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
     organizer: 'Susanne',
-    options: []
+    options: [],
+    maxNumberOfApplicants: 1
   };
 
   beforeEach(async(() => {

@@ -87,11 +87,16 @@
                         </td>
                     </tr>
                 </table>
-            </form>
+            
             <div class="full-width">
                 <json-schema-form [schema]="optionsSchema" (onChanges)="onOptionsChange($event)" [widgets]="widget">
                 </json-schema-form>
             </div>
-            <button mat-raised-button [disabled]="!isValid()" color="accent" on-click="onSubmit()">Submit</button>
-        </mat-card-content>
-    </mat-card>
+      
+    </form>
+    <p>
+    <button mat-raised-button [disabled]="!isValid()" color="accent" on-click="onSubmit()">Submit</button>
+    </p>
+    </mat-card-content>
+  </mat-card>
+
