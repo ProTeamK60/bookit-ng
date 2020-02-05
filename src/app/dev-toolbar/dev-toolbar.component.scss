@@ -1,5 +1,9 @@
 .mat-toolbar {
     background-color: #E4E1DB;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    z-index: 2;
   }
   
 .mat-toolbar-fill-remaining-space {

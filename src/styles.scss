@@ -33,6 +33,7 @@ div.centered {
   background-color: #FCDFD8;
   color: #333333;
   font-family: Arial;
+  z-index: 1;
 }
 
 .mat-card-content {
@@ -49,4 +50,14 @@ div.centered {
   width: 99%;
 }
 
+.z-index-0 {
+  z-index: 0;
+}
 
+.z-index-1 {
+  z-index: 1;
+}
+
+.z-index-2 {
+  z-index: 2;
+}

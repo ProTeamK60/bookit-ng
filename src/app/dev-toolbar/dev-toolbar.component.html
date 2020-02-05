@@ -7,11 +7,11 @@
     </button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="redirect('events/new')">
-            <mat-icon>add_circle_outline</mat-icon>
+            <mat-icon>post_add</mat-icon>
             <span>Create new event</span>
         </button>
         <button mat-menu-item (click) = "redirect('events')">
-            <mat-icon>event</mat-icon>
+            <mat-icon>date_range</mat-icon>
             <span>View all events</span>
         </button>
         <button mat-menu-item disabled="true" (click)="redirect('reports')">

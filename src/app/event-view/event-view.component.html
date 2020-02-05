@@ -1,5 +1,7 @@
 <div *ngIf="event$ | async as event; else loadingOrError">
+  <div class="center">
   <app-event-card [event]="event"></app-event-card>
+  </div>
 </div>
 
 <ng-template #loadingOrError>

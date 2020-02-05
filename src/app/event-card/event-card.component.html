@@ -3,28 +3,27 @@
   <mat-card-title>
     <span class="mat-card-title-text">{{event.name | uppercase}}</span>
   </mat-card-title>
-  <mat-card-subtitle>{{event.eventId}}</mat-card-subtitle>
   <mat-divider></mat-divider>
   <mat-card-content>
     <mat-list>
       <mat-list-item>
-        <mat-icon>description</mat-icon>
+        <mat-icon>event_note</mat-icon>
         Description: {{event.description}}
       </mat-list-item>
       <mat-list-item>
-        <mat-icon>date_range</mat-icon>
+        <mat-icon>today</mat-icon>
         Event start: {{event.eventStart | localDateTime}}
       </mat-list-item>
       <mat-list-item>
-        <mat-icon>date_range</mat-icon>
+        <mat-icon>event</mat-icon>
         Event end: {{event.eventEnd | localDateTime}}
       </mat-list-item>
       <mat-list-item>
-        <mat-icon>date_range</mat-icon>
+        <mat-icon>alarm</mat-icon>
         Deadline for RSVP: {{event.deadlineRVSP | localDateTime}}
       </mat-list-item>
       <mat-list-item>
-        <mat-icon>location_city</mat-icon>
+        <mat-icon>room</mat-icon>
         Location: {{event.location}}
       </mat-list-item>
       <mat-list-item>

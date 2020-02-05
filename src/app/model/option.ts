@@ -3,4 +3,5 @@ export interface Option {
     optionType: string;
     title: string;
     queryString: string;
+    required: boolean;
 }

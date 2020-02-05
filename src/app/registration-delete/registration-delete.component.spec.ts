@@ -14,7 +14,9 @@ import {
   MatTableModule,
   MatSnackBarModule,
   MatRadioModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSelectModule,
+  MatOptionModule
 } from '@angular/material';
 
 import { EventCreateComponent } from '../event-create/event-create.component';
@@ -73,6 +75,8 @@ describe('EventUnregComponent', () => {
         MatSnackBarModule,
         BrowserAnimationsModule,
         MatRadioModule,
+        MatSelectModule,
+        MatOptionModule,
         MatCheckboxModule,
         {
           ngModule: JsonSchemaFormModule,

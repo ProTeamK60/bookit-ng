@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { RegistrationService } from '../service/registration.service';
 import { Event } from '../model/event';
 import { Registration } from '../model/registration';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Answer } from '../model/answer';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -21,7 +21,8 @@ export class DynamicFormComponent implements OnInit {
   constructor(private registrationService: RegistrationService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
     this.regForm = new FormGroup({});
@@ -29,10 +30,11 @@ export class DynamicFormComponent implements OnInit {
 
     this.event.options.forEach(o => {
       let optionForm = {};
+      let validator = o.required ? [Validators.required] : [];
       if(o.optionType === "multiOption") {
-          o.queryString.split(",").forEach(query => optionForm[query] = [false, []]);
+          o.queryString.split(",").forEach(query => optionForm[query] = [false, validator]);
       } else {
-          optionForm["value"] = ['', []];
+          optionForm["value"] = ['', validator];
       }
       let optionDefGroup: FormGroup = new FormGroup({});
       optionDefGroup.addControl("values", this.formBuilder.group(optionForm));
@@ -74,6 +76,7 @@ export class DynamicFormComponent implements OnInit {
     _ => {
       console.log('Registration successfully created in backend');
       this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
+      this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
     }
   );
   }
