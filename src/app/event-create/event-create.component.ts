@@ -12,10 +12,18 @@ import { Event } from '../model/event';
 })
 export class EventCreateComponent implements OnInit {
   today = new Date();
+  hours: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+  minutes: number[] = [0,5,10,15,20,25,30,35,40,45,50,55];
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
     eventStart: ['', Validators.required],
+    eventStartHour: ['', Validators.required],
+    eventStartMinute: ['', Validators.required],
+    eventEndHour: ['', Validators.required],
+    eventEndMinute: ['', Validators.required],
+    deadlineRVSPHour: [''],
+    deadlineRVSPMinute: [''],
     eventEnd: ['', Validators.required],
     deadlineRVSP: [''],
     location: [''],
@@ -97,8 +105,11 @@ export class EventCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.eventForm.controls['eventEnd'].disable();
-    this.eventForm.controls['deadlineRVSP'].disable();
+    for(let control of ['eventEnd', 'eventEndHour', 
+    'eventEndMinute', 'deadlineRVSP', 'deadlineRVSPHour', 
+    'deadlineRVSPMinute']) {
+      this.eventForm.controls[control].disable();
+    }
     // split the grid depending on the screen width
     this.breakpoint = (window.innerWidth <= 500) ? 1 : 3;
   }
@@ -107,22 +118,26 @@ export class EventCreateComponent implements OnInit {
   }
 
   OnEventStartChange() {
-    let endDate = this.eventForm.controls['eventEnd'];
-    let deadline = this.eventForm.controls['deadlineRVSP'];
-    if (this.eventForm.controls['eventStart'].valid) {
-      endDate.enable();
-      deadline.enable();
-    } else {
-      endDate.disable();
-      deadline.disable();
+    for(let control of ['eventEnd', 'eventEndHour', 
+    'eventEndMinute', 'deadlineRVSP', 'deadlineRVSPHour', 
+    'deadlineRVSPMinute']) {
+      this.enableDisable(control);
     }
-    endDate.setValue('');
-    deadline.setValue('');
-    endDate.markAsPristine();
-    deadline.markAsPristine();
-    endDate.markAsUntouched();
-    deadline.markAsUntouched();
+    
   }
+
+  private enableDisable(controlName: string) {
+    let control = this.eventForm.controls[controlName];
+    if(this.eventForm.controls['eventStart'].valid) {
+      control.enable();
+    }
+    else{
+      control.disable();
+    }
+    control.setValue('');
+    control.markAsPristine();
+    control.markAsUntouched();
+  } 
 
   onOptionsChange(optionsForm) {
     this.optionsForm = optionsForm.options;
@@ -138,6 +153,13 @@ export class EventCreateComponent implements OnInit {
 
   private submitEventForm(): Event {
     let eventStart: string = this.eventForm.get('eventStart').value;
+    let eventStartHour: number = this.eventForm.get('eventStartHour').value;
+    let eventStartMin: number = this.eventForm.get('eventStartMinute').value;
+    let eventEndHour: number = this.eventForm.get('eventEndHour').value;
+    let eventEndMin: number = this.eventForm.get('eventEndMinute').value;
+    let deadlineRVSPHour: number = this.eventForm.get('deadlineRVSPHour').value;
+    let deadlineRVSPMin: number = this.eventForm.get('deadlineRVSPMinute').value;
+    
     let eventEnd: string = this.eventForm.get('eventEnd').value;
     let deadlineRVSP: string = this.eventForm.get('deadlineRVSP').value;
     if(deadlineRVSP === '') deadlineRVSP = eventStart;
@@ -157,9 +179,9 @@ export class EventCreateComponent implements OnInit {
       eventId: '',
       name: this.eventForm.get('name').value,
       description: this.eventForm.get('description').value,
-      eventStart: (eventStart !== '' ? this.dateToMilliseconds(eventStart) : undefined),
-      eventEnd: (eventEnd !== '' ? this.dateToMilliseconds(eventEnd) : undefined),
-      deadlineRVSP: (deadlineRVSP !== '' ? this.dateToMilliseconds(deadlineRVSP) : undefined),
+      eventStart: (eventStart !== '' ? this.dateToMilliseconds(eventStart, eventStartHour, eventStartMin) : undefined),
+      eventEnd: (eventEnd !== '' ? this.dateToMilliseconds(eventEnd, eventEndHour, eventEndMin) : undefined),
+      deadlineRVSP: (deadlineRVSP !== '' ? this.dateToMilliseconds(deadlineRVSP, deadlineRVSPHour, deadlineRVSPMin) : undefined),
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value,
       options: options
@@ -201,8 +223,11 @@ export class EventCreateComponent implements OnInit {
     return count;
   }
 
-  private dateToMilliseconds(date: string): number {
-    return new Date(date).getTime();
+  private dateToMilliseconds(date: string, hour: number, min: number): number {
+    let dateTime: Date = new Date(date);
+    dateTime.setHours(hour);
+    dateTime.setMinutes(min);
+    return dateTime.getTime();
   }
 
 }

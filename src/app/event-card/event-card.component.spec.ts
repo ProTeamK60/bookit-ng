@@ -8,7 +8,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule
+  MatListModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule, MatSelectModule, MatOptionModule
 } from '@angular/material';
 import {Component, DebugElement, Input, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
@@ -77,6 +77,8 @@ describe('EventCardComponent', () => {
         HttpClientModule,
         MatCheckboxModule,
         MatRadioModule,
+        MatSelectModule,
+        MatOptionModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

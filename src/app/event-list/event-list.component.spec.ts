@@ -14,7 +14,9 @@ import {
   MatProgressSpinnerModule,
   MatTableModule,
   MatCheckboxModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSelectModule,
+  MatOptionModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
@@ -77,6 +79,8 @@ describe('EventListComponent', () => {
         MatExpansionModule,
         MatTableModule,
         MatCheckboxModule,
+        MatSelectModule,
+        MatOptionModule,
         MatRadioModule,
         {
           ngModule: JsonSchemaFormModule,
