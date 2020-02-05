@@ -19,7 +19,7 @@
                             <div *ngSwitchCase="'oneOption'">
                                 <mat-radio-group class="mat-radio-group" formControlName="value">
                                     <mat-radio-button *ngFor="let value of option.queryString.split(',')"
-                                        [value]="value" color="primary">
+                                        [value]="value" color="primary" style="margin: 10px 5px;">
                                         {{value}}
                                     </mat-radio-button>
                                 </mat-radio-group>
@@ -27,8 +27,8 @@
 
                             <div *ngSwitchCase="'multiOption'">
                                 <mat-list *ngFor="let value of option.queryString.split(',')">
-                                    <mat-list-item>
-                                        <mat-checkbox [formControlName]="value" color="primary">
+                                    <mat-list-item style="margin: -15px -5px -5px;">
+                                        <mat-checkbox [formControlName]="value" color="primary"  >
                                             {{value}}</mat-checkbox>
                                     </mat-list-item>
                                 </mat-list>

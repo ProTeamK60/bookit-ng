@@ -18,7 +18,8 @@ describe('EventService', () => {
     deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
     organizer: 'Susanne',
-    options: []
+    options: [],
+    maxNumberOfApplicants: 1
   };
   let httpMock: HttpTestingController;
   const URL = environment.eventServiceAddress + '/api/v1/events/';

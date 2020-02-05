@@ -27,7 +27,8 @@ export class EventCreateComponent implements OnInit {
     eventEnd: ['', Validators.required],
     deadlineRVSP: [''],
     location: [''],
-    organizer: ['']
+    organizer: [''],
+    maxNumberOfApplicants: ['']
   });
   public breakpoint: number;
   widget = {
@@ -184,7 +185,8 @@ export class EventCreateComponent implements OnInit {
       deadlineRVSP: (deadlineRVSP !== '' ? this.dateToMilliseconds(deadlineRVSP, deadlineRVSPHour, deadlineRVSPMin) : undefined),
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value,
-      options: options
+      options: options,
+      maxNumberOfApplicants: this.eventForm.get('maxNumberOfApplicants').value
     };
 
   }

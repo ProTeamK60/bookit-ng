@@ -37,7 +37,8 @@ describe('EventCardComponent', () => {
     deadlineRVSP: 64800000,
     location: 'Sierra Nevada',
     organizer: 'Susanne',
-    options: []
+    options: [],
+    maxNumberOfApplicants: 1
   };
 
   let parentComponent: MockParentComponent;

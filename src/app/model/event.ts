@@ -10,4 +10,5 @@ export interface Event {
     location: string;
     organizer: string;
     options: Option[];
+    maxNumberOfApplicants: number;
 }

@@ -30,6 +30,11 @@
               <input formControlName="organizer" matInput placeholder="Organizer">
             </mat-form-field>
           </div>
+          <div class="form-row">
+            <mat-form-field style="medium-width">
+               <input formControlName="maxNumberOfApplicants" matInput placeholder="Max Number Of Participants">
+            </mat-form-field>
+          </div>
           <div class="form-datetime-row">
             <mat-form-field class="datepick-width">
               <input formControlName="eventStart" matInput [matDatepicker]="eventStartPicker" [min]="today"
@@ -131,3 +136,4 @@
     </mat-card-content>
   </mat-card>
 </div>
+
