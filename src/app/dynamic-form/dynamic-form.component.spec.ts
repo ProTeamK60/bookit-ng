@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DynamicFormComponent } from './dynamic-form.component';
-import { MatCardModule, MatDividerModule, MatIconModule, MatListModule, MatFormFieldModule, MatButtonToggleModule, MatInputModule, MatExpansionModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule, MatSnackBarModule } from '@angular/material';
+import { MatCardModule, MatDividerModule, MatIconModule, MatListModule, MatFormFieldModule, MatButtonToggleModule, MatInputModule, MatExpansionModule, MatTableModule, MatGridListModule,
+  MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule, MatSnackBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +19,6 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import {Event} from '../model/event';
 import { of } from 'rxjs';
 import { RegistrationService } from '../service/registration.service';
-
 describe('DynamicFormComponent', () => {
   let component: DynamicFormComponent;
   let fixture: ComponentFixture<DynamicFormComponent>;
@@ -48,12 +48,13 @@ describe('DynamicFormComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-        EventCardComponent 
+        EventCardComponent
       ],
       imports: [MatCardModule,
         MatDividerModule,
         MatIconModule,
         MatListModule,
+        MatGridListModule,
         MatFormFieldModule,
         MatButtonToggleModule,
         MatInputModule,
@@ -97,7 +98,7 @@ describe('DynamicFormComponent', () => {
   describe('method onSubmit()', () => {
     it('should call registrationService.addRegistration once if form is correctly filled', () => {
       mockRegistrationService.addRegistration.and.returnValue(of('Registration added!'));
-            
+
       component.onSubmit();
       fixture.detectChanges();
 
