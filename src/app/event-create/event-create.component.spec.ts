@@ -8,7 +8,7 @@ import {
   MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatNativeDateModule,
-  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule, MatSelectModule
+  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule, MatSelectModule, MatOptionModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -59,6 +59,7 @@ describe('EventCreateComponent', () => {
         MatTableModule,
         MatRadioModule,
         MatSelectModule,
+        MatOptionModule,
         MatCheckboxModule,
         {
           ngModule: JsonSchemaFormModule,

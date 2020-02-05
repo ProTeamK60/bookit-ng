@@ -15,7 +15,9 @@ import {
   MatTableModule,
   MatSnackBarModule,
   MatRadioModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSelectModule,
+  MatOptionModule
 } from '@angular/material';
 import {ReactiveFormsModule, FormBuilder} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -60,6 +62,8 @@ describe('EventRegComponent', () => {
         MatDividerModule,
         MatIconModule,
         MatListModule,
+        MatSelectModule,
+        MatOptionModule,
         MatExpansionModule,
         MatButtonToggleModule,
         MatTableModule,

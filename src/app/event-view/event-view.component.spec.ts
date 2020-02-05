@@ -20,7 +20,7 @@ import {
   MatFormFieldModule,
   MatDatepickerModule,
   MatInputModule,
-  MatExpansionModule, MatTableModule, MatRadioModule, MatCheckboxModule
+  MatExpansionModule, MatTableModule, MatRadioModule, MatCheckboxModule, MatSelectModule, MatOptionModule
 } from '@angular/material';
 import {AppRoutingModule} from '../app-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -79,6 +79,8 @@ describe('EventViewComponent', () => {
         BrowserAnimationsModule,
         MatExpansionModule,
         MatTableModule,
+        MatSelectModule,
+        MatOptionModule,
         HttpClientModule,
         MatRadioModule,
         MatCheckboxModule,

@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DynamicFormComponent } from './dynamic-form.component';
 import { MatCardModule, MatDividerModule, MatIconModule, MatListModule, MatFormFieldModule, MatButtonToggleModule, MatInputModule, MatExpansionModule, MatTableModule, MatGridListModule,
-  MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule, MatSnackBarModule } from '@angular/material';
+  MatDatepickerModule, MatProgressSpinnerModule, MatRadioModule, MatCheckboxModule, MatSnackBarModule, MatSelectModule, MatOptionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -68,6 +68,8 @@ describe('DynamicFormComponent', () => {
         HttpClientModule,
         MatSnackBarModule,
         MatRadioModule,
+        MatSelectModule,
+        MatOptionModule,
         MatCheckboxModule,
         {
           ngModule: JsonSchemaFormModule,
