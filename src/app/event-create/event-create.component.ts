@@ -20,7 +20,8 @@ export class EventCreateComponent implements OnInit {
     eventEnd: ['', Validators.required],
     deadlineRVSP: [''],
     location: [''],
-    organizer: ['']
+    organizer: [''],
+    maxNumberOfApplicants: ['']
   });
   widget = {
     submit: NoneComponent
@@ -152,7 +153,8 @@ export class EventCreateComponent implements OnInit {
       deadlineRVSP: (deadlineRVSP !== '' ? this.dateToMilliseconds(deadlineRVSP) : undefined),
       location: this.eventForm.get('location').value,
       organizer: this.eventForm.get('organizer').value,
-      options: options
+      options: options,
+      maxNumberOfApplicants: this.eventForm.get('maxNumberOfApplicants').value
     };
 
   }
