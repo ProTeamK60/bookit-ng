@@ -46,13 +46,16 @@ export class EventCreateComponent implements OnInit {
         "properties": {
           "optionType": {
             "type": "string",
-            "enum": ["oneOption", "multiOption", "freeText"]
+            "enum": ["oneOption", "multiOption", "freeText", "singleLine"]
           },
           "title": {
             "type": "string"
           },
           "queryString": {
             "type": "string"
+          },
+          "required": {
+            "type": "boolean"
           }
         },
         "if": {
@@ -137,6 +140,7 @@ export class EventCreateComponent implements OnInit {
     let eventStart: string = this.eventForm.get('eventStart').value;
     let eventEnd: string = this.eventForm.get('eventEnd').value;
     let deadlineRVSP: string = this.eventForm.get('deadlineRVSP').value;
+    if(deadlineRVSP === '') deadlineRVSP = eventStart;
 
     let options: Option[] = [];
     for(let option of this.optionsForm) {
@@ -144,7 +148,8 @@ export class EventCreateComponent implements OnInit {
         optionId: options.length,
         title: option.title,
         optionType: option.optionType,
-        queryString: option.queryString
+        queryString: option.queryString,
+        required: option.required
       };
     }
 
