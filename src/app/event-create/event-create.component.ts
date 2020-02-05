@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Option } from '../model/option';
 import { NoneComponent} from 'angular2-json-schema-form';
 import { Event } from '../model/event';
-
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',
@@ -23,6 +22,7 @@ export class EventCreateComponent implements OnInit {
     organizer: [''],
     maxNumberOfApplicants: ['']
   });
+  public breakpoint: number;
   widget = {
     submit: NoneComponent
   }
@@ -88,15 +88,20 @@ export class EventCreateComponent implements OnInit {
 
   };
 
-
   constructor(private eventService: EventService,
-    private fb: FormBuilder,
-    private router: Router) {
+              private fb: FormBuilder,
+              private router: Router) {
   }
+
 
   ngOnInit() {
     this.eventForm.controls['eventEnd'].disable();
     this.eventForm.controls['deadlineRVSP'].disable();
+    // split the grid depending on the screen width
+    this.breakpoint = (window.innerWidth <= 500) ? 1 : 3;
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 500) ? 1 : 3;
   }
 
   OnEventStartChange() {
@@ -136,9 +141,9 @@ export class EventCreateComponent implements OnInit {
 
     let options: Option[] = [];
     for(let option of this.optionsForm) {
-       options[options.length] = {
-         optionId: options.length,
-         title: option.title,
+      options[options.length] = {
+        optionId: options.length,
+        title: option.title,
         optionType: option.optionType,
         queryString: option.queryString
       };
@@ -192,8 +197,9 @@ export class EventCreateComponent implements OnInit {
     });
     return count;
   }
-  
+
   private dateToMilliseconds(date: string): number {
     return new Date(date).getTime();
   }
+
 }
