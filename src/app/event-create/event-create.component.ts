@@ -17,10 +17,6 @@ export class EventCreateComponent implements OnInit {
   eventEndHour: string;
   eventEndHourMin: string;
   today = new Date();
-  //hours: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-  //minutes: number[] = [0,5,10,15,20,25,30,35,40,45,50,55];
-  hours: number[] = this.createList(1, 23);
-  minutes: number[] = this.createList(5,55);
   
   eventForm = this.fb.group({
     name: ['', Validators.required],
@@ -169,6 +165,8 @@ export class EventCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    let hours: number[] = this.createList(1, 23);
+    let minutes: number[] = this.createList(5,55);
     let submittedEvent = this.submitEventForm();
     this.eventService.createOrUpdate(submittedEvent).subscribe((data) => {
       let s = data.headers.get('location').split('/');
