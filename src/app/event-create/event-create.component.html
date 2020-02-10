@@ -53,16 +53,16 @@
             </mat-form-field>
             <mat-form-field style="width: 60px; margin-right: 5px">
               <mat-label>Hour</mat-label>
-              <mat-select formControlName="eventStartHour">
-                <mat-option *ngFor="let hour of hours" [value]="hour">
+              <mat-select [(value)]="eventStartHour" formControlName="eventStartHour">
+                <mat-option *ngFor="let hour of createList(1, 23)" [value]="hour">
                   {{hour}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field style="width: 60px">
               <mat-label>Min</mat-label>
-              <mat-select formControlName="eventStartMinute">
-                <mat-option *ngFor="let minute of minutes" [value]="minute">
+              <mat-select  [(value)]="eventStartMinute" formControlName="eventStartMinute">
+                <mat-option *ngFor="let minute of createList(5,55)" [value]="minute">
                   {{minute}}
                 </mat-option>
               </mat-select>
@@ -84,16 +84,16 @@
             </mat-form-field>
             <mat-form-field style="width: 60px; margin-right: 5px">
               <mat-label>Hour</mat-label>
-              <mat-select formControlName="eventEndHour">
-                <mat-option *ngFor="let hour of hours" [value]="hour">
+              <mat-select [(value)]="eventEndHour" formControlName="eventEndHour">
+                <mat-option *ngFor="let hour of createList(1, 23)" [value]="hour">
                   {{hour}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field style="width: 60px">
               <mat-label>Min</mat-label>
-              <mat-select formControlName="eventEndMinute">
-                <mat-option *ngFor="let minute of minutes" [value]="minute">
+              <mat-select [(value)]="eventEndMinute" formControlName="eventEndMinute">
+                <mat-option *ngFor="let minute of createList(5,55)" [value]="minute">
                   {{minute}}
                 </mat-option>
               </mat-select>
@@ -113,7 +113,7 @@
             <mat-form-field style="width: 60px; margin-right: 5px">
               <mat-label>Hour</mat-label>
               <mat-select formControlName="deadlineRVSPHour">
-                <mat-option *ngFor="let hour of hours" [value]="hour">
+                <mat-option *ngFor="let hour of createList(1, 23)" [value]="hour">
                   {{hour}}
                 </mat-option>
               </mat-select>
@@ -121,7 +121,7 @@
             <mat-form-field style="width: 60px">
               <mat-label>Min</mat-label>
               <mat-select formControlName="deadlineRVSPMinute">
-                <mat-option *ngFor="let minute of minutes" [value]="minute">
+                <mat-option *ngFor="let minute of createList(5,55)" [value]="minute">
                   {{minute}}
                 </mat-option>
               </mat-select>

@@ -11,17 +11,21 @@ import { Event } from '../model/event';
   styleUrls: ['./event-create.component.scss']
 })
 export class EventCreateComponent implements OnInit {
+  eventStartMinute: string;
+  eventEndMinute: string;
+  eventStartHour: string;
+  eventEndHour: string;
+  eventEndHourMin: string;
   today = new Date();
-  hours: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-  minutes: number[] = [0,5,10,15,20,25,30,35,40,45,50,55];
+  
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
     eventStart: ['', Validators.required],
     eventStartHour: ['', Validators.required],
-    eventStartMinute: ['', Validators.required],
+    eventStartMinute: [''],
     eventEndHour: ['', Validators.required],
-    eventEndMinute: ['', Validators.required],
+    eventEndMinute: [''],
     deadlineRVSPHour: [''],
     deadlineRVSPMinute: [''],
     eventEnd: ['', Validators.required],
@@ -106,25 +110,41 @@ export class EventCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    for(let control of ['eventEnd', 'eventEndHour', 
-    'eventEndMinute', 'deadlineRVSP', 'deadlineRVSPHour', 
+    this.eventForm.get('eventStartMinute').setValue('00');
+    this.eventForm.get('eventEndMinute').setValue('00');
+    let h = (new Date()).getHours();
+    this.eventForm.get('eventStartHour').setValue(h);
+    this.eventForm.get('eventEndHour').setValue(h+1);
+    for(let control of ['eventEnd', 'deadlineRVSP', 'deadlineRVSPHour', 
     'deadlineRVSPMinute']) {
       this.eventForm.controls[control].disable();
     }
     // split the grid depending on the screen width
     this.breakpoint = (window.innerWidth <= 500) ? 1 : 3;
   }
+
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 500) ? 1 : 3;
   }
 
   OnEventStartChange() {
-    for(let control of ['eventEnd', 'eventEndHour', 
-    'eventEndMinute', 'deadlineRVSP', 'deadlineRVSPHour', 
-    'deadlineRVSPMinute']) {
+    for(let control of ['eventEnd', 'deadlineRVSP', 
+    'deadlineRVSPHour', 'deadlineRVSPMinute']) {
       this.enableDisable(control);
     }
     
+  }
+
+  public createList(step: number, max: number): number[] {
+    let l = [];
+    let j = 0;
+    for (let i = 0; i <= max; i = i + step) {
+      if (i <10)  
+        l[j++] = '0'+i;
+      else   
+        l[j++] = i;
+    }
+    return l;
   }
 
   private enableDisable(controlName: string) {
@@ -145,6 +165,8 @@ export class EventCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    let hours: number[] = this.createList(1, 23);
+    let minutes: number[] = this.createList(5,55);
     let submittedEvent = this.submitEventForm();
     this.eventService.createOrUpdate(submittedEvent).subscribe((data) => {
       let s = data.headers.get('location').split('/');
@@ -155,9 +177,9 @@ export class EventCreateComponent implements OnInit {
   private submitEventForm(): Event {
     let eventStart: string = this.eventForm.get('eventStart').value;
     let eventStartHour: number = this.eventForm.get('eventStartHour').value;
-    let eventStartMin: number = this.eventForm.get('eventStartMinute').value;
+    let eventStartMin: number = this.eventForm.get('eventStartMinute').value == '' ? 0 : this.eventForm.get('eventStartMinute').value;
     let eventEndHour: number = this.eventForm.get('eventEndHour').value;
-    let eventEndMin: number = this.eventForm.get('eventEndMinute').value;
+    let eventEndMin: number = this.eventForm.get('eventEndMinute').value == '' ? 0 : this.eventForm.get('eventEndMinute').value;
     let deadlineRVSPHour: number = this.eventForm.get('deadlineRVSPHour').value;
     let deadlineRVSPMin: number = this.eventForm.get('deadlineRVSPMinute').value;
     
