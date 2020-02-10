@@ -5,11 +5,15 @@
   </mat-card-title>
   <mat-divider></mat-divider>
   <mat-card-content>
+    <div class="container" innerText="{{event.description}}" 
+      [ngClass]="{containerExpand : expand}" (click)="expand=!expand">
+    </div>
+    <span class="expand-text" (click)="expand=!expand" *ngIf="!expand">
+      <b>
+        Read more
+      </b>
+    </span>
     <mat-list>
-      <mat-list-item>
-        <mat-icon>event_note</mat-icon>
-        Description: {{event.description}}
-      </mat-list-item>
       <mat-list-item>
         <mat-icon>today</mat-icon>
         Event start: {{event.eventStart | localDateTime}}
@@ -31,37 +35,36 @@
         Organizer: {{event.organizer}}
       </mat-list-item>
     </mat-list>
-    
-	<mat-expansion-panel class="full-width">
-	  <mat-expansion-panel-header>
-	    <mat-panel-title>
-	    <mat-icon>emoji_people</mat-icon>
-	      Participants
-	    </mat-panel-title>
-	    <mat-panel-description>
-	      Expand to see who joins {{event.name}}
-	    </mat-panel-description>
-	  </mat-expansion-panel-header>
-	  
-	  <app-participant-list [eventId]="event.eventId"></app-participant-list>
-	</mat-expansion-panel>      
+
+    <mat-expansion-panel class="full-width">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>emoji_people</mat-icon>
+          Participants
+        </mat-panel-title>
+        <mat-panel-description>
+          Expand to see who joins {{event.name}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <app-participant-list [eventId]="event.eventId"></app-participant-list>
+    </mat-expansion-panel>
 
     <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Sharable URL</mat-label>
-        <input [readonly]="true" matInput value="{{baseUrl + event.eventId}}" #urlValue>
-        <mat-icon class="copy" matSuffix (click)="copyToClipboard(urlValue)">file_copy</mat-icon>
-     </mat-form-field>
+      <mat-label>Sharable URL</mat-label>
+      <input [readonly]="true" matInput value="{{baseUrl + event.eventId}}" #urlValue>
+      <mat-icon class="copy" matSuffix (click)="copyToClipboard(urlValue)">file_copy</mat-icon>
+    </mat-form-field>
   </mat-card-content>
   <mat-divider></mat-divider>
-  <mat-button-toggle-group>
-    <mat-button-toggle value="bold" (click)="goToPath('/events/register', event.eventId)"> 
-    	 Registrera
-    </mat-button-toggle>
-    <mat-button-toggle value="bold" (click)="goToPath('/events/unregister', event.eventId)"> 
-       Avregistrera
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-  <mat-card-actions></mat-card-actions>
+  <mat-card-actions>
+    <button class="button" mat-raised-button value="bold" (click)="goToPath('/events/register', event.eventId)">
+      Registrera
+    </button>
+    <button class="button" mat-raised-button value="bold" (click)="goToPath('/events/unregister', event.eventId)">
+      Avregistrera
+    </button>
+  </mat-card-actions>
   <mat-card-footer>
   </mat-card-footer>
 </mat-card>
