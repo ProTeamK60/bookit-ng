@@ -5,10 +5,10 @@
   </mat-card-title>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <div class="container" innerText="{{event.description}}" 
-      [ngClass]="{containerExpand : expand}" (click)="expand=!expand">
+    <div [id]="event.eventId" class="container" innerText="{{event.description}}"
+      [ngClass]="{fadeOut : !expand && hasOverflow(), containerExpand : expand}" (click)="expand=!expand">
     </div>
-    <span class="expand-text" (click)="expand=!expand" *ngIf="!expand">
+    <span class="expand-text" (click)="expand=!expand" *ngIf="!expand && hasOverflow()">
       <b>
         Read more
       </b>

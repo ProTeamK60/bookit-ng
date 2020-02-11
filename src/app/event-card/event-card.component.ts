@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Event} from '../model/event';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Event } from '../model/event';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-card',
@@ -10,9 +10,12 @@ import {Router} from '@angular/router';
 export class EventCardComponent implements OnInit {
   @Input() event: Event;
   baseUrl: string = window.location.origin + '/events/';
+  expand: boolean = false;
+  descOverflow: boolean = null;
 
   constructor(private router: Router) {
   }
+
 
   ngOnInit() {
   }
@@ -25,6 +28,16 @@ export class EventCardComponent implements OnInit {
 
   goToPath(pagename: string, parameter: string) {
     this.router.navigate([pagename, parameter]);
+  }
+
+  hasOverflow() {
+    if (this.descOverflow === null) {
+      let div = document.getElementById(this.event.eventId);
+      if (div !== null && div.innerText !== null && div.innerText !== '') {
+        this.descOverflow = div.offsetHeight < div.scrollHeight;
+      }
+    }
+    return this.descOverflow;
   }
 
 }
