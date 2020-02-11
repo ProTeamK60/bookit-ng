@@ -30,14 +30,14 @@ export class EventCardComponent implements OnInit {
     this.router.navigate([pagename, parameter]);
   }
 
-  hasOverflow() {
+  applyCss() {
     if (this.descOverflow === null) {
       let div = document.getElementById(this.event.eventId);
       if (div !== null && div.innerText !== null && div.innerText !== '') {
         this.descOverflow = div.offsetHeight < div.scrollHeight;
       }
     }
-    return this.descOverflow;
+    return {fadeOut: !this.expand && this.descOverflow, containerExpand: this.expand }
   }
 
 }
