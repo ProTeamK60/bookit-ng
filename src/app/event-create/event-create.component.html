@@ -7,6 +7,7 @@
     <mat-card-content class="full-width">
       <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
         <div class="full-width">
+
           <div class="form-row">
             <mat-form-field class="medium-width">
               <input formControlName="name" matInput placeholder="Name">
@@ -17,24 +18,26 @@
           </div>
           <div class="form-row">
             <mat-form-field class="medium-width">
-              <input formControlName="description" matInput placeholder="Description">
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+                formControlName="description" placeholder="Description"></textarea>
             </mat-form-field>
           </div>
           <div class="form-row">
-            <mat-form-field class="medium-width">
+            <mat-form-field>
               <input formControlName="location" matInput placeholder="Location">
             </mat-form-field>
           </div>
-          <div class="form-row">
-            <mat-form-field class="medium-width">
+          <div class=form-row>
+            <mat-form-field>
               <input formControlName="organizer" matInput placeholder="Organizer">
             </mat-form-field>
           </div>
           <div class="form-row">
-            <mat-form-field style="medium-width">
-               <input formControlName="maxNumberOfApplicants" matInput placeholder="Max Number Of Participants">
+            <mat-form-field class="small-width">
+              <input formControlName="maxNumberOfApplicants" matInput placeholder="Max Number Of Participants">
             </mat-form-field>
           </div>
+
           <div class="form-datetime-row">
             <mat-form-field class="datepick-width">
               <input formControlName="eventStart" matInput [matDatepicker]="eventStartPicker" [min]="today"
@@ -124,9 +127,10 @@
               </mat-select>
             </mat-form-field>
           </div>
+
         </div>
       </form>
-      <div>
+      <div style="width: 80%; min-width: 150px;">
         <json-schema-form [schema]="optionsSchema" (onChanges)="onOptionsChange($event)" [widgets]="widget">
         </json-schema-form>
       </div>
@@ -136,4 +140,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-

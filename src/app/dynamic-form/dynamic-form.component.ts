@@ -66,7 +66,6 @@ export class DynamicFormComponent implements OnInit {
         registration.participant.answers[registration.participant.answers.length] = {optionId: Number(key), value: answerValue};
       }
     });
-    console.error(registration);
     this.registrationService.addRegistration(registration)
     .pipe(
       catchError(err => {
@@ -74,7 +73,6 @@ export class DynamicFormComponent implements OnInit {
         return throwError(err);
       })).subscribe(
     _ => {
-      console.log('Registration successfully created in backend');
       this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
       this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
     }

@@ -1,5 +1,6 @@
 <mat-card>
     <mat-card-title>{{event.name}}</mat-card-title>
+    <mat-card-subtitle>Register</mat-card-subtitle>
     <mat-divider></mat-divider>
     <mat-card-content>
         <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
@@ -28,7 +29,7 @@
                             <div *ngSwitchCase="'multiOption'">
                                 <mat-list *ngFor="let value of option.queryString.split(',')">
                                     <mat-list-item style="margin: -15px -5px -5px;">
-                                        <mat-checkbox [formControlName]="value" color="primary"  >
+                                        <mat-checkbox [formControlName]="value" color="primary">
                                             {{value}}</mat-checkbox>
                                     </mat-list-item>
                                 </mat-list>
@@ -36,8 +37,8 @@
 
                             <div class="full-width" *ngSwitchCase="'freeText'">
                                 <textarea matInput formControlName="value" color="primary"
-                                    style="background-color: white; border-color: grey; border-style: solid; border-width: 1px; resize: none;"></textarea>
-
+                                    style="background-color: white; border-color: grey; border-style: solid; border-width: 1px; resize: none;">
+                                </textarea>
                             </div>
                             <div *ngSwitchCase="'singleLine'">
                                 <mat-form-field class="full-width">
@@ -48,9 +49,8 @@
                     </div>
                 </div>
             </div>
-
             <mat-error>
-                <span *ngIf="!regForm.valid" style="font-size: smaller;">Fill all required fields.</span>
+                <span *ngIf="!regForm.valid" style="font-size: smaller;">* Fill all required fields.</span>
             </mat-error>
             <button mat-raised-button [disabled]="!regForm.valid" color="accent">Register</button>
 
