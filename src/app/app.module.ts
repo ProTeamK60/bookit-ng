@@ -49,6 +49,7 @@ import {ParticipantComponent} from './participant/participant.component';
 import { RegistrationService } from './service/registration.service';
 import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { SmallEventCardComponent } from './small-event-card/small-event-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     ParticipantListComponent,
     ParticipantComponent,
     RegistrationDeleteComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    SmallEventCardComponent
   ],
   imports: [
     BrowserModule,

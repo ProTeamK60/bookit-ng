@@ -33,6 +33,7 @@ import {Event} from '../model/event';
 import {of} from 'rxjs';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 
 describe('EventListComponent', () => {
   const MOCK_EVENT: Event = {
@@ -62,6 +63,7 @@ describe('EventListComponent', () => {
         EventCreateComponent,
         EventViewComponent,
         RegistrationCreateComponent,
+        SmallEventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent

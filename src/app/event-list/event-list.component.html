@@ -1,4 +1,24 @@
 <div *ngIf="events$ | async as events; else loadingOrError">
+  <div class="grid-container">
+    <div class="box" *ngFor="let event of events">
+        <small-event-card [event]="event"></small-event-card>
+    </div>
+  </div>
+</div>
+<ng-template #loadingOrError>
+  <div class="centered" *ngIf="error$ | async as error; else loading">
+    <span>{{error.message}}</span>
+  </div>
+
+  <ng-template #loading>
+    <div class="centered">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</ng-template>
+
+<!--
+<div *ngIf="events$ | async as events; else loadingOrError">
   <div *ngFor="let event of events">
     <div class="margin">
       <app-event-card [event]="event"></app-event-card>
@@ -16,3 +36,4 @@
     </div>
   </ng-template>
 </ng-template>
+-->

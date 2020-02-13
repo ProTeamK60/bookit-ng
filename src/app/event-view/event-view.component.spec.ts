@@ -32,6 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
@@ -63,7 +64,8 @@ describe('EventViewComponent', () => {
         RegistrationCreateComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+        SmallEventCardComponent
       ],
       imports: [
         MatCardModule,

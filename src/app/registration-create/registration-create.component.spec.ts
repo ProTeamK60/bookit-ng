@@ -32,6 +32,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 
 describe('EventRegComponent', () => {
   let component: RegistrationCreateComponent;
@@ -48,7 +49,8 @@ describe('EventRegComponent', () => {
         EventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+        SmallEventCardComponent
       ],
       imports: [
         MatCardModule,
