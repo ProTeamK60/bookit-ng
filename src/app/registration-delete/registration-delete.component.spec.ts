@@ -35,6 +35,7 @@ import { RegistrationCreateComponent } from '../registration-create/registration
 import { RegistrationService } from '../service/registration.service';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 
 describe('EventUnregComponent', () => {
   let component: RegistrationDeleteComponent;
@@ -55,7 +56,8 @@ describe('EventUnregComponent', () => {
         EventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+        SmallEventCardComponent
       ],
       imports: [
         MatCardModule,

@@ -23,6 +23,7 @@ import {ParticipantListComponent} from '../participant-list/participant-list.com
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
   let fixture: ComponentFixture<EventCreateComponent>;
@@ -38,7 +39,7 @@ describe('EventCreateComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-
+        SmallEventCardComponent
       ],
       imports: [
         MatCardModule,

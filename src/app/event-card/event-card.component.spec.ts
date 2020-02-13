@@ -13,7 +13,6 @@ import {
 import {Component, DebugElement, Input, ViewChild} from '@angular/core';
 import {Event} from '../model/event';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
@@ -26,6 +25,7 @@ import { RegistrationDeleteComponent } from '../registration-delete/registration
 import {By} from '@angular/platform-browser';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -58,7 +58,8 @@ describe('EventCardComponent', () => {
         DynamicFormComponent,
         EventListComponent,
         EventViewComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+        SmallEventCardComponent
       ],
       imports: [
         MatCardModule,

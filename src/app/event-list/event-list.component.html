@@ -1,8 +1,8 @@
 <div *ngIf="events$ | async as events; else loadingOrError">
-  <div *ngFor="let event of events">
-    <div class="margin">
-      <app-event-card [event]="event"></app-event-card>
-    </div> 
+  <div class="grid-container">
+    <div class="box" *ngFor="let event of events">
+        <small-event-card [event]="event"></small-event-card>
+    </div>
   </div>
 </div>
 <ng-template #loadingOrError>
