@@ -1,6 +1,6 @@
 <div *ngIf="event$ | async as event; else loadingOrError">
   <div class="center">
-  <app-event-card [event]="event"></app-event-card>
+  <event-view-card [event]="event"></event-view-card>
   </div>
 </div>
 

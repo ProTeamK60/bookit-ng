@@ -1,0 +1,121 @@
+mat-card {
+    height: auto;
+    min-width: 200px;
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+}
+
+mat-card-content {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.grid-wrapper {
+    width: 100%;
+    height: auto;
+    display: grid;
+    float: left;
+    grid-template-columns: 7fr 3fr;
+    overflow: hidden;
+}
+@media (max-width: 450px) {
+    .grid-wrapper {
+      grid-template-columns: 1fr;
+    }
+}
+.main {
+    width: 100%;
+    height: auto;
+}
+
+.menu {
+    width: 100%;
+    height: auto;
+    float: left;
+}
+
+.image-container {
+    width: 100%;
+    height: 200px;
+}
+
+.fake-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.title-container {
+    margin: 10px;
+}
+
+.title {
+    font-size: 22px;
+}
+
+.description {
+    margin: 10px;
+    font-size: 12px;
+    min-height: 30px;
+    max-height: 120px;
+    height: auto;
+    overflow: hidden;
+}
+
+.fadeOut {
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+  
+.descriptionExpand {
+    -webkit-mask-image: none;
+    mask-image: none;
+    max-height: none;
+    height: auto;
+    overflow: visible;
+  }
+
+.info-container {
+    width: 100%;
+    height: auto;
+    max-height: 80px;
+    padding: 15px 0;
+}
+
+header {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    display: block;
+    margin: 10px 0;
+}
+
+.span-value {
+    font-size: 12px;
+    font-style: italic;
+    color: grey;
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.registration-container{
+    bottom: 1;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.green-button {
+    background-color: #199C87;
+}
+
+.grey-button {
+    background-color: lightgrey;
+}
+
+.green {
+    color: green;
+}
