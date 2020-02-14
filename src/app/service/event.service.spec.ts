@@ -6,6 +6,8 @@ import {Event} from '../model/event';
 import {environment} from '../../environments/environment';
 import {MatFormFieldModule} from '@angular/material';
 import {HttpErrorResponse} from '@angular/common/http';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { of } from 'rxjs/internal/observable/of';
 
 
 describe('EventService', () => {
@@ -29,7 +31,10 @@ describe('EventService', () => {
       imports: [HttpClientTestingModule,
         MatFormFieldModule],
       providers: [
-        EventService
+        EventService,
+        { provide: ActivatedRouteSnapshot, useValue: {
+          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
+        }}
       ]
     });
 
