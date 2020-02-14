@@ -18,9 +18,9 @@
             <div class="menu">
                 <div class="info-container">
                     <span class="header">Dates and time</span>
-                    <span class="span-value">Start: {{event.eventStart | localDateTime}}</span>
-                    <span class="span-value">End: {{event.eventEnd | localDateTime}}</span>
-                    <span class="span-value">Deadline: {{event.deadlineRVSP | localDateTime}}</span>
+                    <span class="span-value">Start: {{event.eventStart | date:'medium'}}</span>
+                    <span class="span-value">End: {{event.eventEnd | date:'medium'}}</span>
+                    <span class="span-value">Deadline: {{event.deadlineRVSP | date:'medium'}}</span>
                 </div>
                 <div class="info-container">
                     <span class="header">Location</span>
