@@ -19,7 +19,8 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import {Event} from '../model/event';
 import { of } from 'rxjs';
 import { RegistrationService } from '../service/registration.service';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 describe('DynamicFormComponent', () => {
   let component: DynamicFormComponent;
   let fixture: ComponentFixture<DynamicFormComponent>;
@@ -50,6 +51,7 @@ describe('DynamicFormComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
+        SmallEventCardComponent,
         EventCardComponent
       ],
       imports: [MatCardModule,

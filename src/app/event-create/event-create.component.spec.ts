@@ -25,6 +25,8 @@ import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, W
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
+
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
   let fixture: ComponentFixture<EventCreateComponent>;
@@ -40,7 +42,7 @@ describe('EventCreateComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-
+        SmallEventCardComponent
       ],
       imports: [
         MatCardModule,

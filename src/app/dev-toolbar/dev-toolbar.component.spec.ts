@@ -28,6 +28,7 @@ import {ParticipantListComponent} from '../participant-list/participant-list.com
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 
 describe('DevToolbarComponent', () => {
   let component: DevToolbarComponent;
@@ -44,7 +45,8 @@ describe('DevToolbarComponent', () => {
         RegistrationCreateComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+        SmallEventCardComponent
       ],
       imports: [
         MatIconModule,

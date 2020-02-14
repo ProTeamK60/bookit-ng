@@ -1,0 +1,108 @@
+mat-card {
+    width: 240px;
+    height: 180px;
+    padding: 0px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 2px 2px 1px -1px rgba(110,110,110,1);
+}
+
+mat-card-title {
+    width: 100%;
+    height: 50%;
+    margin: 0;
+}
+
+mat-card-content {
+    width: 100%;
+    height: 30%;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+
+mat-card-actions {
+    width: 100%;
+    height: 15%;
+    padding: 0;
+    margin: 0;
+}
+
+.fake-img {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-top-left-radius: 3%;
+    border-top-right-radius: 3%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.title-container {
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+    flex: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.date-container {
+    height: 50%;
+    width: 100%;
+    color: grey;
+}
+
+.title{
+    
+    margin-top: 4px;
+    font-size: 16px;
+    width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    flex: none;
+    flex-wrap: nowrap;
+}
+
+.date {
+    font-size: 14px;
+    margin: 0;
+}
+
+.status {
+    //font-style: italic;
+    color: grey;
+    font-size: 12px;
+    margin: 0px 0px 0px 0px;
+    height: 10px;
+    padding: 0;
+    flex: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    display: inline-block;
+    top: 1;
+}
+
+.green {
+    color: yellowgreen;
+}
+
+.red {
+    color: red;
+}
+
+.status-container {
+    width: 100%;
+    flex: none;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    display: inline-block;
+    align-content: top;
+}
+
+.arrow {
+    right: 1;
+}
