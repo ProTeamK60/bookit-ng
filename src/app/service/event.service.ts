@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Event} from '../model/event';
 import {environment} from '../../environments/environment';
-import { Router, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { Router, ActivatedRouteSnapshot } from '@angular/router';
 export class EventService {
   private readonly eventsUrl: string;
 
-  constructor(private client: HttpClient, private router: ActivatedRouteSnapshot) {
+  constructor(private client: HttpClient, private router: ActivatedRoute) {
     this.eventsUrl = environment.eventServiceAddress + '/api/v1/events';
   }
 
