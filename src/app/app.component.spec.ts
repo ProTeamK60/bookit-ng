@@ -21,6 +21,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {Component} from '@angular/core';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { EventViewCardComponent } from './event-view-card/event-view-card.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -58,6 +59,7 @@ describe('AppComponent', () => {
         DynamicFormComponent,
         EventCardComponent,
         EventViewComponent,
+        EventViewCardComponent,
         DevToolbarComponent,
         RegistrationCreateComponent,
         ParticipantListComponent,

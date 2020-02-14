@@ -18,6 +18,7 @@ import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, W
 import { ParticipantListComponent } from '../participant-list/participant-list.component';
 import { Component, ViewChild } from '@angular/core';
 import { Event } from '../model/event';
+import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 
 describe('SmallEventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -50,6 +51,7 @@ describe('SmallEventCardComponent', () => {
         DynamicFormComponent,
         EventListComponent,
         EventViewComponent,
+        EventViewCardComponent,
         RegistrationDeleteComponent,
         MockParentComponent
       ],
