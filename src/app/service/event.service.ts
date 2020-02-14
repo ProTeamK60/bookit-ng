@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Event} from '../model/event';
 import {environment} from '../../environments/environment';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EventService {
   private readonly eventsUrl: string;
 
-  constructor(private client: HttpClient, private router: ActivatedRoute) {
+  constructor(private client: HttpClient, private router: ActivatedRouteSnapshot) {
     this.eventsUrl = environment.eventServiceAddress + '/api/v1/events';
   }
 
@@ -34,13 +34,15 @@ export class EventService {
     console.log(this.eventsUrl, event, httpOptions);
     return this.client.post<any>(this.eventsUrl, event, {observe: 'response'});
   }
-  
+
   private buildUrl(path: string): string {
-    this.router.queryParams.subscribe(params => {
-      let code:string = params['code'];
-      console.error(code); 
-      path = path+'?code=' +code;
-    });
+    if (this.router.queryParams != undefined && this.router.queryParams != null) {  
+      this.router.queryParams.subscribe(params => {
+        let code:string = params['code'];
+        console.error(code); 
+        path = path+'?code=' +code;
+      });
+    }
     return path;
   } 
 }

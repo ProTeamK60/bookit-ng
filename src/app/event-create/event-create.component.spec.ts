@@ -23,7 +23,10 @@ import {ParticipantListComponent} from '../participant-list/participant-list.com
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { of } from 'rxjs/internal/observable/of';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
+
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
   let fixture: ComponentFixture<EventCreateComponent>;
@@ -71,7 +74,11 @@ describe('EventCreateComponent', () => {
               {provide: Framework, useClass: MaterialDesignFramework, multi: true}
           ]
         }
-      ]
+      ],
+      providers: [
+        { provide: ActivatedRouteSnapshot, useValue: {
+          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
+        }}]
     })
       .compileComponents();
   }));

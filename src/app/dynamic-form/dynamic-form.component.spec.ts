@@ -19,6 +19,7 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import {Event} from '../model/event';
 import { of } from 'rxjs';
 import { RegistrationService } from '../service/registration.service';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 describe('DynamicFormComponent', () => {
   let component: DynamicFormComponent;
@@ -84,7 +85,10 @@ describe('DynamicFormComponent', () => {
           ]
         }
       ],
-      providers: [{provide: RegistrationService, useValue: mockRegistrationService}]
+      providers: [{provide: RegistrationService, useValue: mockRegistrationService},
+        { provide: ActivatedRouteSnapshot, useValue: {
+          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
+        }}]
     })
       .compileComponents();
   }));
