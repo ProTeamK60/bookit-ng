@@ -35,6 +35,7 @@ import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, W
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
+import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 
 describe('EventRegComponent', () => {
   let component: RegistrationCreateComponent;
@@ -48,6 +49,7 @@ describe('EventRegComponent', () => {
         EventCreateComponent,
         EventListComponent,
         EventViewComponent,
+        EventViewCardComponent,
         EventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,

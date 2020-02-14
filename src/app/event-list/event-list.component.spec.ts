@@ -34,6 +34,7 @@ import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, W
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
+import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 
 describe('EventListComponent', () => {
   const MOCK_EVENT: Event = {
@@ -62,6 +63,7 @@ describe('EventListComponent', () => {
         MockEventCardComponent,
         EventCreateComponent,
         EventViewComponent,
+        EventViewCardComponent,
         RegistrationCreateComponent,
         SmallEventCardComponent,
         LocalDateTimePipe,

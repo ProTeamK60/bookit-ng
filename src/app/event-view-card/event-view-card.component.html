@@ -1,0 +1,53 @@
+<mat-card class="mat-elevation-z20">
+    <mat-card-content>
+        <div class="grid-wrapper">
+
+            <div class="main">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1581404168381-ffa923a8c250?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1165&q=80"
+                        class="fake-img" />
+                </div>
+                <div class="title-container">
+                    <span class="title">{{event.name}}</span>
+                </div>
+                <div id="description" class="description" [ngClass]="applyCss()" innerText="{{event.description}}"
+                    (click)="expand=!expand">
+                </div>
+            </div>
+            
+            <div class="menu">
+                <div class="info-container">
+                    <span class="header">Dates and time</span>
+                    <span class="span-value">Start: {{event.eventStart | date:'medium'}}</span>
+                    <span class="span-value">End: {{event.eventEnd | date:'medium'}}</span>
+                    <span class="span-value">Deadline: {{event.deadlineRVSP | date:'medium'}}</span>
+                </div>
+                <div class="info-container">
+                    <span class="header">Location</span>
+                    <span class="span-value">{{event.location}}</span>
+                </div>
+                <div class="info-container">
+                    <span class="header">Organizer</span>
+                    <span class="span-value">{{event.organizer}}</span>
+                </div>
+                <div class="registration-container">
+                    <div class="info-container">
+                        <span class="span-value green">You are registered for this event.</span>
+                    </div>
+                    <button class="green-button" mat-raised-button value="bold"
+                        (click)="goToPath('/events/register', event.eventId)">
+                        Register
+                    </button>
+                    <button class="green-button" mat-raised-button value="bold">
+                        Edit
+                    </button>
+                    <button class="grey-button" mat-raised-button value="bold"
+                        (click)="goToPath('/events/unregister', event.eventId)">
+                        Unregister
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </mat-card-content>
+</mat-card>

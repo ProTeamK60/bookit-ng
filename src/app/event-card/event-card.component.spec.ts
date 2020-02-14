@@ -26,6 +26,7 @@ import {By} from '@angular/platform-browser';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
+import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -50,6 +51,7 @@ describe('EventCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         EventCardComponent,
+        EventViewCardComponent,
         MockParentComponent,
         MockParticipantListComponent,
         LocalDateTimePipe,

@@ -26,6 +26,7 @@ import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
+import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -37,6 +38,7 @@ describe('EventCreateComponent', () => {
         DynamicFormComponent,
         EventListComponent,
         EventViewComponent,
+        EventViewCardComponent,
         EventCardComponent,
         RegistrationCreateComponent,
         LocalDateTimePipe,

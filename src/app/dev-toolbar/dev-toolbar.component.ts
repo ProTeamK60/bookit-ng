@@ -14,7 +14,13 @@ export class DevToolbarComponent implements OnInit {
 
   redirect(subUrl: string)
   {
-    this.router.navigateByUrl(subUrl);
+    if (this.router.url.endsWith(subUrl)) {
+      //refresh
+      window.location.reload();
+    }
+    else {
+      this.router.navigateByUrl(subUrl);
+    }
   }
 
 }
