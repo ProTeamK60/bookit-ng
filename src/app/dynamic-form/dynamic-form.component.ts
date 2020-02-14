@@ -4,7 +4,6 @@ import { RegistrationService } from '../service/registration.service';
 import { Event } from '../model/event';
 import { Registration } from '../model/registration';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Answer } from '../model/answer';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material';

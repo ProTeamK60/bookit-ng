@@ -32,6 +32,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { of } from 'rxjs/internal/observable/of';
 
 describe('EventRegComponent', () => {
   let component: RegistrationCreateComponent;
@@ -80,7 +82,11 @@ describe('EventRegComponent', () => {
               {provide: Framework, useClass: MaterialDesignFramework, multi: true}
           ]
         }
-      ]
+      ],
+      providers: [
+        { provide: ActivatedRouteSnapshot, useValue: {
+          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
+        }}]
     })
       .compileComponents();
   }));

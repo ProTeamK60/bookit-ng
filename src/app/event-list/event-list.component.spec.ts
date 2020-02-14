@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {EventListComponent} from './event-list.component';
-import {EventCardComponent} from '../event-card/event-card.component';
 import {
   MatButtonToggleModule,
   MatCardModule,
@@ -33,6 +32,7 @@ import {Event} from '../model/event';
 import {of} from 'rxjs';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 describe('EventListComponent', () => {
   const MOCK_EVENT: Event = {
@@ -94,7 +94,12 @@ describe('EventListComponent', () => {
               {provide: Framework, useClass: MaterialDesignFramework, multi: true}
           ]
         }
-      ]
+      ],
+      providers: [
+        { provide: ActivatedRouteSnapshot, useValue: {
+          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
+        }}]
+      
     })
       .compileComponents();
   }));
