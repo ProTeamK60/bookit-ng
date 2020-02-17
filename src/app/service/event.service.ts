@@ -17,17 +17,30 @@ export class EventService {
   }
 
   public findById(eventId: string): Observable<Event> {
-    return this.client.get<Event>(this.buildUrl(this.eventsUrl + '/' + eventId));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization' : localStorage.getItem('id_token')
+      })
+    };
+    return this.client.get<Event>(this.eventsUrl + '/' + eventId, httpOptions);
   }
 
   public findAllEvents(): Observable<Event[]> {
-    return this.client.get<Event[]>(this.buildUrl(this.eventsUrl));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization' : localStorage.getItem('id_token')
+      })
+    };
+    return this.client.get<Event[]>(this.eventsUrl, httpOptions);
   }
 
   public createOrUpdate(event: Event): Observable<HttpResponse<Event>> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type':  'application/json',
+        'Authorization' : localStorage.getItem('id_token')
       })
     };
 
@@ -35,14 +48,7 @@ export class EventService {
     return this.client.post<any>(this.eventsUrl, event, {observe: 'response'});
   }
 
-  private buildUrl(path: string): string {
-    if (this.router.queryParams != undefined && this.router.queryParams != null) {  
-      this.router.queryParams.subscribe(params => {
-        let code:string = params['code'];
-        console.error(code); 
-        path = path+'?code=' +code;
-      });
-    }
-    return path;
-  } 
+  private buildHeaders(): HttpHeaders {
+    return new HttpHeaders();
+  }
 }
