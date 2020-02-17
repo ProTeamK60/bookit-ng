@@ -15,7 +15,6 @@ export class AppComponent {
     //Store id token.
     if(this.router.fragment !== undefined && this.router.fragment !== null) {
       this.router.fragment.subscribe(fragment => {
-        console.log("my fragment: " + fragment);
         if(fragment !== '') {
           this.getParamsAsMap(fragment).forEach((value, key, map) => {localStorage.setItem(key.toString(), value.toString());});
         }
