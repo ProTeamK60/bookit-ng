@@ -18,7 +18,12 @@ export class ErrorInterceptorService implements HttpInterceptor {
   }
 
   private handleError = (error: HttpErrorResponse) => {
-    if (error.error instanceof ErrorEvent) {
+    if(error.status === 401) {
+      //redirect to login page.
+      window.location.href = "https://bookit-cog.auth.us-east-2.amazoncognito.com/login?client_id=4sv94558nmhl59ba03ugc3en7j&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone&redirect_uri=" + window.location.href;
+      return;
+    }
+    if(error.error instanceof ErrorEvent) {
       console.error('Error occurred when trying to fetch events: ', error.error.message);
       return throwError(new Error('There was a temporary error trying to fetch the events, please try again later..'));
     } else {
