@@ -15,8 +15,7 @@ export class AppComponent {
     //Store id token.
     if(this.router.fragment !== undefined && this.router.fragment !== null) {
       this.router.fragment.subscribe(fragment => {
-        console.log("my fragment: " + fragment);
-        if(fragment !== '') {
+        if(fragment !== undefined && fragment !== null && fragment !== '') {
           this.getParamsAsMap(fragment).forEach((value, key, map) => {localStorage.setItem(key.toString(), value.toString());});
         }
       });
@@ -27,9 +26,11 @@ export class AppComponent {
     let map = new Map<String,String>();
     for(let keyValuePair of params.split('&')) {
       let keyValueSplit = keyValuePair.split('=');
-      let key = keyValueSplit[0];
-      let value = keyValueSplit[1];
-      map.set(key, value);
+      if(keyValueSplit.length == 2) {
+        let key = keyValueSplit[0];
+        let value = keyValueSplit[1];
+        map.set(key, value);
+      }
     }
     return map;
   }
