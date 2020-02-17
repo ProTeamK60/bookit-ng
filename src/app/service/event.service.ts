@@ -17,30 +17,33 @@ export class EventService {
   }
 
   public findById(eventId: string): Observable<Event> {
+    const idToken = localStorage.getItem('id_token');
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization' : localStorage.getItem('id_token')
+        'Authorization' :  idToken !== null ? idToken : ''
       })
     };
     return this.client.get<Event>(this.eventsUrl + '/' + eventId, httpOptions);
   }
 
   public findAllEvents(): Observable<Event[]> {
+    const idToken = localStorage.getItem('id_token');
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization' : localStorage.getItem('id_token')
+        'Authorization' :  idToken !== null ? idToken : ''
       })
     };
     return this.client.get<Event[]>(this.eventsUrl, httpOptions);
   }
 
   public createOrUpdate(event: Event): Observable<HttpResponse<Event>> {
+    const idToken = localStorage.getItem('id_token');
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization' : localStorage.getItem('id_token')
+        'Authorization' :  idToken !== null ? idToken : ''
       })
     };
 
@@ -48,7 +51,4 @@ export class EventService {
     return this.client.post<any>(this.eventsUrl, event, {observe: 'response'});
   }
 
-  private buildHeaders(): HttpHeaders {
-    return new HttpHeaders();
-  }
 }
