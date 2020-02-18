@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dev-toolbar.component.scss']
 })
 export class DevToolbarComponent implements OnInit {
-
+  user = this.getUser();
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -21,6 +21,17 @@ export class DevToolbarComponent implements OnInit {
     else {
       this.router.navigateByUrl(subUrl);
     }
+  }
+
+  getUser() {
+    let token = localStorage.getItem('id_token');
+    if(token !== null) {
+      try {
+        return JSON.parse(atob(token.split(".")[1]));
+      } catch{
+      }
+    }
+    return null;
   }
 
 }

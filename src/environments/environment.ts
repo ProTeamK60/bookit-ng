@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   eventServiceAddress: 'http://localhost:8080',
-  registrationServiceAddress: 'http://localhost:8081'
+  registrationServiceAddress: 'http://localhost:8081',
+  cognitoLoginAddress: ''
 };
 
 /*

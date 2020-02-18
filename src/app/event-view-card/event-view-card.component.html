@@ -10,38 +10,37 @@
                 <div class="title-container">
                     <span class="title">{{event.name}}</span>
                 </div>
-                <div id="description" class="description" [ngClass]="applyCss()" innerText="{{event.description}}"
-                    (click)="expand=!expand">
+                <div id="description" class="description" [innerText]="event.description">
                 </div>
             </div>
             
             <div class="menu">
                 <div class="info-container">
-                    <span class="header">Dates and time</span>
+                    <span class="header"><mat-icon [ngStyle]="{'color' : 'blue'}">date_range</mat-icon>Dates and time</span>
                     <span class="span-value">Start: {{event.eventStart | date:'medium'}}</span>
                     <span class="span-value">End: {{event.eventEnd | date:'medium'}}</span>
                     <span class="span-value">Deadline: {{event.deadlineRVSP | date:'medium'}}</span>
                 </div>
                 <div class="info-container">
-                    <span class="header">Location</span>
+                    <span class="header"><mat-icon [ngStyle]="{'color' : 'rgb(250,0,0)'}">room</mat-icon>Location</span>
                     <span class="span-value">{{event.location}}</span>
                 </div>
                 <div class="info-container">
-                    <span class="header">Organizer</span>
+                    <span class="header"><mat-icon [ngStyle]="{'color' : 'green'}">people</mat-icon>Organizer</span>
                     <span class="span-value">{{event.organizer}}</span>
                 </div>
                 <div class="registration-container">
                     <div class="info-container">
                         <span class="span-value green">You are registered for this event.</span>
                     </div>
-                    <button class="green-button" mat-raised-button value="bold"
+                    <button class="button green-button" mat-raised-button value="bold"
                         (click)="goToPath('/events/register', event.eventId)">
                         Register
                     </button>
-                    <button class="green-button" mat-raised-button value="bold">
+                    <button class="button green-button" mat-raised-button value="bold">
                         Edit
                     </button>
-                    <button class="grey-button" mat-raised-button value="bold"
+                    <button class="button grey-button" mat-raised-button value="bold"
                         (click)="goToPath('/events/unregister', event.eventId)">
                         Unregister
                     </button>
