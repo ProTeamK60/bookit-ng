@@ -13,30 +13,30 @@ export class AppComponent {
   constructor(private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.storeFragments();
-    this.goToLoginPageIfNoToken();
+    this.processFragments();
   }
 
-  private storeFragments() {
-    if (window.location.href.includes("#")) {
-      
-      //Store fragments.
-      this.router.fragment.subscribe(fragment => {
-        if (fragment !== undefined && fragment !== null && fragment !== '') {
-          this.getParamsAsMap(fragment).forEach((value, key, map) => { localStorage.setItem(key.toString(), value.toString()); });
+  private processFragments() {
+    //Store fragments.
+    this.router.fragment.subscribe(fragment => {
+      if (fragment !== undefined && fragment !== null && fragment !== '') {
+        this.getParamsAsMap(fragment).forEach((value, key, map) => { localStorage.setItem(key.toString(), value.toString()); });
+        //redirect
+        if (localStorage.getItem('lastLocation') !== null) {
+          let lastLocation = localStorage.getItem('lastLocation');
+          localStorage.removeItem('lastLocation');
+          this.goToUrl(lastLocation);
+        } else {
+          this.goToUrl(window.location.href.substr(0, window.location.href.indexOf("#")));
         }
-      });
-
-      //redirect
-      if (localStorage.getItem('lastLocation') !== null) {
-        let lastLocation = localStorage.getItem('lastLocation');
-        localStorage.removeItem('lastLocation');
-        this.goToUrl(lastLocation);
       } else {
-        this.goToUrl(window.location.href.substr(0, window.location.href.indexOf("#")));
+        this.goToLoginPageIfNoToken();
       }
 
-    }
+    });
+
+
+
   }
 
   private getParamsAsMap(params: string): Map<String, String> {
