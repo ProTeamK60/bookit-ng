@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,12 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   private handleError = (error: HttpErrorResponse) => {
     if(error.status === 401) {
+
       //redirect to login page.
-      window.location.href = "https://bookit-cog.auth.us-east-2.amazoncognito.com/login?client_id=4sv94558nmhl59ba03ugc3en7j&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone&redirect_uri=" + window.location.href;
-      return;
+      if(environment.cognitoLoginAddress !== '') {
+        localStorage.setItem("lastLocation", window.location.href);
+        window.location.href = environment.cognitoLoginAddress;
+      }
     }
     if(error.error instanceof ErrorEvent) {
       console.error('Error occurred when trying to fetch events: ', error.error.message);

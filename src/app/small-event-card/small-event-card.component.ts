@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class SmallEventCardComponent implements OnInit {
  @Input() event : Event;
- today: Date = new Date();
   constructor(private router : Router) { }
 
   ngOnInit() {
@@ -17,6 +16,10 @@ export class SmallEventCardComponent implements OnInit {
 
   goToPath(pagename: string, parameter: string) {
     this.router.navigate([pagename, parameter]);
+  }
+
+  now() : number {
+    return new Date().getTime();
   }
 
 }

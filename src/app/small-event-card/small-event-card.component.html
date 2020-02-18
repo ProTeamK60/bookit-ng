@@ -18,19 +18,19 @@
         <div class="status-container">
             <mat-icon [ngStyle]="{'margin-left' : '4px', 'margin-top': '8px', 'font-size': '12px'}">access_alarm</mat-icon>
             <!-- more than 24 hours left-->
-            <div class="status green" *ngIf="today.getTime() < event.deadlineRVSP && event.deadlineRVSP - today.getTime() >= 86400000">
-                {{(event.deadlineRVSP - today.getTime()) / 86400000 | number:'1.0-0'}} days left
+            <div class="status green" *ngIf="now() < event.deadlineRVSP && event.deadlineRVSP - now() >= 86400000">
+                {{(event.deadlineRVSP - now()) / 86400000 | number:'1.0-0'}} days left
             </div>
             <!-- less than 24 hours left-->
-            <div class="status green" *ngIf="today.getTime() < event.deadlineRVSP && event.deadlineRVSP - today.getTime() >= 3600000 && event.deadlineRVSP - today.getTime() < 86400000">
-                {{(event.deadlineRVSP - today.getTime()) / 3600000 | number:'1.0-0'}} hours left
+            <div class="status green" *ngIf="now() < event.deadlineRVSP && event.deadlineRVSP - now() >= 3600000 && event.deadlineRVSP - now() < 86400000">
+                {{(event.deadlineRVSP - now()) / 3600000 | number:'1.0-0'}} hours left
             </div>
             <!-- less than an hour left-->
-            <div class="status green" *ngIf="today.getTime() < event.deadlineRVSP && event.deadlineRVSP - today.getTime() < 3600000">
-                {{(event.deadlineRVSP - today.getTime()) / 60000 | number:'1.0-0'}} minutes left
+            <div class="status green" *ngIf="now() < event.deadlineRVSP && event.deadlineRVSP - now() < 3600000">
+                {{(event.deadlineRVSP - now()) / 60000 | number:'1.0-0'}} minutes left
             </div>
             <!-- registration passed-->
-            <div class="status " *ngIf="today.getTime() > event.deadlineRVSP">
+            <div class="status " *ngIf="now() > event.deadlineRVSP">
                 Registration closed
             </div>
             <mat-icon [ngStyle]="{'margin-right':'4px', 'float': 'right', 'font-size': '32px'}">keyboard_arrow_right</mat-icon>

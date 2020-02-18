@@ -178,15 +178,18 @@ export class EventCreateComponent implements OnInit {
     let eventStart: string = this.eventForm.get('eventStart').value;
     let eventStartHour: number = this.eventForm.get('eventStartHour').value;
     let eventStartMin: number = this.eventForm.get('eventStartMinute').value == '' ? 0 : this.eventForm.get('eventStartMinute').value;
+    let eventEnd: string = this.eventForm.get('eventEnd').value;
     let eventEndHour: number = this.eventForm.get('eventEndHour').value;
     let eventEndMin: number = this.eventForm.get('eventEndMinute').value == '' ? 0 : this.eventForm.get('eventEndMinute').value;
+    let deadlineRVSP: string = this.eventForm.get('deadlineRVSP').value;
     let deadlineRVSPHour: number = this.eventForm.get('deadlineRVSPHour').value;
     let deadlineRVSPMin: number = this.eventForm.get('deadlineRVSPMinute').value;
     
-    let eventEnd: string = this.eventForm.get('eventEnd').value;
-    let deadlineRVSP: string = this.eventForm.get('deadlineRVSP').value;
-    if(deadlineRVSP === '') deadlineRVSP = eventStart;
-
+    if(deadlineRVSP === '') {
+      deadlineRVSP = eventStart;
+      deadlineRVSPHour = eventStartHour;
+      deadlineRVSPMin = eventStartMin;
+    }
     let options: Option[] = [];
     for(let option of this.optionsForm) {
       options[options.length] = {

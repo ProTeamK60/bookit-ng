@@ -25,7 +25,7 @@ export class EventViewCardComponent implements OnInit {
         this.descriptionOverflow = div.offsetHeight < div.scrollHeight;
       }
     }
-    return {fadeOut: !this.expand && this.descriptionOverflow, descriptionExpand: this.expand }
+    return {fadeOut: !this.expand && (this.descriptionOverflow === null ? true : this.descriptionOverflow), descriptionExpand: this.expand }
   }
 
   goToPath(pagename: string, parameter: string) {
