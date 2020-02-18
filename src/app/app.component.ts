@@ -54,13 +54,20 @@ export class AppComponent {
 
   private goToLoginPageIfNoToken() {
     if (localStorage.getItem('id_token') === null) {
-      this.goToUrl(environment.cognitoLoginAddress);
+      this.goToUrlWithCallback(environment.cognitoLoginAddress, window.location.href);
     }
   }
 
   private goToUrl(url: string) {
     if (window.location.href !== url && url !== '') {
       window.location.href = url;
+    }
+  }
+
+  private goToUrlWithCallback(url: string, callbackUrl: string) {
+    if(url !== ''){
+      localStorage.setItem("lastLocation", callbackUrl);
+      this.goToUrl(url);
     }
   }
 
