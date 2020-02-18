@@ -13,23 +13,29 @@ export class AppComponent {
   constructor(private router: ActivatedRoute) { }
 
   ngOnInit() {
-    if (environment.production) {
-      this.storeFragments();
-      this.goToLoginPageIfNoToken();
-      this.redirectToLastLocation();
-    }
+    this.storeFragments();
+    this.goToLoginPageIfNoToken();
   }
 
   private storeFragments() {
     if (window.location.href.includes("#")) {
+      
       //Store fragments.
       this.router.fragment.subscribe(fragment => {
         if (fragment !== undefined && fragment !== null && fragment !== '') {
           this.getParamsAsMap(fragment).forEach((value, key, map) => { localStorage.setItem(key.toString(), value.toString()); });
         }
       });
-      //remove fragments from url and refresh.
-      this.goToUrl(window.location.href.substr(0, window.location.href.indexOf("#")));
+
+      //redirect
+      if (localStorage.getItem('lastLocation') !== null) {
+        let lastLocation = localStorage.getItem('lastLocation');
+        localStorage.removeItem('lastLocation');
+        this.goToUrl(lastLocation);
+      } else {
+        this.goToUrl(window.location.href.substr(0, window.location.href.indexOf("#")));
+      }
+
     }
   }
 
@@ -49,14 +55,6 @@ export class AppComponent {
   private goToLoginPageIfNoToken() {
     if (localStorage.getItem('id_token') === null) {
       this.goToUrl(environment.cognitoLoginAddress);
-    }
-  }
-
-  private redirectToLastLocation() {
-    if (window.location.href.endsWith("/events") && sessionStorage.getItem('lastLocation') !== null) {
-      let lastLocation = sessionStorage.getItem('lastLocation');
-      sessionStorage.removeItem('lastLocation');
-      this.goToUrl(lastLocation);
     }
   }
 

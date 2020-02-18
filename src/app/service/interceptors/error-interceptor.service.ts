@@ -20,9 +20,12 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   private handleError = (error: HttpErrorResponse) => {
     if(error.status === 401) {
+
       //redirect to login page.
-      window.location.href = environment.cognitoLoginAddress + (window.location.href.startsWith("http://") ? window.location.href.replace("http://", "https://") : window.location.href);
-      return;
+      if(environment.cognitoLoginAddress !== '') {
+        localStorage.setItem("lastLocation", window.location.href);
+        window.location.href = environment.cognitoLoginAddress;
+      }
     }
     if(error.error instanceof ErrorEvent) {
       console.error('Error occurred when trying to fetch events: ', error.error.message);
