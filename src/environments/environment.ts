@@ -6,7 +6,15 @@ export const environment = {
   production: false,
   eventServiceAddress: 'http://localhost:8080',
   registrationServiceAddress: 'http://localhost:8081',
-  cognitoLoginAddress: ''
+  amplifyConfig: {
+    Auth: {
+      mandatorySignIn: true,
+      region: "us-east-2",
+      userPoolId: "us-east-2_mXUVVA54V",
+      identityPoolId: "us-east-2:2aba4449-cd21-4b4e-8e77-4853359bbc87",
+      userPoolWebClientId: "4f2li8a2pvtof2phakmcjmdt93"
+    }
+  }
 };
 
 /*

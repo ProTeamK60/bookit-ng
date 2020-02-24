@@ -34,6 +34,8 @@ import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 
 describe('EventViewComponent', () => {
   const MOCK_EVENT: Event = {
@@ -67,7 +69,8 @@ describe('EventViewComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-        SmallEventCardComponent
+        SmallEventCardComponent,
+        AuthComponent
       ],
       imports: [
         MatCardModule,
@@ -89,6 +92,7 @@ describe('EventViewComponent', () => {
         HttpClientModule,
         MatRadioModule,
         MatCheckboxModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

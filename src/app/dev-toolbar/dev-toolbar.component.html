@@ -2,7 +2,7 @@
     <span class="logo" (click)="redirect('events')">Bookit Events</span>
     <!-- This fills the remaining space of the current row -->
     <span class="mat-toolbar-fill-remaining-space"></span>
-    <span *ngIf="user !== null">{{user.email}}</span>
+    <span *ngIf="user !== null">{{user.firstName}} {{user.lastName}}</span>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
     </button>
@@ -18,6 +18,10 @@
         <button mat-menu-item disabled="true" (click)="redirect('reports')">
             <mat-icon>assessment</mat-icon>
             <span>Reports</span>
+        </button>
+        <button mat-menu-item *ngIf="user !== null" (click)="signOut()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Sign Out</span>
         </button>
     </mat-menu>
 

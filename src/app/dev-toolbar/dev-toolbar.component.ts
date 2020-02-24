@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 @Component({
   selector: 'app-dev-toolbar',
   templateUrl: './dev-toolbar.component.html',
   styleUrls: ['./dev-toolbar.component.scss']
 })
 export class DevToolbarComponent implements OnInit {
-  user = this.getUser();
+  
+  user = null;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
+    Auth.currentAuthenticatedUser({
+      bypassCache: false
+    }).then(async user => {
+      this.user = {
+        email: user.attributes.email,
+        firstName: user.attributes.given_name,
+        lastName: user.attributes.family_name
+      };
+    })
+    .catch(err => console.log(err));
   }
 
   redirect(subUrl: string)
@@ -23,15 +36,11 @@ export class DevToolbarComponent implements OnInit {
     }
   }
 
-  getUser() {
-    let token = localStorage.getItem('id_token');
-    if(token !== null) {
-      try {
-        return JSON.parse(atob(token.split(".")[1]));
-      } catch{
-      }
-    }
-    return null;
+  signOut() {
+    this.user = null;
+    Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
   }
 
 }

@@ -1,8 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import {Event} from '../model/event';
 import {environment} from '../../environments/environment';
+import { Auth } from 'aws-amplify';
+import { ExpectedConditions } from 'protractor';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,25 +19,30 @@ export class EventService {
   }
 
   public findById(eventId: string): Observable<Event> {
-    return this.client.get<Event>(this.eventsUrl + '/' + eventId, {headers: this.buildHeaders()});
+    return this.client.get<Event>(this.eventsUrl + '/' + eventId, {headers: null});
   }
 
-  public findAllEvents(): Observable<Event[]> {
-    return this.client.get<Event[]>(this.eventsUrl, {headers: this.buildHeaders()});
+  public findAllEvents(onErrorCallback): Promise<Observable<Event[]>> {
+    return this.buildHeaders()
+      .then(headers => {
+        return this.client.get<Event[]>(this.eventsUrl, {headers: headers}).pipe(catchError(onErrorCallback));
+      });
   }
 
   public createOrUpdate(event: Event): Observable<HttpResponse<Event>> {
     return this.client.post<any>(this.eventsUrl, event, {observe: 'response'});
   }
 
-  private buildHeaders() {
-    const idToken = localStorage.getItem('id_token');
+  private async buildHeaders(): Promise<HttpHeaders> {
     let headers = new HttpHeaders();
-    headers = headers.set("Content-Type", "application/json");
-    if(idToken !== null) {
-      headers = headers.set("Authorization", idToken);
-    }
-    return headers;
+
+    return Auth.currentSession().then(res => {
+      let token = res.getIdToken().getJwtToken();
+      headers = headers.set('Authorization', token);
+    }).then(() => {
+      headers = headers.set("Content-Type", "application/json");   
+      return headers;
+    });
   }
 
 }

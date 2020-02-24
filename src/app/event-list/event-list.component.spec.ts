@@ -35,6 +35,8 @@ import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 
 describe('EventListComponent', () => {
   const MOCK_EVENT: Event = {
@@ -68,7 +70,8 @@ describe('EventListComponent', () => {
         SmallEventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
-        RegistrationDeleteComponent
+        RegistrationDeleteComponent,
+        AuthComponent
       ],
       imports: [
         MatProgressSpinnerModule,
@@ -89,6 +92,7 @@ describe('EventListComponent', () => {
         MatOptionModule,
         MatRadioModule,
         MatInputModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

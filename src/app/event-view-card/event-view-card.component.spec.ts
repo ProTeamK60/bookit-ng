@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { ViewChild, Component } from '@angular/core';
 import { Event } from '../model/event';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 
 describe('EventViewCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -49,7 +51,8 @@ describe('EventViewCardComponent', () => {
       ParticipantListComponent,
       RegistrationDeleteComponent,
       SmallEventCardComponent,
-      MockParentComponent
+      MockParentComponent,
+      AuthComponent
     ],
     imports: [
       MatCardModule,
@@ -71,6 +74,7 @@ describe('EventViewCardComponent', () => {
       HttpClientModule,
       MatRadioModule,
       MatCheckboxModule,
+      AmplifyAngularModule,
       {
         ngModule: JsonSchemaFormModule,
         providers: [

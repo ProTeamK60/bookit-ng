@@ -24,6 +24,8 @@
     "@angular/platform-browser-dynamic": "^8.2.14",
     "@angular/router": "^8.2.14",
     "angular2-json-schema-form": "git+https://github.com/hamzahamidi/angular2-json-schema-form.git#build-angular-6",
+    "aws-amplify": "^2.2.5",
+    "aws-amplify-angular": "^4.1.6",
     "rxjs": "~6.4.0",
     "rxjs-compat": "6.5.4",
     "tslib": "^1.10.0",
