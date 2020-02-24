@@ -10,9 +10,9 @@ export const environment = {
     Auth: {
       mandatorySignIn: true,
       region: "us-east-2",
-      userPoolId: "",
-      identityPoolId: "",
-      userPoolWebClientId: ""
+      userPoolId: "us-east-2_KUMXtWpvb",
+      identityPoolId: "us-east-2:2aba4449-cd21-4b4e-8e77-4853359bbc87",
+      userPoolWebClientId: "2dqa1qlukcih903or7doql7622"
     }
   }
 };

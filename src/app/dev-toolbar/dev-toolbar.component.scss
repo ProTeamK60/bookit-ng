@@ -5,6 +5,14 @@
     top: 0;
     z-index: 2;
   }
+
+  span {
+     color: black;
+  }
+
+  mat-menu {
+     color: black;
+  }
   
 .mat-toolbar-fill-remaining-space {
     /* This fills the remaining space, by using flexbox. 
