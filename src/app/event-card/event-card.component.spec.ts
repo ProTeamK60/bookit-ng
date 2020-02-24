@@ -27,6 +27,8 @@ import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, W
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 
 describe('EventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -61,7 +63,8 @@ describe('EventCardComponent', () => {
         EventListComponent,
         EventViewComponent,
         RegistrationDeleteComponent,
-        SmallEventCardComponent
+        SmallEventCardComponent,
+        AuthComponent
       ],
       imports: [
         MatCardModule,
@@ -83,6 +86,7 @@ describe('EventCardComponent', () => {
         MatRadioModule,
         MatSelectModule,
         MatOptionModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

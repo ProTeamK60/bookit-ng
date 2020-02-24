@@ -28,7 +28,7 @@ div.centered {
   left: 50%;
   transform: translate(-50%, -30%);
 }
-
+@import '~aws-amplify-angular/theme.css';
 .mat-card {
   //background-color: #FCDFD8;
   background-color: rgba(245,245,245,1);

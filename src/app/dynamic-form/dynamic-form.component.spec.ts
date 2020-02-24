@@ -22,6 +22,8 @@ import { RegistrationService } from '../service/registration.service';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 describe('DynamicFormComponent', () => {
   let component: DynamicFormComponent;
   let fixture: ComponentFixture<DynamicFormComponent>;
@@ -54,7 +56,8 @@ describe('DynamicFormComponent', () => {
         ParticipantListComponent,
         RegistrationDeleteComponent,
         SmallEventCardComponent,
-        EventCardComponent
+        EventCardComponent,
+        AuthComponent
       ],
       imports: [MatCardModule,
         MatDividerModule,
@@ -77,6 +80,7 @@ describe('DynamicFormComponent', () => {
         MatSelectModule,
         MatOptionModule,
         MatCheckboxModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

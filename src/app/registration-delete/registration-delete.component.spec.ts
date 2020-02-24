@@ -37,6 +37,8 @@ import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, W
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
+import { AuthComponent } from '../auth/auth.component';
 
 describe('EventUnregComponent', () => {
   let component: RegistrationDeleteComponent;
@@ -59,7 +61,8 @@ describe('EventUnregComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-        SmallEventCardComponent
+        SmallEventCardComponent,
+        AuthComponent
       ],
       imports: [
         MatCardModule,
@@ -82,6 +85,7 @@ describe('EventUnregComponent', () => {
         MatSelectModule,
         MatOptionModule,
         MatCheckboxModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

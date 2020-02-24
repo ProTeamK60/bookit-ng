@@ -19,6 +19,8 @@ import { ParticipantListComponent } from '../participant-list/participant-list.c
 import { Component, ViewChild } from '@angular/core';
 import { Event } from '../model/event';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
+import { AuthComponent } from '../auth/auth.component';
 
 describe('SmallEventCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -53,7 +55,8 @@ describe('SmallEventCardComponent', () => {
         EventViewComponent,
         EventViewCardComponent,
         RegistrationDeleteComponent,
-        MockParentComponent
+        MockParentComponent,
+        AuthComponent
       ],
       imports: [
         MatCardModule,
@@ -75,6 +78,7 @@ describe('SmallEventCardComponent', () => {
         MatRadioModule,
         MatSelectModule,
         MatOptionModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

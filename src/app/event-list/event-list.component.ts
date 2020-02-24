@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable, Subject, throwError} from 'rxjs';
-import {EventService} from '../service/event.service';
-import {Event} from '../model/event';
-import {catchError} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable, Subject, throwError } from 'rxjs';
+import { EventService } from '../service/event.service';
+import { Event } from '../model/event';
 
 @Component({
   selector: 'app-event-list',
@@ -17,13 +16,14 @@ export class EventListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.events$ = this.eventService.findAllEvents().pipe(
-      catchError(err => {
-          this.error$.next(err);
-          return throwError(err);
-        }
-      )
-    );
+    this.eventService.findAllEvents(this.onError)
+      .then(response => {
+        this.events$ = response;
+      });
   }
 
+  private onError = (err) => { 
+    this.error$.next(err);
+    return throwError(err);
+  }
 }

@@ -51,6 +51,8 @@ import { RegistrationDeleteComponent } from './registration-delete/registration-
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { SmallEventCardComponent } from './small-event-card/small-event-card.component';
 import { EventViewCardComponent } from './event-view-card/event-view-card.component';
+import {AmplifyAngularModule, AmplifyService} from 'aws-amplify-angular';
+import { AuthComponent } from './auth/auth.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,8 @@ import { EventViewCardComponent } from './event-view-card/event-view-card.compon
     RegistrationDeleteComponent,
     DynamicFormComponent,
     SmallEventCardComponent,
-    EventViewCardComponent
+    EventViewCardComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -109,8 +112,7 @@ import { EventViewCardComponent } from './event-view-card/event-view-card.compon
         {provide: Framework, useClass: MaterialDesignFramework, multi: true}
       ]
     },
-
-
+    AmplifyAngularModule
   ],
   providers: [
     {
@@ -119,7 +121,8 @@ import { EventViewCardComponent } from './event-view-card/event-view-card.compon
       multi: true
     },
     EventService,
-    RegistrationService
+    RegistrationService,
+    AmplifyService
 
   ],
   bootstrap: [AppComponent],

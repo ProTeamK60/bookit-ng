@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +18,6 @@ export class ErrorInterceptorService implements HttpInterceptor {
   }
 
   private handleError = (error: HttpErrorResponse) => {
-    if(error.status === 401) {
-
-      //redirect to login page.
-      if(environment.cognitoLoginAddress !== '') {
-        localStorage.setItem("lastLocation", window.location.href);
-        window.location.href = environment.cognitoLoginAddress;
-      }
-    }
     if(error.error instanceof ErrorEvent) {
       console.error('Error occurred when trying to fetch events: ', error.error.message);
       return throwError(new Error('There was a temporary error trying to fetch the events, please try again later..'));

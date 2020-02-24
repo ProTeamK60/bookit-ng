@@ -30,6 +30,8 @@ import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 
 describe('DevToolbarComponent', () => {
   let component: DevToolbarComponent;
@@ -48,7 +50,8 @@ describe('DevToolbarComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-        SmallEventCardComponent
+        SmallEventCardComponent,
+        AuthComponent
       ],
       imports: [
         MatIconModule,
@@ -70,6 +73,7 @@ describe('DevToolbarComponent', () => {
         MatOptionModule,
         MatRadioModule,
         MatInputModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [

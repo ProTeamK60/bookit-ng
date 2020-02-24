@@ -27,6 +27,8 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { of } from 'rxjs/internal/observable/of';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
+import { AuthComponent } from '../auth/auth.component';
+import { AmplifyAngularModule } from 'aws-amplify-angular';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -44,7 +46,8 @@ describe('EventCreateComponent', () => {
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
-        SmallEventCardComponent
+        SmallEventCardComponent,
+        AuthComponent
       ],
       imports: [
         MatCardModule,
@@ -67,6 +70,7 @@ describe('EventCreateComponent', () => {
         MatSelectModule,
         MatOptionModule,
         MatCheckboxModule,
+        AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [
