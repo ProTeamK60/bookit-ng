@@ -39,7 +39,7 @@ export class DevToolbarComponent implements OnInit {
   signOut() {
     this.user = null;
     Auth.signOut()
-    .then(data => console.log(data))
+    .then(data => this.router.navigate(['/login']))
     .catch(err => console.log(err));
   }
 
