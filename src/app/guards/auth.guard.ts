@@ -6,24 +6,24 @@ import { Auth } from 'aws-amplify';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  
-  constructor(private router: Router){}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise < boolean > {
+  constructor(private router: Router) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve) => {
       Auth.currentAuthenticatedUser({
-          bypassCache: false
-        })
+        bypassCache: false
+      })
         .then((user) => {
-          if(user){
+          if (user) {
             resolve(true);
           }
         })
         .catch(() => {
-          this.router.navigate(['/login'], {queryParams: {redirect_url: state.url}});
+          this.router.navigate(['/login'], { queryParams: { redirect_url: state.url } });
           resolve(false);
         });
     });
   }
-  
+
 }
