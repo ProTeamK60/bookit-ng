@@ -100,7 +100,13 @@ describe('EventViewComponent', () => {
         }
       ],
 
-      providers: [{provide: EventService, useValue: mockEventService}]
+      providers: [
+        {
+          provide: EventService,
+          useValue: mockEventService
+        },
+
+      ]
     })
       .compileComponents();
   }));

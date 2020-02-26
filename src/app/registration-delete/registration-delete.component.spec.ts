@@ -98,7 +98,12 @@ describe('EventUnregComponent', () => {
           ]
         }
       ],
-      providers: [{ provide: RegistrationService, useValue: mockRegistrationService }]
+      providers: [
+        {
+          provide: RegistrationService,
+          useValue: mockRegistrationService
+        }
+      ]
     })
       .compileComponents();
   }));

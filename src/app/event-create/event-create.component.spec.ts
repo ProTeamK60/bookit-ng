@@ -82,11 +82,7 @@ describe('EventCreateComponent', () => {
           ]
         }
       ],
-      providers: [
-        { provide: ActivatedRouteSnapshot, useValue: {
-          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
-        }}
-      ]
+      providers: []
     })
       .compileComponents();
   }));

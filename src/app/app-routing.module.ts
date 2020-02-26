@@ -7,6 +7,7 @@ import { EventCreateComponent } from './event-create/event-create.component';
 import { RegistrationDeleteComponent } from './registration-delete/registration-delete.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './guards/auth.guard';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
 	{ 
@@ -46,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+	imports: [RouterModule.forRoot(routes, environment.routerOptions)],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }
