@@ -181,7 +181,7 @@ export class EventCreateComponent implements OnInit {
   }
 
   private onError = (error: HttpErrorResponse) => {
-    this.snackBar.open("Failed to create event: " + error.error, "Dismiss", {duration: 5000});
+    this.snackBar.open("Failed to create event. " + (error.error !== undefined ? error.error : ''), "Dismiss", {duration: 5000});
     return new Observable<never>();
   };
 

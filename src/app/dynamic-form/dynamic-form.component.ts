@@ -77,7 +77,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   private onError = (error: HttpErrorResponse) => {
-    this.snackBar.open(error.error, 'Dismiss', {duration: 5000});
+    this.snackBar.open("Could not register. " + (error.error !== undefined ? error.error : ''), 'Dismiss', {duration: 5000});
     return new Observable<never>();
   }
 
