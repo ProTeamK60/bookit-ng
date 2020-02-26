@@ -12,7 +12,6 @@ import {
   MatListModule, MatMenuModule,
   MatProgressSpinnerModule, MatTableModule, MatToolbarModule, MatRadioModule, MatCheckboxModule
 } from '@angular/material';
-import {EventCardComponent} from './event-card/event-card.component';
 import {RegistrationCreateComponent} from './registration-create/registration-create.component';
 import {ParticipantListComponent} from './participant-list/participant-list.component';
 import {ParticipantComponent} from './participant/participant.component';
@@ -57,7 +56,6 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         DynamicFormComponent,
-        EventCardComponent,
         EventViewComponent,
         EventViewCardComponent,
         DevToolbarComponent,

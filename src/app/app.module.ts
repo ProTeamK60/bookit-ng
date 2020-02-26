@@ -7,7 +7,14 @@ import {EventViewComponent} from './event-view/event-view.component';
 import {EventService} from './service/event.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {JsonSchemaFormModule, MaterialDesignFrameworkModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, MaterialDesignFramework, Framework} from 'angular2-json-schema-form';
+import {
+  JsonSchemaFormModule, 
+  MaterialDesignFrameworkModule,
+  JsonSchemaFormService,
+  FrameworkLibraryService,
+  WidgetLibraryService,
+  MaterialDesignFramework,
+  Framework} from 'angular2-json-schema-form';
 
 
 import {
@@ -38,7 +45,6 @@ import {
 import {DevToolbarComponent} from './dev-toolbar/dev-toolbar.component';
 import {EventCreateComponent} from './event-create/event-create.component';
 import {EventListComponent} from './event-list/event-list.component';
-import {EventCardComponent} from './event-card/event-card.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material';
 import {ErrorInterceptorService} from './service/interceptors/error-interceptor.service';
@@ -59,7 +65,6 @@ import { AuthComponent } from './auth/auth.component';
     EventViewComponent,
     DevToolbarComponent,
     EventListComponent,
-    EventCardComponent,
     EventCreateComponent,
     LocalDateTimePipe,
     RegistrationCreateComponent,
@@ -122,7 +127,7 @@ import { AuthComponent } from './auth/auth.component';
     },
     EventService,
     RegistrationService,
-    AmplifyService
+    AmplifyService,
 
   ],
   bootstrap: [AppComponent],

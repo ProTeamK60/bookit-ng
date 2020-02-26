@@ -5,8 +5,9 @@ import { Event } from '../model/event';
 import { Registration } from '../model/registration';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -65,16 +66,19 @@ export class DynamicFormComponent implements OnInit {
         registration.participant.answers[registration.participant.answers.length] = {optionId: Number(key), value: answerValue};
       }
     });
-    this.registrationService.addRegistration(registration)
-    .pipe(
-      catchError(err => {
-        this.snackBar.open(err, 'Dismiss', {duration: 5000});
-        return throwError(err);
-      })).subscribe(
-    _ => {
-      this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
-      this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
-    }
-  );
+    this.registrationService.addRegistration(registration, this.onError)
+    .then(response => {
+      response.subscribe(_ => {
+          this.snackBar.open('Registration successful', 'Ok', {duration: 5000});
+          this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
+        });
+    });
+    
   }
+
+  private onError = (error: HttpErrorResponse) => {
+    this.snackBar.open(error.error, 'Dismiss', {duration: 5000});
+    return new Observable<never>();
+  }
+
 }

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EventViewCardComponent } from './event-view-card.component';
 import { LocalDateTimePipe } from '../pipes/local-date-time.pipe';
 import { EventViewComponent } from '../event-view/event-view.component';
@@ -10,16 +9,39 @@ import { RegistrationCreateComponent } from '../registration-create/registration
 import { ParticipantListComponent } from '../participant-list/participant-list.component';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
-import { MatCardModule, MatDividerModule, MatIconModule, MatListModule, MatButtonToggleModule, MatProgressSpinnerModule, MatFormFieldModule, MatDatepickerModule, MatInputModule, MatExpansionModule, MatTableModule, MatSelectModule, MatOptionModule, MatRadioModule, MatCheckboxModule } from '@angular/material';
+import { 
+  MatCardModule, 
+  MatDividerModule, 
+  MatIconModule, 
+  MatListModule,
+  MatButtonToggleModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatDatepickerModule, 
+  MatInputModule, 
+  MatExpansionModule,
+  MatTableModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatRadioModule,
+  MatCheckboxModule } from '@angular/material';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
-import { ViewChild, Component } from '@angular/core';
+import { 
+  JsonSchemaFormModule,
+  JsonSchemaFormService,
+  FrameworkLibraryService,
+  WidgetLibraryService,
+  Framework,
+  MaterialDesignFramework } from 'angular2-json-schema-form';
+import { ViewChild, Component, Predicate, DebugElement } from '@angular/core';
 import { Event } from '../model/event';
 import { AuthComponent } from '../auth/auth.component';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
+import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EventViewCardComponent', () => {
   const MOCK_EVENT: Event = {
@@ -33,6 +55,11 @@ describe('EventViewCardComponent', () => {
     organizer: 'Susanne',
     options: [],
     maxNumberOfApplicants: 1
+  };
+
+  const expectElementToContainText = (selector: Predicate<DebugElement>, searchString: string) => {
+    const element: DebugElement = parentFixture.debugElement.query(selector);
+    expect(element.nativeElement.textContent).toContain(searchString);
   };
 
   let component: EventViewCardComponent;
@@ -75,6 +102,7 @@ describe('EventViewCardComponent', () => {
       MatRadioModule,
       MatCheckboxModule,
       AmplifyAngularModule,
+      RouterTestingModule,
       {
         ngModule: JsonSchemaFormModule,
         providers: [
@@ -96,10 +124,16 @@ describe('EventViewCardComponent', () => {
 
     component = parentComponent.eventViewCardComponent;
     component.event = MOCK_EVENT;
+    parentFixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show event title and description', () => {
+    expectElementToContainText(By.css('.title'), MOCK_EVENT.name);
+    expectElementToContainText(By.css('.description'), MOCK_EVENT.description);
   });
 
   @Component({
