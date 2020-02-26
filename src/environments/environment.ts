@@ -14,6 +14,9 @@ export const environment = {
       identityPoolId: "us-east-2:2aba4449-cd21-4b4e-8e77-4853359bbc87",
       userPoolWebClientId: "4f2li8a2pvtof2phakmcjmdt93"
     }
+  },
+  routerOptions: {
+    enableTracing: false //set to true for router logging.
   }
 };
 

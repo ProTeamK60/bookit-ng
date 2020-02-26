@@ -25,7 +25,6 @@ import {AppRoutingModule} from '../app-routing.module';
 import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
-import {EventCardComponent} from '../event-card/event-card.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -38,6 +37,7 @@ import { SmallEventCardComponent } from '../small-event-card/small-event-card.co
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
 import { AuthComponent } from '../auth/auth.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EventRegComponent', () => {
   let component: RegistrationCreateComponent;
@@ -52,7 +52,6 @@ describe('EventRegComponent', () => {
         EventListComponent,
         EventViewComponent,
         EventViewCardComponent,
-        EventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
@@ -81,6 +80,7 @@ describe('EventRegComponent', () => {
         MatRadioModule,
         MatCheckboxModule,
         AmplifyAngularModule,
+        RouterTestingModule,
         {
           ngModule: JsonSchemaFormModule,
           providers: [
@@ -91,10 +91,7 @@ describe('EventRegComponent', () => {
           ]
         }
       ],
-      providers: [
-        { provide: ActivatedRouteSnapshot, useValue: {
-          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
-        }}]
+      providers: []
     })
       .compileComponents();
   }));

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import {
   MatCardModule,
   MatFormFieldModule,
@@ -18,11 +17,9 @@ import {
   MatSelectModule,
   MatOptionModule
 } from '@angular/material';
-
 import { EventCreateComponent } from '../event-create/event-create.component';
 import { EventListComponent } from '../event-list/event-list.component';
 import { EventViewComponent } from '../event-view/event-view.component';
-import { EventCardComponent } from '../event-card/event-card.component';
 import { LocalDateTimePipe } from '../pipes/local-date-time.pipe';
 import { ParticipantListComponent } from '../participant-list/participant-list.component';
 import { RegistrationDeleteComponent } from './registration-delete.component';
@@ -33,7 +30,13 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationCreateComponent } from '../registration-create/registration-create.component';
 import { RegistrationService } from '../service/registration.service';
-import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
+import { 
+  JsonSchemaFormModule,
+  JsonSchemaFormService,
+  FrameworkLibraryService,
+  WidgetLibraryService,
+  Framework,
+  MaterialDesignFramework } from 'angular2-json-schema-form';
 import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { SmallEventCardComponent } from '../small-event-card/small-event-card.component';
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
@@ -57,7 +60,6 @@ describe('EventUnregComponent', () => {
         EventListComponent,
         EventViewComponent,
         EventViewCardComponent,
-        EventCardComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
         RegistrationDeleteComponent,
@@ -96,7 +98,12 @@ describe('EventUnregComponent', () => {
           ]
         }
       ],
-      providers: [{ provide: RegistrationService, useValue: mockRegistrationService }]
+      providers: [
+        {
+          provide: RegistrationService,
+          useValue: mockRegistrationService
+        }
+      ]
     })
       .compileComponents();
   }));
@@ -112,7 +119,7 @@ describe('EventUnregComponent', () => {
 
   describe('method onSubmit()', () => {
     it('should call registrationService.deleteRegistration once if form is correctly filled', () => {
-      mockRegistrationService.deleteRegistration.and.returnValue(of('Registration deleted!'));
+      mockRegistrationService.deleteRegistration.and.returnValue(Promise.resolve(of('Registration deleted!')));
 
       component.regForm = formBuilder.group({
         email: 'kalle@ankeborg.se'

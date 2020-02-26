@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { Option } from '../model/option';
 import { NoneComponent} from 'angular2-json-schema-form';
 import { Event } from '../model/event';
+import { MatSnackBar } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, never } from 'rxjs';
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',
@@ -105,7 +108,8 @@ export class EventCreateComponent implements OnInit {
 
   constructor(private eventService: EventService,
               private fb: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              private snackBar: MatSnackBar) {
   }
 
 
@@ -168,11 +172,18 @@ export class EventCreateComponent implements OnInit {
     let hours: number[] = this.createList(1, 23);
     let minutes: number[] = this.createList(5,55);
     let submittedEvent = this.submitEventForm();
-    this.eventService.createOrUpdate(submittedEvent).subscribe((data) => {
-      let s = data.headers.get('location').split('/');
-      this.router.navigateByUrl('/events/' + s[s.length - 1]);
+    this.eventService.createOrUpdate(submittedEvent, this.onError).then(response => {
+      response.subscribe((data) => {
+        let s = data.headers.get('location').split('/');
+        this.router.navigateByUrl('/events/' + s[s.length - 1]);
+      });
     });
   }
+
+  private onError = (error: HttpErrorResponse) => {
+    this.snackBar.open("Failed to create event. " + (error.error !== undefined ? error.error : ''), "Dismiss", {duration: 5000});
+    return new Observable<never>();
+  };
 
   private submitEventForm(): Event {
     let eventStart: string = this.eventForm.get('eventStart').value;

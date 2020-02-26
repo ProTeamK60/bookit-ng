@@ -1,13 +1,9 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
-
+import {async, ComponentFixture, TestBed, fakeAsync, inject, tick} from '@angular/core/testing';
 import {EventViewComponent} from './event-view.component';
 import {EventService} from '../service/event.service';
 import {Event} from '../model/event';
-import {of} from 'rxjs';
-import {By} from '@angular/platform-browser';
-import {Component, DebugElement, Input} from '@angular/core';
-import {EventCardComponent} from '../event-card/event-card.component';
+import {Observable, of} from 'rxjs';
+import {Component, Input} from '@angular/core';
 import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventListComponent} from '../event-list/event-list.component';
 import {
@@ -104,7 +100,13 @@ describe('EventViewComponent', () => {
         }
       ],
 
-      providers: [{provide: EventService, useValue: mockEventService}]
+      providers: [
+        {
+          provide: EventService,
+          useValue: mockEventService
+        },
+
+      ]
     })
       .compileComponents();
   }));
@@ -118,14 +120,16 @@ describe('EventViewComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should store an event in event variable after initialization', () => {
-    mockEventService.findById.and.returnValue(of(MOCK_EVENT));
-
-    fixture.detectChanges();
-    component.event$.subscribe(data => {
-      expect(data).toEqual(MOCK_EVENT);
-    });
-  });
+  it('should store an event in event variable after initialization', fakeAsync( () => {
+      mockEventService.findById.and.returnValue(Promise.resolve(of(MOCK_EVENT)));
+      component.ngOnInit();
+      tick();
+      fixture.detectChanges();
+      component.event$.subscribe(data => {
+        expect(data).toEqual(MOCK_EVENT);
+      });  
+    })
+  );
 
   @Component({
     selector: 'app-event-card',

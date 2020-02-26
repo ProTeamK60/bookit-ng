@@ -21,7 +21,6 @@ import {EventCreateComponent} from '../event-create/event-create.component';
 import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {EventCardComponent} from '../event-card/event-card.component';
 import {RegistrationCreateComponent} from '../registration-create/registration-create.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
 import {ParticipantListComponent} from '../participant-list/participant-list.component';
@@ -45,7 +44,6 @@ describe('DevToolbarComponent', () => {
         EventListComponent,
         EventViewComponent,
         EventViewCardComponent,
-        EventCardComponent,
         RegistrationCreateComponent,
         LocalDateTimePipe,
         ParticipantListComponent,

@@ -8,14 +8,13 @@ import {
   MatDividerModule, MatExpansionModule,
   MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatNativeDateModule,
-  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule, MatSelectModule, MatOptionModule
+  MatProgressSpinnerModule, MatTableModule, MatRadioModule, MatCheckboxModule, MatSelectModule, MatOptionModule, MatSnackBarModule
 } from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from '../app-routing.module';
 import {EventListComponent} from '../event-list/event-list.component';
 import {EventViewComponent} from '../event-view/event-view.component';
-import {EventCardComponent} from '../event-card/event-card.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RegistrationCreateComponent} from '../registration-create/registration-create.component';
 import {LocalDateTimePipe} from '../pipes/local-date-time.pipe';
@@ -29,6 +28,7 @@ import { SmallEventCardComponent } from '../small-event-card/small-event-card.co
 import { EventViewCardComponent } from '../event-view-card/event-view-card.component';
 import { AuthComponent } from '../auth/auth.component';
 import { AmplifyAngularModule } from 'aws-amplify-angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EventCreateComponent', () => {
   let component: EventCreateComponent;
@@ -41,7 +41,6 @@ describe('EventCreateComponent', () => {
         EventListComponent,
         EventViewComponent,
         EventViewCardComponent,
-        EventCardComponent,
         RegistrationCreateComponent,
         LocalDateTimePipe,
         ParticipantListComponent,
@@ -70,6 +69,8 @@ describe('EventCreateComponent', () => {
         MatSelectModule,
         MatOptionModule,
         MatCheckboxModule,
+        MatSnackBarModule,
+        RouterTestingModule,
         AmplifyAngularModule,
         {
           ngModule: JsonSchemaFormModule,
@@ -81,10 +82,7 @@ describe('EventCreateComponent', () => {
           ]
         }
       ],
-      providers: [
-        { provide: ActivatedRouteSnapshot, useValue: {
-          snapshot: of({params: of({ id: 'test', eventId: 'eventId' })})
-        }}]
+      providers: []
     })
       .compileComponents();
   }));

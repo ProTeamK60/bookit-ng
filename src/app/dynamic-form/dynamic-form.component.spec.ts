@@ -15,7 +15,6 @@ import { ParticipantListComponent } from '../participant-list/participant-list.c
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
 import { EventListComponent } from '../event-list/event-list.component';
 import { JsonSchemaFormModule, JsonSchemaFormService, FrameworkLibraryService, WidgetLibraryService, Framework, MaterialDesignFramework } from 'angular2-json-schema-form';
-import { EventCardComponent } from '../event-card/event-card.component';
 import {Event} from '../model/event';
 import { of } from 'rxjs';
 import { RegistrationService } from '../service/registration.service';
@@ -56,7 +55,6 @@ describe('DynamicFormComponent', () => {
         ParticipantListComponent,
         RegistrationDeleteComponent,
         SmallEventCardComponent,
-        EventCardComponent,
         AuthComponent
       ],
       imports: [MatCardModule,
@@ -112,7 +110,7 @@ describe('DynamicFormComponent', () => {
 
   describe('method onSubmit()', () => {
     it('should call registrationService.addRegistration once if form is correctly filled', () => {
-      mockRegistrationService.addRegistration.and.returnValue(of('Registration added!'));
+      mockRegistrationService.addRegistration.and.returnValue(Promise.resolve(of('Registration added!')));
 
       component.onSubmit();
       fixture.detectChanges();

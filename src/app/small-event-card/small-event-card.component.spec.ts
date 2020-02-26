@@ -1,7 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SmallEventCardComponent } from './small-event-card.component';
-import { EventCardComponent } from '../event-card/event-card.component';
 import { LocalDateTimePipe } from '../pipes/local-date-time.pipe';
 import { EventCreateComponent } from '../event-create/event-create.component';
 import { RegistrationCreateComponent } from '../registration-create/registration-create.component';
@@ -9,7 +7,21 @@ import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 import { EventListComponent } from '../event-list/event-list.component';
 import { EventViewComponent } from '../event-view/event-view.component';
 import { RegistrationDeleteComponent } from '../registration-delete/registration-delete.component';
-import { MatCardModule, MatDividerModule, MatIconModule, MatListModule, MatFormFieldModule, MatButtonToggleModule, MatInputModule, MatExpansionModule, MatTableModule, MatDatepickerModule, MatProgressSpinnerModule, MatCheckboxModule, MatRadioModule, MatSelectModule, MatOptionModule } from '@angular/material';
+import { MatCardModule, 
+  MatDividerModule,
+  MatIconModule,
+  MatListModule,
+  MatFormFieldModule,
+  MatButtonToggleModule,
+  MatInputModule,
+  MatExpansionModule,
+  MatTableModule,
+  MatDatepickerModule,
+  MatProgressSpinnerModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatOptionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -59,7 +71,6 @@ describe('SmallEventCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         SmallEventCardComponent,
-        EventCardComponent,
         LocalDateTimePipe,
         EventCreateComponent,
         RegistrationCreateComponent,
@@ -96,17 +107,17 @@ describe('SmallEventCardComponent', () => {
         {
           ngModule: JsonSchemaFormModule,
           providers: [
-              JsonSchemaFormService,
-              FrameworkLibraryService,
-              WidgetLibraryService,
-              {provide: Framework, useClass: MaterialDesignFramework, multi: true}
+            JsonSchemaFormService,
+            FrameworkLibraryService,
+            WidgetLibraryService,
+            { provide: Framework, useClass: MaterialDesignFramework, multi: true }
           ]
         }
       ]
     })
       .compileComponents();
   }));
-  
+
 
   beforeEach(() => {
     parentFixture = TestBed.createComponent(MockParentComponent);
@@ -118,7 +129,7 @@ describe('SmallEventCardComponent', () => {
     addEvent(MOCK_EVENT);
     expect(component).toBeTruthy();
   });
-  
+
   it('should display the event name', () => {
     addEvent(MOCK_EVENT);
     expectElementToContainText(By.css(".title-container > span"), "Konferens");
@@ -162,7 +173,7 @@ describe('SmallEventCardComponent', () => {
     addEvent(MOCK_EVENT_REMAINING_HOURS);
     expectElementToContainText(By.css('.status-container > div'), "2 hours left");
   });
-  
+
   it('should display remaining days', () => {
     const MOCK_EVENT_REMAINING_HOURS: Event = {
       eventId: '72ab7c8b-c0d5-4ab2-8c63-5cf1ad0b439b',
@@ -187,7 +198,7 @@ describe('SmallEventCardComponent', () => {
     `
   })
   class MockParentComponent {
-    @ViewChild(SmallEventCardComponent, {static: true})
+    @ViewChild(SmallEventCardComponent, { static: true })
     public smallEventCardComponent: SmallEventCardComponent;
   }
 

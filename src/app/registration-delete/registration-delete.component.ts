@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegistrationService } from '../service/registration.service';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration-delete',
@@ -31,17 +32,17 @@ export class RegistrationDeleteComponent implements OnInit {
     const email: string = this.regForm.get('email').value;
     const eventId: string = this.activatedRoute.snapshot.params.eventId;
 
-    this.registrationService.deleteRegistration(email, eventId)
-      .pipe(
-        catchError(err => {
-          this.snackBar.open(err, 'Dismiss', {duration: 5000});
-          return throwError(err);
-        })).subscribe(
-      _ => {
-        this.snackBar.open('Unregistration successful', 'Ok', {duration: 5000});
-      this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
-      }
-    );
+    this.registrationService.deleteRegistration(email, eventId, this.onError)
+      .then(response => {
+        response.subscribe(
+          _ => {
+            this.snackBar.open('Unregistration successful', 'Ok', {duration: 5000});
+          this.router.navigateByUrl('/events/' + this.activatedRoute.snapshot.params.eventId);
+          }
+        );
+      });
   }
+
+  private onError = (error: HttpErrorResponse) => { this.snackBar.open(error.error, 'Dismiss', {duration: 5000}); return new Observable<never>();};
 
 }

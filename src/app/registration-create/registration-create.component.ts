@@ -23,15 +23,12 @@ export class RegistrationCreateComponent implements OnInit {
   
   ngOnInit() {
     const eventId = this.activatedRoute.snapshot.params.eventId;
-    console.error("eventId: " +eventId);
-  
-    this.event$ = this.eventService.findById(eventId).pipe(
-      catchError(err => {
-          this.error$.next(err);
-          return throwError(err);
-        }
-      )
-    );
-  
+    this.eventService.findById(eventId, this.onError).then(response => this.event$ = response);
   }
+
+  private onError = (err) => {
+    this.error$.next(err);
+    return throwError(err);
+  };
+
 }
