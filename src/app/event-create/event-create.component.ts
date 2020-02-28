@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Option } from '../model/option';
 import { NoneComponent} from 'angular2-json-schema-form';
 import { Event } from '../model/event';
+import { Storage } from 'aws-amplify';
 import { MatSnackBar } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, never } from 'rxjs';
@@ -20,7 +21,7 @@ export class EventCreateComponent implements OnInit {
   eventEndHour: string;
   eventEndHourMin: string;
   today = new Date();
-  
+
   eventForm = this.fb.group({
     name: ['', Validators.required],
     description: [''],
@@ -111,15 +112,65 @@ export class EventCreateComponent implements OnInit {
               private router: Router,
               private snackBar: MatSnackBar) {
   }
+  /**
+   * Photo processing starts here
+   */
+
+  showPhoto: boolean;
+  userCreated: boolean;
+  imageUrl: string;
+
+  async onImageUploaded(e) {
+    // save image id or path to the event detailes
+    console.log('Image saved with url ' + e.key)
+    this.imageUrl = e.key
+  }
+  onImagePicked(e) {
+    // save image id or path to the event detailes
+    console.log('Image picked ' + e.key)
+    var fileExtension = '.' + e.target.files[0].name.split('.').pop();
+    let key = Math.random().toString(36).substring(7) + new Date().getTime() + fileExtension;
+   return Storage.put(key, e.target.files[0], {ContentType:'image/png', level:'public'})
+     .then(result => {
+       this.showPhoto =true;
+       this.imageUrl = key;
+       // get the image
+       /*
+       console.log ('' + Storage.get(key, {level:'public'})
+         .then(result => {console.log('resutlt: ' + result); return true})
+         .catch(error => {console.log(error.toString())}))
+
+        */
+       return true;
+     })
+     .catch(e =>{return false} )
+
+ }
 
 
+  editPhoto() {
+    this.showPhoto = false;
+  }
+
+  getType(): string {
+    return this.userCreated ? 'UpdateUser' : 'CreateUser';
+  }
+
+  async updateProfile() {
+    console.log('in updateProfile.')
+  }
+
+
+  /**
+   * Photo processign ends here
+   */
   ngOnInit() {
     this.eventForm.get('eventStartMinute').setValue('00');
     this.eventForm.get('eventEndMinute').setValue('00');
     let h = (new Date()).getHours();
     this.eventForm.get('eventStartHour').setValue(h);
     this.eventForm.get('eventEndHour').setValue(h+1);
-    for(let control of ['eventEnd', 'deadlineRVSP', 'deadlineRVSPHour', 
+    for(let control of ['eventEnd', 'deadlineRVSP', 'deadlineRVSPHour',
     'deadlineRVSPMinute']) {
       this.eventForm.controls[control].disable();
     }
@@ -132,20 +183,20 @@ export class EventCreateComponent implements OnInit {
   }
 
   OnEventStartChange() {
-    for(let control of ['eventEnd', 'deadlineRVSP', 
+    for(let control of ['eventEnd', 'deadlineRVSP',
     'deadlineRVSPHour', 'deadlineRVSPMinute']) {
       this.enableDisable(control);
     }
-    
+
   }
 
   public createList(step: number, max: number): number[] {
     let l = [];
     let j = 0;
     for (let i = 0; i <= max; i = i + step) {
-      if (i <10)  
+      if (i <10)
         l[j++] = '0'+i;
-      else   
+      else
         l[j++] = i;
     }
     return l;
@@ -162,7 +213,7 @@ export class EventCreateComponent implements OnInit {
     control.setValue('');
     control.markAsPristine();
     control.markAsUntouched();
-  } 
+  }
 
   onOptionsChange(optionsForm) {
     this.optionsForm = optionsForm.options;
@@ -195,7 +246,7 @@ export class EventCreateComponent implements OnInit {
     let deadlineRVSP: string = this.eventForm.get('deadlineRVSP').value;
     let deadlineRVSPHour: number = this.eventForm.get('deadlineRVSPHour').value;
     let deadlineRVSPMin: number = this.eventForm.get('deadlineRVSPMinute').value;
-    
+
     if(deadlineRVSP === '') {
       deadlineRVSP = eventStart;
       deadlineRVSPHour = eventStartHour;

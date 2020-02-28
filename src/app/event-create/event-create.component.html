@@ -9,6 +9,35 @@
         <div class="full-width">
 
           <div class="form-row">
+            <div class="medium-width">
+              <div class="md-form mt-0">
+
+                <!--<div class="md-form mt-0">
+                  <mat-icon *ngIf="showPhoto"  size="2x" class="upload-icon">material_camera</mat-icon>
+                  &lt;!&ndash; Display Image &ndash;&gt;
+                  <amplify-s3-image [path]="imageUrl"
+                                    [options]="{'level': 'public'}" *ngIf="showPhoto" (uploaded)="onImageUploaded($event)">
+                  </amplify-s3-image>
+
+                  &lt;!&ndash; Photo Picker &ndash;&gt;
+                  <amplify-photo-picker *ngIf="!showPhoto"
+                                        [storageOptions]="{'level': 'public'}">
+                  </amplify-photo-picker>
+                </div>-->
+
+                <!-- Display Image -->
+                <div class="md-form mt-0 upload-icon">
+                <amplify-s3-image [path]="imageUrl"
+                                  [options]="{'level': 'public'}" *ngIf="showPhoto">
+                </amplify-s3-image>
+
+                <input type="file" accept="image/*" (change)="onImagePicked($event)" />
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
             <mat-form-field class="medium-width">
               <input formControlName="name" matInput placeholder="Name">
               <mat-error>
