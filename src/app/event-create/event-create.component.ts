@@ -9,6 +9,7 @@ import { Storage } from 'aws-amplify';
 import { MatSnackBar } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, never } from 'rxjs';
+import { AuthService } from '../service/auth.service';
 @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',
@@ -110,7 +111,8 @@ export class EventCreateComponent implements OnInit {
   constructor(private eventService: EventService,
               private fb: FormBuilder,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private authService: AuthService) {
   }
   /**
    * Photo processing starts here
@@ -130,13 +132,13 @@ export class EventCreateComponent implements OnInit {
     console.log('Image picked ' + e.key)
     var fileExtension = '.' + e.target.files[0].name.split('.').pop();
     let key = Math.random().toString(36).substring(7) + new Date().getTime() + fileExtension;
-   return Storage.put(key, e.target.files[0], {ContentType:'image/png', level:'public'})
+   return Storage.put(key, e.target.files[0], {ContentType:'image/png', level:'public', Authorization: this.authService.getToken()})
      .then(result => {
        this.showPhoto =true;
        this.imageUrl = key;
        // get the image
        /*
-       console.log ('' + Storage.get(key, {level:'public'})
+         console.log ('' + Storage.get(key, {level:'public'})
          .then(result => {console.log('resutlt: ' + result); return true})
          .catch(error => {console.log(error.toString())}))
 
