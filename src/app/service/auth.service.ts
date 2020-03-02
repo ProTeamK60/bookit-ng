@@ -13,6 +13,8 @@ export class AuthService {
       return res.getIdToken().getJwtToken();
     }).catch(reason => { return ''});
   }
-
+  getToken(): any {
+    return Auth.currentSession().then(response => {return response.getIdToken().getJwtToken().toString()});
+  }
 
 }
