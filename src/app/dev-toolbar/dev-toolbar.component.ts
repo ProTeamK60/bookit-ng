@@ -4,10 +4,10 @@ import { Auth } from 'aws-amplify';
 @Component({
   selector: 'app-dev-toolbar',
   templateUrl: './dev-toolbar.component.html',
-  styleUrls: ['./dev-toolbar.component.scss']
+  styleUrls: ['./dev-toolbar.component.css']
 })
 export class DevToolbarComponent implements OnInit {
-  
+
   user = null;
 
   constructor(private router: Router) { }
