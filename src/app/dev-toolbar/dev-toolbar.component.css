@@ -1,0 +1,51 @@
+.mat-toolbar {
+    background-color: #E4E1DB;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    z-index: 2;
+  }
+
+  span {
+     color: black;
+  }
+
+  mat-menu {
+     color: black;
+  }
+
+.mat-toolbar-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+ }
+
+ .button {
+   background-color: #FFC0CB; /* Green */
+   border: none;
+   color: #8B4513;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+ }
+
+ .center {
+  position: absolute;
+/*  width: 300px;
+  height: 200px;
+  z-index: 15;*/
+  top: 15%;
+  left: 30%;
+  right:30%;
+
+ }
+
+
+ .logo {
+    cursor: pointer;
+    user-select: none;
+ }
