@@ -8,12 +8,12 @@
 
 <form name="myForm" action="/action_page.php" method="get">
   <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname"></br></br>
+  <input type="text" id="fname" name="fname">
   <label for="lname">Last name:</label>
   <input type="text" id="lname" name="lname">
 </form>
 
-  <span *ngIf="user !== null">{{user.firstName}} {{user.lastName}}</span></mat-toolbar></br>
+  <span *ngIf="user !== null">{{user.firstName}} {{user.lastName}}</span></mat-toolbar>
 
   <div class = "center">
     <button class="button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
