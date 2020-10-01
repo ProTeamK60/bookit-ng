@@ -6,13 +6,6 @@
   <!-- This fills the remaining space of the current row -->
   <span class="mat-toolbar-fill-remaining-space"></span>
 
-<form name="myForm" action="" method="get">
-  <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname">
-  <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname">
-</form>
-
   <span *ngIf="user !== null">{{user.firstName}} {{user.lastName}}</span>
 
   <div class = "center">
