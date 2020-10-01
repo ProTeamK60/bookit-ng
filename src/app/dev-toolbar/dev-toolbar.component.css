@@ -24,7 +24,7 @@
    background-color: #FFC0CB; /* Green */
    border: none;
    color: #8B4513;
-   padding: 15px 32px;
+   padding: 15px 20px;
    text-align: center;
    text-decoration: none;
    display: inline-block;
@@ -38,9 +38,9 @@
 /*  width: 300px;
   height: 200px;
   z-index: 15;*/
-  top: 15%;
-  left: 30%;
-  right:30%;
+  top: 40%;
+  left: 10%;
+  right:10%;
 
  }
 

@@ -2,32 +2,42 @@
   <head>
     <link href="dev-toolbar.component.css" rel="stylesheet" type="text/css"/>
   </head>
-  <span class="logo" (click)="redirect('events')">Bookit Events : </span></mat-toolbar></br>
+  <span class="logo" (click)="redirect('events')">Bookit Events : </span></mat-toolbar></br></br>
   <!-- This fills the remaining space of the current row -->
   <span class="mat-toolbar-fill-remaining-space"></span>
+
+<form name="myForm" action="/action_page.php" method="get">
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+</form>
+
   <span *ngIf="user !== null">{{user.firstName}} {{user.lastName}}</span></mat-toolbar></br>
+
   <div class = "center">
     <button class="button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
-    </button></br></br>
+    </button>
     <mat-menu #menu="matMenu">
       <button class="button" mat-menu-item (click)="redirect('events/new')">
         <mat-icon>post_add</mat-icon>
         <span>Create new event</span>
-      </button></br></br>
+      </button>
       <button class="button" mat-menu-item (click) = "redirect('events')">
         <mat-icon>date_range</mat-icon>
         <span>View all events</span>
-      </button></br></br>
+      </button>
+
       <button class="button" mat-menu-item disabled="true" (click)="redirect('reports')">
         <mat-icon>assessment</mat-icon>
         <span>Reports</span>
-      </button></br></br>
+      </button>
       <button class="button" mat-menu-item *ngIf="user !== null" (click)="signOut()">
         <mat-icon>exit_to_app  </mat-icon>
         <span>Sign Out</span>
       </button>
-    </mat-menu>
+      </mat-menu>
   </div>
 
 </mat-toolbar>
