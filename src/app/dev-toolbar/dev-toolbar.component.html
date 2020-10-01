@@ -2,15 +2,15 @@
   <head>
     <link href="dev-toolbar.component.css" rel="stylesheet" type="text/css"/>
   </head>
-  <span class="logo" (click)="redirect('events')">Bookit Events : </span></mat-toolbar></br></br>
+  <span class="logo" (click)="redirect('events')">Bookit Events : </span></mat-toolbar>
   <!-- This fills the remaining space of the current row -->
   <span class="mat-toolbar-fill-remaining-space"></span>
 
 <form name="myForm" action="/action_page.php" method="get">
   <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname"><br><br>
+  <input type="text" id="fname" name="fname"></br></br>
   <label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname"><br><br>
+  <input type="text" id="lname" name="lname">
 </form>
 
   <span *ngIf="user !== null">{{user.firstName}} {{user.lastName}}</span></mat-toolbar></br>
